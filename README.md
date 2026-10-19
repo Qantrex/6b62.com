@@ -1,23 +1,48 @@
 # 6b62.com
 
-Personal site / one-page CV for Konstantin Bauer, typeset like a disassembly: an address margin, a
-continuous hairline ledger, flat light/dark, a hand-drawn Canvas wireframe of the tailnet (no library),
-and a small working shell. It **prints as a one-page CV** (`Ctrl/Cmd-P`).
+Konstantin Bauer's personal site / one-page CV (prints as a one-page CV with `Ctrl/Cmd-P`).
+Static HTML served by `nginx:alpine` on a Raspberry Pi behind a Cloudflare Tunnel — no external
+requests, no open ports.
 
-Served at **https://new.6b62.com** from an `nginx:alpine` container on a Raspberry Pi behind a Cloudflare
-Tunnel. No external requests: the fonts are self-hosted, so the page loads only from its own origin.
+## Two environments, one branch each
+
+| Branch | URL | Container | Port | Indexed? |
+|---|---|---|---|---|
+| `main` | https://6b62.com | `website` | 8088 | yes |
+| `staging` | https://new.6b62.com | `website-new` | 8089 | no (`noindex`) |
+
+`main` is the stable, public site. `staging` is where experimental versions run first, so `6b62.com`
+always has a working version. **Promote** a tested change with a normal merge: `git checkout main &&
+git merge staging`, then deploy `main`.
+
+The two branches share everything below (`deploy.sh`, `tests/run`, CI, `nginx/nginx.conf`); they differ
+only in `site/` and `nginx/default.conf`. The staging site is the richer design (an inline Canvas
+tailnet wireframe + shell, self-hosted fonts); `main` is the current lean, zero-JS site.
+
+## Layout
 
 | Path | What |
 |---|---|
-| `site/index.html` | The page. One inline `<script>` (Canvas wireframe + shell); everything else inline. |
-| `site/404.html` | Matching 404 (`0x194`). |
-| `site/fonts/` | Self-hosted Archivo + JetBrains Mono (`.woff2`, latin + latin-ext). |
+| `site/index.html` | The page. |
+| `site/404.html` | Matching 404. |
+| `site/fonts/` | Self-hosted woff2 (staging only; `main` uses system fonts). |
 | `site/.well-known/security.txt` | Security contact. |
-| `nginx/default.conf` | Server block + CSP (`default-src 'none'`, `font-src 'self'`). |
+| `nginx/default.conf` | Server block + CSP (`default-src 'none'`). |
 | `nginx/nginx.conf` | Main config: 1 worker, no access log, `gzip_static`. |
-| `deploy.sh` | Publish to the Pi (copy, pre-gzip, `nginx -t`, reload — no downtime). |
+| `deploy.sh` | Publish to the Pi — the branch picks the environment. |
 | `tests/run` | Static checks + `nginx -t` + Nu HTML validation. |
 | `.github/workflows/ci.yml` | Runs `tests/run` on every push and PR. |
+
+## Deploy
+
+```bash
+./deploy.sh            # deploys the CURRENT branch to its environment
+./deploy.sh staging    # or name the branch explicitly
+```
+
+Needs tailnet access and SSH to `pi-two`. `deploy.sh` reads the current git branch and publishes to the
+matching container (`main` → 6b62.com, `staging` → new.6b62.com), with no downtime. After a deploy, purge
+the Cloudflare cache (Caching → Configuration → Purge Everything) or wait up to 1 h for the edge TTL.
 
 ## Tests
 
@@ -25,46 +50,24 @@ Tunnel. No external requests: the fonts are self-hosted, so the page loads only 
 ./tests/run
 ```
 
-Core checks (files present, fonts self-hosted and all referenced, no external requests, head metadata,
-`security.txt`, CSP) need only `bash` + `grep`. The `nginx -t` and HTML-validation checks use docker
-(`nginx:alpine` and the Nu `validator/validator` image) and auto-skip when docker or the image is
-unavailable — so they run in CI and on any machine with docker, and a bare laptop still runs the rest.
+Core checks (files present, no external requests, fonts referenced actually exist, head metadata,
+`security.txt`, CSP, correct indexing for the branch) need only `bash` + `grep`. The `nginx -t` and
+HTML-validation checks use docker (`nginx:alpine` and the Nu `validator/validator` image) and auto-skip
+when docker is unavailable. CI runs the same script on `ubuntu-latest`, where everything runs.
 
-CI runs the same script on `ubuntu-latest`, where docker and the internet are present, so all checks run.
+## Infrastructure (on the Pi, one-time)
 
-## Deploy
+Both containers live in `pi-two:/opt/stacks/utility-stack/compose.yaml` (`website` and `website-new`):
+`nginx:alpine`, read-only, `mem_limit: 32m`, bound to localhost, bind-mounting
+`/home/kbauer/data/<website|website-new>/{site,nginx}`.
 
-```bash
-./deploy.sh            # publishes to pi-two:/home/kbauer/data/website-new, reloads nginx
-```
+Cloudflare: each hostname is a Public Hostname on the 6b62.com tunnel (`6b62.com` → `http://website:80`,
+`new.6b62.com` → `http://website-new:80`). The zone's single "all incoming requests" cache rule covers
+both; the page sends `Cache-Control: s-maxage=3600`, so the edge serves ~1 request/hour per location.
 
-Needs tailnet access and SSH to `pi-two`. After a deploy, purge the Cloudflare cache
-(Caching → Configuration → Purge Everything) or wait up to 1 h for the edge TTL to lapse.
+## Fonts (staging)
 
-### The container (one-time, on the Pi)
-
-Defined in `pi-two:/opt/stacks/utility-stack/compose.yaml` as the `website-new` service: `nginx:alpine`,
-read-only, `mem_limit: 32m`, bound to `127.0.0.1:8089`, with the network alias `website-new`. It
-bind-mounts `/home/kbauer/data/website-new/{site,nginx}`.
-
-### Cloudflare
-
-- **Route:** Zero Trust → Networks → Tunnels → (the 6b62.com tunnel) → Public Hostname: `new.6b62.com`
-  → `http://website-new:80`. Adding the hostname creates the proxied DNS record automatically.
-- **Cache:** the zone's existing "all incoming requests" cache rule already covers `new.6b62.com`; no new
-  rule is needed. The page sends `Cache-Control: s-maxage=3600`, so the edge serves ~1 request/hour per
-  location.
-
-## Fonts
-
-Archivo + JetBrains Mono are self-hosted in `site/fonts/` (downloaded from Google Fonts via
-google-webfonts-helper, latin + latin-ext). The page declares them with an inline `@font-face` block and a
-full system fallback stack, so there are no external font requests. To refresh or change weights, drop new
-`.woff2` files in `site/fonts/` and update the `@font-face` block + the weights used in the CSS.
-
-## noindex
-
-The page is `noindex, follow` with `<link rel="canonical">` → `https://6b62.com/`, so this preview domain
-does not compete with the main site in search. When `new.6b62.com` becomes the primary site: remove the
-`robots` meta, point `canonical` and the `og:url` at the real URL, and update `Canonical` in
-`security.txt`.
+The staging design self-hosts Archivo + JetBrains Mono (`site/fonts/`, latin + latin-ext, from Google
+Fonts via google-webfonts-helper), declared with an inline `@font-face` block and a full system fallback
+stack — so there are no external font requests. To change weights, drop new `.woff2` in `site/fonts/` and
+update the `@font-face` block.

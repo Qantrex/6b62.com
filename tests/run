@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# tests/run — static checks for new.6b62.com.
+# tests/run — static checks for the site. Shared by both branches (main = 6b62.com,
+# staging = new.6b62.com); checks that differ by site adapt to the content.
 #
-# The core checks need only coreutils + grep and run anywhere. The nginx -t and
-# HTML-validation checks need docker; they auto-skip when docker (or the image)
-# is unavailable, so a laptop without docker still runs the core checks, while
-# CI — where docker and the internet are present — runs everything.
+# Core checks need only coreutils + grep and run anywhere. The nginx -t and HTML-validation
+# checks need docker; they auto-skip when docker (or the image) is unavailable, so a laptop
+# without docker still runs the core checks, while CI runs everything.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
@@ -13,12 +13,13 @@ ok()   { printf '  ok    %s\n' "$1"; PASS=$((PASS+1)); }
 bad()  { printf 'FAIL    %s\n' "$1"; FAIL=$((FAIL+1)); }
 skip() { printf '  skip  %s (%s)\n' "$1" "$2"; SKIP=$((SKIP+1)); }
 has()  { command -v "$1" >/dev/null 2>&1; }
-# make sure a docker image is usable (present locally, or pullable)
 ensure_img() { docker image inspect "$1" >/dev/null 2>&1 || docker pull -q "$1" >/dev/null 2>&1; }
-# contains FILE REGEX DESC  /  lacks FILE REGEX DESC  /  exists PATH
 contains() { if grep -qE "$2" "$1" 2>/dev/null; then ok "$3"; else bad "$3"; fi; }
 lacks()    { if grep -qE "$2" "$1" 2>/dev/null; then bad "$3"; else ok "$3"; fi; }
 exists()   { if [ -e "$1" ]; then ok "exists: $1"; else bad "exists: $1"; fi; }
+
+# which environment is this tree? branch name from CI or git.
+BR="${GITHUB_REF_NAME:-$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '')}"
 
 echo "# --- files present"
 for f in site/index.html site/404.html site/.well-known/security.txt \
@@ -26,32 +27,42 @@ for f in site/index.html site/404.html site/.well-known/security.txt \
   exists "$f"
 done
 
-echo "# --- fonts self-hosted"
-miss=0
-for u in $(grep -oE 'fonts/[A-Za-z0-9._-]+\.woff2' site/index.html | sort -u); do
-  [ -f "site/$u" ] || { echo "   missing: site/$u"; miss=1; }
-done
-[ "$miss" = 0 ] && ok "every referenced woff2 exists on disk" || bad "every referenced woff2 exists on disk"
-ls site/fonts/*.woff2 >/dev/null 2>&1 && ok "site/fonts/ has woff2 files" || bad "site/fonts/ has woff2 files"
-
 echo "# --- no external requests"
-lacks site/index.html 'fonts\.(googleapis|gstatic)\.com'  "no Google Fonts references"
+lacks site/index.html 'fonts\.(googleapis|gstatic)\.com'   "no Google Fonts references"
 lacks site/index.html '<link[^>]*stylesheet[^>]*https?://' "no external stylesheet"
 lacks site/index.html '<script[^>]*src=[^>]*https?://'     "no external <script src>"
 lacks site/index.html 'url\([[:space:]]*https?://'         "no external url() in CSS"
 lacks site/index.html '(cdnjs|jsdelivr|unpkg|three\.min\.js)' "no CDN / Three.js leftovers"
 
+echo "# --- fonts"
+if grep -qE 'fonts/[A-Za-z0-9._-]+\.woff2' site/index.html; then
+  miss=0
+  for u in $(grep -oE 'fonts/[A-Za-z0-9._-]+\.woff2' site/index.html | sort -u); do
+    [ -f "site/$u" ] || { echo "   missing: site/$u"; miss=1; }
+  done
+  [ "$miss" = 0 ] && ok "every referenced woff2 exists on disk" || bad "every referenced woff2 exists on disk"
+  ls site/fonts/*.woff2 >/dev/null 2>&1 && ok "site/fonts/ has woff2 files" || bad "site/fonts/ has woff2 files"
+  contains nginx/default.conf "font-src 'self'" "CSP: font-src 'self' (self-hosted fonts)"
+else
+  skip "self-hosted font checks" "page references no woff2 (system fonts)"
+fi
+
 echo "# --- head metadata"
-contains site/index.html '<meta name="robots" content="noindex' "noindex present (preview domain)"
-contains site/index.html '<link rel="canonical"'                 "canonical present"
-contains site/index.html '<title>[^<]+</title>'                  "title present"
+contains site/index.html '<link rel="canonical"' "canonical present"
+contains site/index.html '<title>[^<]+</title>'  "title present"
+
+echo "# --- indexing (per environment)"
+case "$BR" in
+  staging) contains site/index.html '<meta name="robots" content="noindex' "staging is noindex";;
+  main)    lacks    site/index.html '<meta name="robots" content="noindex' "production is indexable (no noindex)";;
+  *)       skip "noindex check" "branch '$BR' is neither main nor staging";;
+esac
 
 echo "# --- security.txt"
 contains site/.well-known/security.txt '^Contact:'   "security.txt has Contact"
 contains site/.well-known/security.txt '^Canonical:' "security.txt has Canonical"
 
 echo "# --- CSP (nginx)"
-contains nginx/default.conf "font-src 'self'"                  "CSP: font-src 'self'"
 contains nginx/default.conf "default-src 'none'"               "CSP: default-src 'none'"
 lacks    nginx/default.conf 'fonts\.(googleapis|gstatic)\.com' "CSP: no Google Fonts hosts"
 
@@ -80,5 +91,5 @@ else
 fi
 
 echo
-echo "pass=$PASS fail=$FAIL skip=$SKIP"
+echo "branch=${BR:-?}  pass=$PASS fail=$FAIL skip=$SKIP"
 [ "$FAIL" = 0 ]
