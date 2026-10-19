@@ -1,0 +1,11 @@
+# editor / OS cruft
+.DS_Store
+*.swp
+*~
+
+# deploy staging dirs (created on the Pi, never committed)
+site.old/
+site.new/
+
+# pre-gzipped copies (generated at deploy time)
+site/**/*.gz

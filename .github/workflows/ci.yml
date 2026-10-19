@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # ubuntu-latest ships with docker + internet, so tests/run also runs
+      # the nginx -t and Nu HTML-validation checks (not just the static ones).
+      - name: Static checks, nginx -t, HTML validation
+        run: ./tests/run

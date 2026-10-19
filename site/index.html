@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Konstantin Bauer</title>
+<meta name="description" content="Konstantin Bauer — IT student at HTL TGM Vienna: systems engineering and IT security, a self-hosted homelab, hardening scripts, a simulated OS.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://6b62.com/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#edeeec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Konstantin Bauer">
+<meta property="og:description" content="Systems engineering &amp; IT security — HTL TGM Vienna. A self-hosted homelab, hardening scripts, a simulated OS.">
+<meta property="og:url" content="https://new.6b62.com/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cstyle%3Erect%7Bfill:%2316171a%7Dtext%7Bfill:%23edeeec%7D@media(prefers-color-scheme:dark)%7Brect%7Bfill:%23edeeec%7Dtext%7Bfill:%230b0c0e%7D%7D%3C/style%3E%3Crect%20width='32'%20height='32'/%3E%3Ctext%20x='16'%20y='22'%20font-family='monospace'%20font-size='15'%20font-weight='700'%20text-anchor='middle'%3Ekb%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Konstantin Bauer","url":"https://6b62.com/","email":"mailto:konstantin@wbauer.com","jobTitle":"IT student","alumniOf":"HTL TGM Wien","knowsAbout":["Linux","Networking","IT security","Docker","Home Assistant"],"sameAs":["https://github.com/Qantrex","https://www.linkedin.com/in/konstantin-bauer-9a5952266/"]}</script>
+<style>
+  /* Self-hosted Archivo + JetBrains Mono (latin + latin-ext, from Google Fonts via gwfh).
+     No external requests: the whole page loads only from this origin. */
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/archivo-v25-latin_latin-ext-regular.woff2') format('woff2')}
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/archivo-v25-latin_latin-ext-500.woff2') format('woff2')}
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/archivo-v25-latin_latin-ext-600.woff2') format('woff2')}
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/archivo-v25-latin_latin-ext-700.woff2') format('woff2')}
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/archivo-v25-latin_latin-ext-800.woff2') format('woff2')}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/jetbrains-mono-v24-latin_latin-ext-regular.woff2') format('woff2')}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/jetbrains-mono-v24-latin_latin-ext-500.woff2') format('woff2')}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/jetbrains-mono-v24-latin_latin-ext-700.woff2') format('woff2')}
+</style>
+<style>
+  /* ----------------------------------------------------------------------
+     0x6b62 — personal site, typeset like a disassembly.
+     A left margin of section "addresses" on a continuous hairline ledger,
+     flat colour, sharp corners. Human grotesque for the name, machine mono
+     for the data. One instrument: a hand-drawn Canvas wireframe of the
+     tailnet (no library, no glow), with a static SVG fallback when JS or
+     the network is unavailable. Flat light + flat dark. Prints as a CV.
+     -------------------------------------------------------------------- */
+  :root {
+    --paper:  #edeeec; --panel: #e6e7e4;
+    --ink:    #16171a; --ink-2: #4e4f55; --faint: #77787d;
+    --rule:   rgba(22,23,26,0.15); --rule-2: rgba(22,23,26,0.32);
+    --accent: #5a3ab0;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0b0c0e; --panel: #111216;
+      --ink: #ecedee; --ink-2: #a7a8ae; --faint: #74757b;
+      --rule: rgba(236,237,238,0.15); --rule-2: rgba(236,237,238,0.30);
+      --accent: #c4a7e7; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0b0c0e; --panel: #111216;
+    --ink: #ecedee; --ink-2: #a7a8ae; --faint: #74757b;
+    --rule: rgba(236,237,238,0.15); --rule-2: rgba(236,237,238,0.30);
+    --accent: #c4a7e7; color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink);
+    font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  ::selection { background: var(--accent); color: var(--paper); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2 { font-weight: 800; }
+
+  .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .skip { position: fixed; left: 10px; top: -48px; z-index: 100; background: var(--ink); color: var(--paper);
+    padding: 9px 13px; font: 500 13px var(--mono); transition: top .15s; }
+  .skip:focus { top: calc(10px + env(safe-area-inset-top, 0px)); }
+
+  .sheet { max-width: 920px; margin-inline: auto;
+    padding-inline: max(22px, env(safe-area-inset-left,0px)) max(22px, env(safe-area-inset-right,0px)); }
+
+  /* the ledger grid: [address margin] | [content] */
+  .block { display: grid; grid-template-columns: 6.5rem minmax(0,1fr);
+    padding-block: clamp(36px, 6vw, 68px); border-top: 1px solid var(--rule); }
+  .block:first-of-type { border-top: 0; }
+  .addr { font: 500 12px/1.9 var(--mono); color: var(--faint); letter-spacing: .02em; padding-right: 22px; }
+  .addr b { color: var(--accent); font-weight: 500; }
+  .body { min-width: 0; border-left: 1px solid var(--rule); padding-left: 34px; }
+  @media (max-width: 720px) {
+    .block { grid-template-columns: 1fr; row-gap: 12px; }
+    .body { border-left: 0; padding-left: 0; }
+    .addr { padding-right: 0; font-size: 11px; }
+  }
+
+  /* masthead */
+  .name { margin: 0; font-size: clamp(46px, 11.5vw, 100px); line-height: 0.92; letter-spacing: -0.04em; text-wrap: balance; }
+  .role { margin: 20px 0 0; font: 500 clamp(15px,2.6vw,18px)/1.5 var(--sans); color: var(--ink-2); max-width: 42ch; }
+  .sig  { margin: 22px 0 0; font: 500 13px/1.7 var(--mono); color: var(--faint); }
+  .sig b { color: var(--accent); font-weight: 500; }
+
+  /* the plot */
+  .plot { position: relative; border: 1px solid var(--rule-2); background: var(--panel);
+    height: clamp(300px, 50vw, 440px); overflow: hidden; }
+  #mesh { position: absolute; inset: 0; display: none; cursor: grab; }
+  #mesh:active { cursor: grabbing; }
+  .plot.live #mesh { display: block; }
+  .fallback { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--ink-2); }
+  .plot.live .fallback { display: none; }
+  .corner { position: absolute; width: 11px; height: 11px; border: 1px solid var(--rule-2); pointer-events: none; }
+  .corner.tl { top: 9px; left: 9px; border-right: 0; border-bottom: 0; }
+  .corner.tr { top: 9px; right: 9px; border-left: 0; border-bottom: 0; }
+  .corner.bl { bottom: 9px; left: 9px; border-right: 0; border-top: 0; }
+  .corner.br { bottom: 9px; right: 9px; border-left: 0; border-top: 0; }
+  .axis, figcaption { position: absolute; font: 500 11px/1 var(--mono); color: var(--faint); letter-spacing: .04em; pointer-events: none; opacity: 0; }
+  .plot.live .axis, .plot.live figcaption { opacity: 1; }
+  figcaption { left: 17px; bottom: 15px; } figcaption b { color: var(--ink-2); font-weight: 500; }
+  .axis.hint { right: 17px; bottom: 15px; } .axis.id { left: 17px; top: 15px; color: var(--ink-2); }
+  .nodelabel { position: absolute; transform: translate(-50%, -150%); font: 500 11px/1 var(--mono); color: var(--ink);
+    white-space: nowrap; pointer-events: none; opacity: 0; }
+  .nodelabel::after { content: ""; position: absolute; left: 50%; top: calc(100% + 3px); width: 1px; height: 8px; background: var(--rule-2); transform: translateX(-50%); }
+  .caption { margin: 15px 0 0; font: 500 12.5px/1.7 var(--mono); color: var(--faint); }
+  .caption b { color: var(--ink-2); font-weight: 500; }
+
+  /* prose */
+  .lead { margin: 0; font-size: clamp(20px,3.2vw,27px); line-height: 1.3; letter-spacing: -0.015em; max-width: 24ch; }
+  .txt { margin: 15px 0 0; color: var(--ink-2); max-width: 56ch; }
+
+  /* projects */
+  .item { display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 20px; row-gap: 6px;
+    padding-block: 18px; border-top: 1px solid var(--rule); align-items: baseline; }
+  .item:first-child { border-top: 0; padding-top: 0; }
+  .ttl { font: 600 18px/1.25 var(--sans); letter-spacing: -0.01em; }
+  .ttl a { border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
+  .ttl a:hover { color: var(--accent); border-color: var(--accent); }
+  .ttl .ar { color: var(--faint); font: 400 12px var(--mono); }
+  .tag { font: 500 11.5px/1.5 var(--mono); color: var(--accent); text-align: right; white-space: nowrap; }
+  .desc { grid-column: 1 / -1; margin: 0; color: var(--ink-2); font-size: 14.5px; max-width: 64ch; }
+  .desc a { color: var(--accent); border-bottom: 1px solid transparent; } .desc a:hover { border-color: var(--accent); }
+  @media (max-width: 540px) { .item { grid-template-columns: 1fr; } .tag { text-align: left; color: var(--faint); } }
+
+  /* certs */
+  .cert { display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 20px; padding-block: 13px; border-top: 1px solid var(--rule); align-items: baseline; }
+  .cert:first-child { border-top: 0; padding-top: 0; }
+  .cert .n { font-weight: 500; } .cert .y { font: 500 12px var(--mono); color: var(--faint); white-space: nowrap; }
+  .cert .d { grid-column: 1 / -1; margin: 5px 0 0; color: var(--ink-2); font-size: 13.5px; }
+
+  /* stack */
+  .syms { font: 500 13.5px/2.1 var(--mono); color: var(--ink-2); }
+  .syms span { white-space: nowrap; } .syms i { color: var(--faint); font-style: normal; margin: 0 9px; }
+
+  /* shell */
+  .shell { border: 1px solid var(--rule-2); background: var(--panel); }
+  .shell .bar { padding: 9px 14px; border-bottom: 1px solid var(--rule); font: 500 12px/1 var(--mono); color: var(--faint); }
+  .shell .scr { padding: 15px; font: 500 13.5px/1.75 var(--mono); }
+  .shell .ln { white-space: pre-wrap; word-break: break-word; color: var(--ink-2); }
+  .shell .ln.cmd { color: var(--ink); } .shell .ln.cmd .pr, .shell form .pr { color: var(--accent); }
+  .shell .ln.dim { color: var(--faint); }
+  .shell form { display: flex; gap: 8px; margin-top: 4px; }
+  .shell input { flex: 1; min-width: 0; background: transparent; border: 0; color: var(--ink); font: inherit; caret-color: var(--accent); }
+  .shell input:focus { outline: none; }
+
+  /* contact */
+  .rel { display: grid; grid-template-columns: 5.5rem minmax(0,1fr) auto; column-gap: 14px; padding-block: 12px; border-top: 1px solid var(--rule); align-items: baseline; font: 500 14px var(--mono); }
+  .rel:first-child { border-top: 0; padding-top: 0; }
+  .rel .k { color: var(--faint); font-size: 12px; } .rel .v { color: var(--ink); word-break: break-all; }
+  .rel a.v { border-bottom: 1px solid transparent; } .rel a.v:hover { color: var(--accent); border-color: var(--accent); }
+  .copy { font: 500 12px var(--mono); color: var(--accent); background: none; border: 0; border-bottom: 1px solid var(--rule-2); cursor: pointer; padding: 0 0 1px; white-space: nowrap; }
+  .copy:hover { border-color: var(--accent); }
+  @media (max-width: 560px) { .rel { grid-template-columns: 4.5rem minmax(0,1fr); } .rel .copy { grid-column: 2; justify-self: start; margin-top: 5px; } }
+
+  footer { padding: 26px 0 60px; border-top: 1px solid var(--rule); font: 500 12px/1.8 var(--mono); color: var(--faint); }
+
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+  /* print: a clean one-page CV */
+  @media print {
+    :root { --paper:#fff; --panel:#fff; --ink:#000; --ink-2:#222; --faint:#555; --rule:#ccc; --rule-2:#aaa; --accent:#000; color-scheme: light; }
+    .skip, .plot, .noprint { display: none !important; }
+    body { font-size: 10.5pt; } .sheet { max-width: none; padding: 0; }
+    .block { grid-template-columns: 1fr; padding-block: 9px; border-top: 1px solid #ccc; break-inside: avoid; }
+    .addr { display: none; } .body { border-left: 0; padding-left: 0; }
+    .sr { position: static; width: auto; height: auto; clip: auto; margin: 0 0 4px; font: 700 8.5pt var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #555; }
+    .name { font-size: 23pt; } .role { font-size: 10pt; margin-top: 8px; } .sig { margin-top: 8px; font-size: 8.5pt; }
+    .caption { font-size: 8.5pt; margin-top: 0; }
+    .item, .cert { break-inside: avoid; } .desc, .cert .d { font-size: 9pt; }
+    .ttl a[href]::after, .rel a.v[href]::after, .desc a[href]::after { content: " (" attr(href) ")"; font: 8pt var(--mono); color: #555; }
+    .rel a.v[href^="mailto:"]::after { content: ""; }
+    a { color: #000; border: 0 !important; } @page { margin: 13mm 15mm; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">skip to content</a>
+<main class="sheet" id="main">
+
+  <section class="block" aria-label="Konstantin Bauer">
+    <p class="addr" aria-hidden="true"><b>0x6b62</b></p>
+    <div class="body">
+      <h1 class="name">Konstantin<br>Bauer</h1>
+      <p class="role">Systems engineering &amp; IT security. HTL&nbsp;TGM Wien, 2027. I like Linux, networks, and how systems work from the inside.</p>
+      <p class="sig">0x6b = <b>k</b>&nbsp;&nbsp;&nbsp;0x62 = <b>b</b>&nbsp;&nbsp;·&nbsp;&nbsp;two bytes, my initials</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-net">
+    <p class="addr" aria-hidden="true">.net</p>
+    <div class="body">
+      <h2 class="sr" id="h-net">Network</h2>
+      <figure class="plot" style="margin:0">
+        <canvas id="mesh" aria-hidden="true"></canvas>
+        <svg class="fallback" viewBox="0 0 600 360" role="img" aria-label="Tailnet topology: visitors reach a Cloudflare edge over a tunnel to pi-two; pi-two, pi-media and mediabox form a private mesh.">
+          <g stroke="currentColor" stroke-width="1" fill="none" opacity="0.5">
+            <line x1="300" y1="56" x2="300" y2="112"></line>
+            <line x1="300" y1="150" x2="140" y2="248"></line>
+            <line x1="300" y1="150" x2="460" y2="248"></line>
+            <line x1="300" y1="150" x2="300" y2="248"></line>
+            <line x1="140" y1="262" x2="460" y2="262" stroke-dasharray="3 6"></line>
+          </g>
+          <g fill="currentColor">
+            <rect x="296" y="48" width="8" height="8"></rect>
+            <rect x="296" y="126" width="8" height="8"></rect>
+            <rect x="296" y="244" width="8" height="8"></rect>
+            <rect x="136" y="244" width="8" height="8"></rect>
+            <rect x="456" y="244" width="8" height="8"></rect>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="12" fill="currentColor" text-anchor="middle">
+            <text x="300" y="38">visitors</text>
+            <text x="300" y="118">cloudflare edge</text>
+            <text x="300" y="282">pi-two</text>
+            <text x="140" y="282">pi-media</text>
+            <text x="460" y="282">mediabox</text>
+          </g>
+          <text x="300" y="330" font-family="JetBrains Mono, monospace" font-size="10" fill="currentColor" opacity="0.6" text-anchor="middle" letter-spacing="2">TAILNET · PRIVATE</text>
+        </svg>
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <span class="axis id">fig.1 / 6b62.net</span>
+        <span class="axis hint">drag to rotate</span>
+        <div class="nodelabel" data-node="1">edge</div>
+        <div class="nodelabel" data-node="2">pi-two</div>
+        <div class="nodelabel" data-node="3">pi-media</div>
+        <div class="nodelabel" data-node="4">mediabox</div>
+        <figcaption><b>tailnet</b> — 4 nodes, one public edge</figcaption>
+      </figure>
+      <p class="caption">tailnet-only <b>·</b> 0 inbound ports <b>·</b> media behind a VPN killswitch <b>·</b> nightly off-site backups</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-about">
+    <p class="addr" aria-hidden="true">.text</p>
+    <div class="body">
+      <h2 class="sr" id="h-about">About</h2>
+      <p class="lead">I build things that run on a server, harden one, or simulate one.</p>
+      <p class="txt">Careful by default — least privilege, tests, backups. The homelab is where I keep learning the parts school hasn't reached yet.</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-work">
+    <p class="addr" aria-hidden="true">.work</p>
+    <div class="body">
+      <h2 class="sr" id="h-work">Selected work</h2>
+      <div class="item">
+        <span class="ttl">Project River Zero</span><span class="tag">diploma thesis · in progress</span>
+        <p class="desc">A hacking-simulation game. I build the simulated operating system underneath — file system, command processing, network — so it behaves like the real thing. <a href="https://kbauer.itch.io/prz">itch.io ↗</a></p>
+      </div>
+      <div class="item">
+        <span class="ttl">Homelab agent</span><span class="tag">bash · python · claude code</span>
+        <p class="desc">An approval-gated AI assistant: scripts fetch the data, the model only reads it, and anything that changes the system waits for my phone — signed buttons, rate limits, 300+ tests.</p>
+      </div>
+      <div class="item">
+        <span class="ttl">Homelab</span><span class="tag">debian · docker</span>
+        <p class="desc">Two Raspberry Pis on a tailnet: media server, Pi-hole with Unbound, Home Assistant, Paperless. One public exception — this site, over a Cloudflare Tunnel.</p>
+      </div>
+      <div class="item">
+        <span class="ttl"><a href="https://github.com/Qantrex/Arch-Linux-Hardening">Arch-Linux-Hardening <span class="ar">↗</span></a></span><span class="tag">bash</span>
+        <p class="desc">Hardens SSH, users, permissions and services — then a second script verifies the result instead of assuming it.</p>
+      </div>
+      <div class="item">
+        <span class="ttl"><a href="https://github.com/Qantrex/ITSI-7.5">ITSI-7.5 <span class="ar">↗</span></a></span><span class="tag">docker compose</span>
+        <p class="desc">A web app behind Caddy and a ModSecurity WAF, with PHP and MariaDB — a defended stack from one compose file.</p>
+      </div>
+      <div class="item">
+        <span class="ttl"><a href="https://wbauer.com">wbauer.com <span class="ar">↗</span></a></span><span class="tag">web</span>
+        <p class="desc">My father's business site, built end to end.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-cert">
+    <p class="addr" aria-hidden="true">.cert</p>
+    <div class="body">
+      <h2 class="sr" id="h-cert">Certificates</h2>
+      <div class="cert"><span class="n">CompTIA IT Fundamentals (ITF+)</span><span class="y">2023</span></div>
+      <div class="cert"><span class="n">Cloudflight Coding Contest</span><span class="y">5× · 2023–2025</span><span class="d">CCC 37 through 41, each in both the classic and the school round.</span></div>
+      <div class="cert"><span class="n">ECDL</span><span class="y">2021</span></div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-sym">
+    <p class="addr" aria-hidden="true">.sym</p>
+    <div class="body">
+      <h2 class="sr" id="h-sym">Stack</h2>
+      <div class="syms">
+        <span>Linux</span><i>·</i><span>Docker</span><i>·</i><span>Bash</span><i>·</i><span>Networking</span><i>·</i><span>Python</span><i>·</i><span>Java</span><i>·</i><span>C</span><i>·</i><span>TypeScript</span><i>·</i><span>SQL</span><i>·</i><span>Home&nbsp;Assistant</span><i>·</i><span>Tailscale</span><i>·</i><span>Cloudflare</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block noprint" aria-labelledby="h-sh">
+    <p class="addr" aria-hidden="true">.sh</p>
+    <div class="body">
+      <h2 class="sr" id="h-sh">Shell</h2>
+      <div class="shell">
+        <div class="bar">konstantin@6b62: ~ — type 'help'</div>
+        <div class="scr">
+          <div id="shellout"></div>
+          <form id="shellform" autocomplete="off"><span class="pr">%</span><input id="shellin" type="text" aria-label="terminal input" spellcheck="false" autocapitalize="off"></form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-rel">
+    <p class="addr" aria-hidden="true">.rel</p>
+    <div class="body">
+      <h2 class="sr" id="h-rel">Contact</h2>
+      <div class="rel"><span class="k">email</span><a class="v" href="mailto:konstantin@wbauer.com">konstantin@wbauer.com</a><button class="copy" type="button" data-copy="konstantin@wbauer.com">copy</button></div>
+      <div class="rel"><span class="k">github</span><a class="v" href="https://github.com/Qantrex">github.com/Qantrex ↗</a><span></span></div>
+      <div class="rel"><span class="k">linkedin</span><a class="v" href="https://www.linkedin.com/in/konstantin-bauer-9a5952266/">in/konstantin-bauer ↗</a><span></span></div>
+    </div>
+  </section>
+
+  <footer>static html · raspberry pi · prints as a one-page CV · 0x6b62</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var root = document.documentElement; root.classList.add("js");
+  var reduce = false; try { reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+
+  /* copy buttons */
+  document.querySelectorAll(".copy").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var txt = b.getAttribute("data-copy") || "", ok = function () { b.textContent = "copied"; setTimeout(function () { b.textContent = "copy"; }, 1300); };
+      try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, function () { sel(txt); ok(); }); else { sel(txt); ok(); } }
+      catch (e) { sel(txt); }
+    });
+  });
+  function sel(t) { try { var a = document.createElement("textarea"); a.value = t; a.style.cssText = "position:fixed;opacity:0"; document.body.appendChild(a); a.select(); document.execCommand && document.execCommand("copy"); document.body.removeChild(a); } catch (e) {} }
+
+  /* mini shell */
+  (function () {
+    var form = document.getElementById("shellform"), input = document.getElementById("shellin"), out = document.getElementById("shellout");
+    if (!form || !input || !out) return;
+    var projects = ["project-river-zero", "homelab-agent", "homelab", "arch-linux-hardening", "itsi-7.5", "wbauer.com"];
+    var hist = [], hi = 0;
+    function emit(t, c) { var d = document.createElement("div"); d.className = "ln" + (c ? " " + c : ""); d.textContent = t; out.appendChild(d); }
+    function echo(c) { var d = document.createElement("div"); d.className = "ln cmd"; var p = document.createElement("span"); p.className = "pr"; p.textContent = "% "; d.appendChild(p); d.appendChild(document.createTextNode(c)); out.appendChild(d); }
+    var cmds = {
+      help: function () { emit("whoami  ls  cat <project>  net  stack  hex  certs  contact  clear", "dim"); },
+      whoami: function () { emit("konstantin bauer — systems & security, htl tgm wien, 2027"); },
+      ls: function () { emit(projects.join("  ")); },
+      net: function () { emit("2 pis on a tailnet · 0 inbound ports · media behind a vpn killswitch · nightly off-site backups"); },
+      stack: function () { emit("Linux Docker Bash Networking Python Java C TypeScript SQL Home-Assistant Tailscale Cloudflare"); },
+      hex: function () { emit("0x6b='k' (107)   0x62='b' (98)   ->   kb   ->   6b62.com"); },
+      certs: function () { emit("CompTIA ITF+ (2023) · Cloudflight CCC 5x (2023-2025) · ECDL (2021)"); },
+      contact: function () { emit("konstantin@wbauer.com · github.com/Qantrex · in/konstantin-bauer"); },
+      clear: function () { out.innerHTML = ""; },
+      sudo: function () { emit("not here — least privilege.", "dim"); },
+      exit: function () { emit("no escape from the homelab.", "dim"); }
+    };
+    function run(raw) {
+      var c = raw.trim(); if (!c) return; echo(c); hist.push(c); hi = hist.length;
+      var p = c.split(/\s+/), n = p[0].toLowerCase();
+      if (n === "cat") {
+        var t = (p[1] || "").toLowerCase();
+        if (/river/.test(t)) emit("simulated OS for a hacking game: filesystem, command processing, network.");
+        else if (/agent/.test(t)) emit("scripts fetch, the model only reads, changes wait for my phone. 300+ tests.");
+        else if (/hard/.test(t)) emit("hardens ssh/users/perms/services, then verifies it.");
+        else if (/itsi/.test(t)) emit("web app behind caddy + modsecurity waf, php + mariadb.");
+        else if (/wbauer/.test(t)) emit("my father's business site, built end to end.");
+        else if (/homelab/.test(t)) cmds.net();
+        else emit("cat: " + (p[1] || "") + ": no such file", "dim");
+        return;
+      }
+      if (/^rm(\s|$)/.test(c)) { emit("backups are nightly and off-site anyway.", "dim"); return; }
+      (cmds[n] || function () { emit("zsh: command not found: " + n + " (try help)", "dim"); })();
+    }
+    emit("type 'help'", "dim");
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowUp") { if (hi > 0) { hi--; input.value = hist[hi] || ""; } e.preventDefault(); }
+      else if (e.key === "ArrowDown") { if (hi < hist.length) { hi++; input.value = hist[hi] || ""; } e.preventDefault(); }
+    });
+    form.addEventListener("submit", function (e) { e.preventDefault(); run(input.value); input.value = ""; out.scrollTop = out.scrollHeight; });
+  })();
+
+  /* wireframe — hand-drawn Canvas 2D, no library */
+  (function () {
+    var canvas = document.getElementById("mesh"), plot = canvas && canvas.closest(".plot");
+    if (!canvas || !plot) return;
+    var ctx; try { ctx = canvas.getContext("2d"); } catch (e) {} if (!ctx) return;
+    plot.classList.add("live");
+
+    var nodes = [[0,2.3,0],[0,1.35,0],[0,0.1,0],[-1.6,-0.35,0.5],[1.6,-0.15,-0.5],[0.1,-1.6,0.4]];
+    var edges = [[0,1],[1,2],[2,3],[2,4],[2,5],[3,4],[5,3]];
+    var packets = []; for (var i = 0; i < 5; i++) packets.push({ e: (Math.random()*edges.length)|0, t: Math.random(), s: 0.003 + Math.random()*0.004 });
+    var ay = 0.6, ax = -0.12, tay = ay, tax = ax, dragging = false, lx = 0, ly = 0;
+
+    var ink = "#16171a", accent = "#5a3ab0";
+    function readColors() { try { var cs = getComputedStyle(root); ink = cs.getPropertyValue("--ink").trim() || ink; accent = cs.getPropertyValue("--accent").trim() || accent; } catch (e) {} }
+    readColors();
+    try { var mq = window.matchMedia("(prefers-color-scheme: dark)"); var onc = function () { readColors(); draw(); }; mq.addEventListener ? mq.addEventListener("change", onc) : mq.addListener(onc); } catch (e) {}
+    try { new MutationObserver(function () { readColors(); draw(); }).observe(root, { attributes: true, attributeFilter: ["data-theme"] }); } catch (e) {}
+
+    var labelEls = {}; plot.querySelectorAll(".nodelabel").forEach(function (el) { labelEls[el.getAttribute("data-node")] = el; });
+
+    var W = 0, H = 0, cx = 0, cy = 0, unit = 1, focal = 4.4, P = [];
+    function size() {
+      W = plot.clientWidth; H = plot.clientHeight; var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.width = W + "px"; canvas.style.height = H + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); cx = W / 2; cy = H / 2; unit = Math.min(W, H) * 0.3; draw();
+    }
+    function proj(p) {
+      var cosy = Math.cos(ay), siny = Math.sin(ay), cosx = Math.cos(ax), sinx = Math.sin(ax);
+      var x = p[0]*cosy - p[2]*siny, z = p[0]*siny + p[2]*cosy, y = p[1];
+      var y2 = y*cosx - z*sinx, z2 = y*sinx + z*cosx, s = focal / (focal - z2);
+      return { x: cx + x*s*unit, y: cy - y2*s*unit, s: s };
+    }
+    function draw() {
+      if (!W) return;
+      ctx.clearRect(0, 0, W, H);
+      P = nodes.map(proj);
+      ctx.lineWidth = 1; ctx.strokeStyle = ink; ctx.globalAlpha = 0.5;
+      edges.forEach(function (e) { var a = P[e[0]], b = P[e[1]]; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); });
+      ctx.globalAlpha = 1;
+      packets.forEach(function (pk) { var e = edges[pk.e], a = P[e[0]], b = P[e[1]]; ctx.fillStyle = accent; ctx.fillRect(a.x + (b.x-a.x)*pk.t - 2, a.y + (b.y-a.y)*pk.t - 2, 4, 4); });
+      ctx.fillStyle = ink;
+      P.forEach(function (p, i) { var z = i === 2 ? 4 : 3; ctx.fillRect(p.x - z, p.y - z, z*2, z*2); });
+      for (var key in labelEls) { var p = P[+key]; var el = labelEls[key]; if (p) { el.style.left = p.x + "px"; el.style.top = p.y + "px"; el.style.opacity = "0.85"; } }
+    }
+
+    canvas.style.touchAction = "pan-y";
+    canvas.addEventListener("pointerdown", function (e) { dragging = true; lx = e.clientX; ly = e.clientY; try { canvas.setPointerCapture(e.pointerId); } catch (x) {} });
+    canvas.addEventListener("pointermove", function (e) { if (!dragging) return; tay += (e.clientX - lx)*0.008; tax += (e.clientY - ly)*0.008; tax = Math.max(-0.9, Math.min(0.9, tax)); lx = e.clientX; ly = e.clientY; if (reduce) { ay = tay; ax = tax; draw(); } });
+    ["pointerup","pointercancel","pointerleave"].forEach(function (ev) { canvas.addEventListener(ev, function () { dragging = false; }); });
+
+    var raf = 0, running = false;
+    function loop() { if (!running) return; if (!dragging) tay += 0.0016; ay += (tay - ay)*0.08; ax += (tax - ax)*0.08; for (var i = 0; i < packets.length; i++) { var pk = packets[i]; pk.t += pk.s; if (pk.t > 1) { pk.t = 0; pk.e = (Math.random()*edges.length)|0; } } draw(); raf = requestAnimationFrame(loop); }
+    function start() { if (running || reduce) return; running = true; loop(); }
+    function halt() { running = false; if (raf) cancelAnimationFrame(raf); }
+    try { new ResizeObserver(size).observe(plot); } catch (e) { window.addEventListener("resize", size); }
+    size();
+    if (!reduce) start();
+    document.addEventListener("visibilitychange", function () { if (document.hidden) halt(); else start(); });
+  })();
+})();
+</script>
+</body>
+</html>
