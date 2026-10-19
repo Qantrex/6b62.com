@@ -251,6 +251,18 @@
       <h2 class="sr" id="h-about">About</h2>
       <p class="lead">I build things that run on a server, harden one, or simulate one.</p>
       <p class="txt">Careful by default — least privilege, tests, backups. The homelab is where I keep learning the parts school hasn't reached yet.</p>
+      <p class="txt">Open to internships in systems engineering &amp; IT security.</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-exp">
+    <p class="addr" aria-hidden="true">.job</p>
+    <div class="body">
+      <h2 class="sr" id="h-exp">Experience</h2>
+      <div class="item">
+        <span class="ttl">IT Intern — A1 Telekom Austria</span><span class="tag">Technology unit · Aug 2024</span>
+        <p class="desc">A month in the Technology unit of Austria's largest telecom. Commissioned Cisco ACI leaf switches, decommissioned enterprise network and server hardware (Catalyst&nbsp;6500, firewalls, storage), supported customer network planning, ran fibre / RJ45 / DAC cabling, and troubleshot servers down to swapping disks, PSUs and battery packs.</p>
+      </div>
     </div>
   </section>
 
@@ -260,15 +272,15 @@
       <h2 class="sr" id="h-work">Selected work</h2>
       <div class="item">
         <span class="ttl">Project River Zero</span><span class="tag">diploma thesis · in progress</span>
-        <p class="desc">A hacking-simulation game. I build the simulated operating system underneath — file system, command processing, network — so it behaves like the real thing. <a href="https://kbauer.itch.io/prz">itch.io ↗</a></p>
+        <p class="desc">A hacking-simulation game, built by a team of four. I build the simulated operating system underneath — file system, command processing, network — so it behaves like the real thing. <a href="https://kbauer.itch.io/prz">itch.io ↗</a></p>
       </div>
       <div class="item">
         <span class="ttl">Homelab agent</span><span class="tag">bash · python · claude code</span>
-        <p class="desc">An approval-gated AI assistant: scripts fetch the data, the model only reads it, and anything that changes the system waits for my phone — signed buttons, rate limits, 300+ tests.</p>
+        <p class="desc">An approval-gated AI assistant for the homelab: scripts fetch the data, the model only reads it, and anything that changes the system waits for my phone — signed buttons, rate limits, 300+ tests. It checks the servers every five minutes and restarts failed ones on its own.</p>
       </div>
       <div class="item">
         <span class="ttl">Homelab</span><span class="tag">debian · docker</span>
-        <p class="desc">Two Raspberry Pis on a tailnet: media server, Pi-hole with Unbound, Home Assistant, Paperless. One public exception — this site, over a Cloudflare Tunnel.</p>
+        <p class="desc">Two Raspberry Pis running ~20 Docker services on a private tailnet: media server, Pi-hole with Unbound, Home Assistant, Paperless. One public exception — this site, over a Cloudflare Tunnel.</p>
       </div>
       <div class="item">
         <span class="ttl"><a href="https://github.com/Qantrex/Arch-Linux-Hardening">Arch-Linux-Hardening <span class="ar">↗</span></a></span><span class="tag">bash</span>
@@ -279,8 +291,8 @@
         <p class="desc">A web app behind Caddy and a ModSecurity WAF, with PHP and MariaDB — a defended stack from one compose file.</p>
       </div>
       <div class="item">
-        <span class="ttl"><a href="https://wbauer.com">wbauer.com <span class="ar">↗</span></a></span><span class="tag">web</span>
-        <p class="desc">My father's business site, built end to end.</p>
+        <span class="ttl"><a href="https://wbauer.com">wbauer.com <span class="ar">↗</span></a></span><span class="tag">freelance · web</span>
+        <p class="desc">My first client project — a business website designed, built and shipped end to end.</p>
       </div>
     </div>
   </section>
@@ -301,6 +313,16 @@
       <h2 class="sr" id="h-sym">Stack</h2>
       <div class="syms">
         <span>Linux</span><i>·</i><span>Docker</span><i>·</i><span>Bash</span><i>·</i><span>Networking</span><i>·</i><span>Python</span><i>·</i><span>Java</span><i>·</i><span>C</span><i>·</i><span>TypeScript</span><i>·</i><span>SQL</span><i>·</i><span>Home&nbsp;Assistant</span><i>·</i><span>Tailscale</span><i>·</i><span>Cloudflare</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-lang">
+    <p class="addr" aria-hidden="true">.lang</p>
+    <div class="body">
+      <h2 class="sr" id="h-lang">Languages</h2>
+      <div class="syms">
+        <span>German&nbsp;— native</span><i>·</i><span>English&nbsp;— fluent</span>
       </div>
     </div>
   </section>
@@ -357,8 +379,11 @@
     function emit(t, c) { var d = document.createElement("div"); d.className = "ln" + (c ? " " + c : ""); d.textContent = t; out.appendChild(d); }
     function echo(c) { var d = document.createElement("div"); d.className = "ln cmd"; var p = document.createElement("span"); p.className = "pr"; p.textContent = "% "; d.appendChild(p); d.appendChild(document.createTextNode(c)); out.appendChild(d); }
     var cmds = {
-      help: function () { emit("whoami  ls  cat <project>  net  stack  hex  certs  contact  clear", "dim"); },
+      help: function () { emit("whoami  ls  cat <project>  experience  net  stack  lang  hex  certs  contact  clear", "dim"); },
       whoami: function () { emit("konstantin bauer — systems & security, htl tgm wien, 2027"); },
+      experience: function () { emit("A1 Telekom Austria — technology intern, aug 2024: cisco aci leaf switches, decommissioned enterprise net/server gear, cabling, server troubleshooting."); },
+      work: function () { cmds.experience(); },
+      lang: function () { emit("german — native · english — fluent"); },
       ls: function () { emit(projects.join("  ")); },
       net: function () { emit("2 pis on a tailnet · 0 inbound ports · media behind a vpn killswitch · nightly off-site backups"); },
       stack: function () { emit("Linux Docker Bash Networking Python Java C TypeScript SQL Home-Assistant Tailscale Cloudflare"); },
@@ -378,7 +403,7 @@
         else if (/agent/.test(t)) emit("scripts fetch, the model only reads, changes wait for my phone. 300+ tests.");
         else if (/hard/.test(t)) emit("hardens ssh/users/perms/services, then verifies it.");
         else if (/itsi/.test(t)) emit("web app behind caddy + modsecurity waf, php + mariadb.");
-        else if (/wbauer/.test(t)) emit("my father's business site, built end to end.");
+        else if (/wbauer/.test(t)) emit("my first client project — a business site, designed and shipped end to end.");
         else if (/homelab/.test(t)) cmds.net();
         else emit("cat: " + (p[1] || "") + ": no such file", "dim");
         return;
