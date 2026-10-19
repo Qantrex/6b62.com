@@ -1,4 +1,4 @@
 Contact: mailto:konstantin@wbauer.com
 Expires: 2027-09-28T00:00:00.000Z
 Preferred-Languages: en, de
-Canonical: https://new.6b62.com/.well-known/security.txt
+Canonical: https://6b62.com/.well-known/security.txt
