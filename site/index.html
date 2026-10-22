@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Konstantin Bauer</title>
-  <meta name="description" content="Konstantin Bauer: IT student at HTL TGM Vienna, focused on systems engineering and IT security.">
+  <meta name="description" content="Konstantin Bauer: IT student at HTL TGM Vienna, IT security track, graduating 2027. A self-hosted homelab, a simulated OS for a game, hardening scripts.">
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
@@ -14,7 +14,7 @@
   <meta property="og:description" content="IT student at HTL TGM Vienna: systems engineering, IT security, a self-hosted homelab.">
   <meta property="og:url" content="https://6b62.com/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20fill='%23000'/%3E%3Ctext%20x='16'%20y='22'%20font-family='monospace'%20font-size='16'%20font-weight='700'%20fill='%23fff'%20text-anchor='middle'%3Ekb%3C/text%3E%3C/svg%3E">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Konstantin Bauer","url":"https://6b62.com/","email":"mailto:konstantin@wbauer.com","alumniOf":"HTL TGM Wien","sameAs":["https://github.com/Qantrex","https://www.linkedin.com/in/konstantin-bauer-9a5952266/"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Konstantin Bauer","url":"https://6b62.com/","email":"mailto:konstantin@wbauer.com","jobTitle":"IT student","alumniOf":"HTL TGM Wien","address":{"@type":"PostalAddress","addressLocality":"Vienna","addressCountry":"AT"},"knowsAbout":["Linux","Networking","IT security","Penetration testing","Docker","Python","C#","Unity"],"sameAs":["https://github.com/Qantrex","https://www.linkedin.com/in/konstantin-bauer-9a5952266/"]}</script>
   <style>
     :root {
       --bg: #000; --text: #e8e8e8; --muted: #8a8a8a; --faint: #1c1c1c; --line: #2a2a2a; --link: #444;
@@ -57,34 +57,44 @@
     a:hover, a:focus-visible { border-bottom-color: var(--accent); color: var(--strong); }
     .tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .tags li { font: 13px var(--mono); padding: 2px 8px; background: var(--faint); border-radius: 4px; color: var(--text); }
-    .contact li { padding: 4px 0; font: 14px var(--mono); }
-    .contact span { display: inline-block; width: 90px; color: var(--muted); }
+    .contact li { display: grid; grid-template-columns: 90px minmax(0, 1fr); align-items: baseline; padding: 4px 0; font: 14px var(--mono); }
+    .contact li a { justify-self: start; }
+    .contact span { color: var(--muted); }
+    .group { display: grid; grid-template-columns: 90px minmax(0, 1fr); align-items: baseline; padding: 6px 0; }
+    .group > span { font: 12px var(--mono); color: var(--muted); }
+    .printonly { display: none; }
     footer { margin-top: 64px; font: 12px var(--mono); color: var(--muted); opacity: .7; }
     @media (max-width: 480px) { body { padding-top: 48px; } }
     /* Print / "Save as PDF" = a one-page CV */
     @media print {
       :root { --bg: #fff; --text: #000; --muted: #444; --faint: #ddd; --line: #bbb; --accent: #000; }
-      @page { margin: 12mm 15mm; }
-      body { max-width: none; padding: 0; font-size: 10pt; line-height: 1.4; }
-      h1 { font-size: 21pt; margin: 0 0 4px; }
-      .lead { font-size: 10.5pt; }
-      h2 { margin: 12px 0 4px; }
-      .rows li { padding: 4px 0; break-inside: avoid; }
-      .desc { font-size: 9.5pt; margin-top: 2px; }
-      .desc + .desc { margin-top: 3px; }
-      .contact { display: flex; flex-wrap: wrap; gap: 0 18px; }
-      .contact li { padding: 0; }
-      .contact span { width: auto; margin-right: 6px; }
+      @page { size: A4; margin: 10mm 13mm; }
+      body { max-width: none; padding: 0; font-size: 9pt; line-height: 1.32; }
+      h1 { font-size: 20pt; margin: 0 0 3px; }
+      .lead { font-size: 9.5pt; }
+      .printonly { display: block; margin: 3px 0 0; font: 7.5pt/1.5 var(--mono); color: var(--muted); }
+      h2 { margin: 8px 0 2px; font-size: 7.5pt; break-after: avoid; }
+      p { margin: 0 0 3px; }
+      .rows li { padding: 2px 0; break-inside: avoid; }
+      .desc { font-size: 8.3pt; margin-top: 1px; }
+      .desc + .desc { margin-top: 2px; }
+      .meta { font-size: 7.5pt; }
       a { border: 0; }
-      .rows a.name::after, .contact a::after { content: " (" attr(href) ")"; font: 8.5pt var(--mono); color: var(--muted); }
-      .rows a[href*="itch.io"]::after { content: " (" attr(href) ")"; font: 8.5pt var(--mono); color: var(--muted); }
-      .contact a[href^="mailto:"]::after { content: ""; }
+      .rows a.name::after, .desc a::after { content: " (" attr(href) ")"; font: 7.5pt var(--mono); color: var(--muted); }
       .noprint, .hex { display: none; }
       h1::before, h2::before { content: none; }
+      /* certificates: one line */
+      .certs li, .certs li:last-child { display: inline; padding: 0; border: 0; }
+      .certs .head { display: inline; } .certs .desc { display: none; }
+      .certs .meta { font: 8.5pt system-ui, sans-serif; color: var(--muted); }
+      .certs .meta::before { content: " ("; } .certs .meta::after { content: ")"; }
+      .certs li + li::before { content: " · "; color: var(--muted); }
       .tags { gap: 0; }
-      .tags li { background: none; padding: 0; font-size: 9.5pt; }
+      .tags li { background: none; padding: 0; font-size: 8.5pt; }
       .tags li:not(:last-child)::after { content: "·"; margin: 0 7px; color: var(--muted); }   /* wraps after a dot, never before */
+      .group { padding: 1px 0; } .group > span { font-size: 7.5pt; }
     }
+
   </style>
 </head>
 <body>
@@ -92,29 +102,64 @@
     <div class="hex">0x<b>6b62</b> → kb</div>
     <h1>Konstantin Bauer</h1>
     <p class="lead">IT student at HTL TGM Vienna, focused on systems engineering and IT security. Graduating in 2027.</p>
+    <p class="printonly">konstantin@wbauer.com · github.com/Qantrex · linkedin.com/in/konstantin-bauer-9a5952266 · Vienna,&nbsp;Austria · EU&nbsp;citizen · driving&nbsp;licence&nbsp;B</p>
   </header>
 
   <main>
     <section>
       <h2>About</h2>
-      <p>I like Linux, networks, and finding out how systems work on the inside. Most of what I build either runs on a server, hardens one, or simulates one.</p>
+      <p class="noprint">I like Linux, networks, and finding out how systems work on the inside. Most of what I build either runs on a server, hardens one, or simulates one.</p>
+      <p>IT security is where I want to go, penetration testing most of all. Next, after the Matura in 2027: military service, for which I'm applying to the Austrian Armed Forces' cyber track. Based in Vienna.</p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <ul class="rows">
+        <li>
+          <div class="head"><span class="name">HTL TGM Wien: Information Technology</span><span class="meta">2022 – 2027</span></div>
+          <p class="desc">Systems engineering, specialising in IT security (class 5BHIT). Matura and diploma in summer 2027. Year 2 passed with distinction (ausgezeichneter Erfolg), years 3 and 4 with merit (guter Erfolg).</p>
+        </li>
+        <li>
+          <div class="head"><span class="name">GRG 23: Dual Language Program</span><span class="meta">2018 – 2022</span></div>
+          <p class="desc">Lower secondary school with subjects taught in English by native speakers.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <ul class="rows">
+        <li>
+          <div class="head"><span class="name">Event staff, Sulzenbacher Eventmanagement</span><span class="meta">Vienna · Jul – Aug 2026</span></div>
+          <p class="desc">Summer job with a Vienna event company: service, bar, kitchen help and logistics at events.</p>
+        </li>
+        <li>
+          <div class="head"><span class="name">IT intern, A1 Telekom Austria</span><span class="meta">Technology unit · Aug 2024</span></div>
+          <p class="desc">A month in the Technology unit of Austria's largest telecom. I commissioned Cisco ACI leaf switches, decommissioned network and server hardware (Catalyst 6500, firewalls, storage), supported customer network planning, ran fibre, RJ45 and DAC cabling, and swapped disks, power supplies and battery packs in servers.</p>
+        </li>
+      </ul>
     </section>
 
     <section>
       <h2>Projects</h2>
       <ul class="rows">
         <li>
-          <div class="head"><span class="name">Project River Zero</span><span class="meta">diploma thesis · in progress</span></div>
-          <p class="desc">A hacking simulation game, built by a team of four. I develop the simulated operating system: file system, command processing and network. Prototype on <a href="https://kbauer.itch.io/prz">itch.io</a>.</p>
+          <div class="head"><span class="name">Project River Zero</span><span class="meta">diploma thesis · unity · c#</span></div>
+          <p class="desc">A hacking simulation game by a team of four, with equal shares; release planned for spring 2027. I develop revelOS, the simulated operating system the whole game takes place in: a virtual file system with owners and permissions, command processing, and SSH into other simulated machines. My thesis asks how to build such a system so it stays extensible.</p>
+          <p class="desc">I also built the <a href="https://qantrex.github.io/prz-website/">project site</a>, a replica of the revelOS desktop in Vue and three.js. Prototype on <a href="https://kbauer.itch.io/prz">itch.io</a>.</p>
         </li>
         <li>
           <div class="head"><span class="name">Homelab</span><span class="meta">debian · docker · ongoing</span></div>
-          <p class="desc">Two Raspberry Pis: a media server behind a VPN kill switch, Pi-hole with Unbound, Home Assistant and Paperless-ngx. Everything is reachable only over Tailscale. This site is the one exception: a Cloudflare Tunnel, no open ports. Nightly encrypted backups.</p>
+          <p class="desc">Three hosts, two Raspberry Pis and a ThinkPad, running about 30 containers: a media server behind a VPN kill switch, Pi-hole with Unbound, Home Assistant and Paperless-ngx. Everything is reachable only over Tailscale. This site is the one exception: a Cloudflare Tunnel, no open ports. Nightly encrypted backups, off-site on free tiers with hard caps. The media stack has been in daily use for over a year.</p>
         </li>
         <li>
           <div class="head"><span class="name">Homelab agent</span><span class="meta">bash · python · claude code</span></div>
-          <p class="desc">An AI assistant for the homelab, built as a small plugin system. It writes a morning briefing (weather, school timetable changes, calendar, mail, parcels), checks the servers every five minutes and restarts failed services. It answers questions in a private chat and through Siri.</p>
-          <p class="desc">Built security-first: scripts collect the data and the model only reads it, with no tools by default. Anything that changes the system is a whitelisted action that waits for my approval on the phone, with signed buttons and rate limits. More than 300 automated tests.</p>
+          <p class="desc">An AI assistant for the homelab, built as a small plugin system with ten scheduled jobs. It writes a morning briefing (weather, school timetable changes, calendar, mail, parcels), checks the servers every five minutes and restarts failed services. It answers questions in a private chat and through Siri.</p>
+          <p class="desc">Built security-first: scripts collect the data and the model only reads it, with no tools by default. Anything that changes the system is a whitelisted action that waits for my approval on the phone, with signed buttons and rate limits. More than 350 automated tests.</p>
+        </li>
+        <li>
+          <div class="head"><span class="name">Security practice</span><span class="meta">ctf · web · forensics</span></div>
+          <p class="desc">Hacker101 CTFs and school labs: web testing with Burp Suite, ffuf and sqlmap, password attacks with Hydra and hashcat, and network forensics in Wireshark, where I traced a worm infection through a Windows domain from a packet capture. I document every tool and attack flow in my own notes.</p>
         </li>
         <li>
           <div class="head"><a class="name" href="https://github.com/Qantrex/Arch-Linux-Hardening">Arch-Linux-Hardening</a><span class="meta">bash</span></div>
@@ -133,7 +178,7 @@
 
     <section>
       <h2>Certificates</h2>
-      <ul class="rows">
+      <ul class="rows certs">
         <li>
           <div class="head"><span class="name">CompTIA IT Fundamentals (ITF+)</span><span class="meta">2023</span></div>
         </li>
@@ -142,24 +187,41 @@
           <p class="desc">Took part in five contests in a row (CCC 37 to 41), each in the classic and the school round.</p>
         </li>
         <li>
-          <div class="head"><span class="name">ECDL</span><span class="meta">2021</span></div>
+          <div class="head"><span class="name">ECDL Standard</span><span class="meta">2021</span></div>
+          <p class="desc">All five modules.</p>
         </li>
       </ul>
     </section>
 
     <section>
-      <h2>Tools</h2>
-      <ul class="tags">
-        <li>Linux</li><li>Docker</li><li>Bash</li><li>Networking</li><li>Python</li><li>Java</li><li>C</li><li>TypeScript</li><li>SQL</li><li>Home Assistant</li><li>Tailscale</li><li>Cloudflare</li>
-      </ul>
+      <h2>Skills</h2>
+      <div class="group"><span>systems</span><ul class="tags">
+        <li>Linux (Debian, Arch)</li><li>Docker</li><li>Bash</li><li>DNS</li><li>WireGuard</li><li>Tailscale</li><li>Cloudflare Tunnel</li><li>Home Assistant</li>
+      </ul></div>
+      <div class="group"><span>security</span><ul class="tags">
+        <li>Burp Suite</li><li>Wireshark</li><li>nmap</li><li>ffuf</li><li>sqlmap</li><li>Hydra</li><li>hashcat</li><li>ModSecurity</li>
+      </ul></div>
+      <div class="group"><span>code</span><ul class="tags">
+        <li>Python</li><li>C# / Unity</li><li>C / C++</li><li>Java</li><li>TypeScript / Vue</li><li>SQL</li>
+      </ul></div>
+      <div class="group"><span>hardware</span><ul class="tags">
+        <li>Raspberry Pi</li><li>ESP32 / Arduino</li><li>soldering</li><li>3D printing</li><li>DIY speakers</li>
+      </ul></div>
+      <div class="group noprint"><span>interests</span><ul class="tags">
+        <li>game development</li><li>Linux ricing (Arch + Hyprland)</li><li>building hardware</li>
+      </ul></div>
+      <div class="group"><span>languages</span><ul class="tags">
+        <li>German, native</li><li>English, fluent (C2 certificate)</li>
+      </ul></div>
     </section>
 
-    <section>
+    <section class="noprint">
       <h2>Contact</h2>
       <ul class="contact">
         <li><span>email</span><a href="mailto:konstantin@wbauer.com">konstantin@wbauer.com</a></li>
         <li><span>github</span><a href="https://github.com/Qantrex">Qantrex</a></li>
         <li><span>linkedin</span><a href="https://www.linkedin.com/in/konstantin-bauer-9a5952266/">konstantin-bauer</a></li>
+        <li><span>based</span>Vienna, Austria · EU citizen · driving licence B</li>
       </ul>
     </section>
   </main>
