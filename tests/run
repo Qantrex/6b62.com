@@ -34,7 +34,7 @@ echo "# --- linker map: every printed range is that block's real bytes"
 if python3 - "$P" <<'EOF'
 import re, sys
 b = open(sys.argv[1], 'rb').read()
-blocks = re.findall(rb'<(?:section|header) id="(\w+)"[^>]*>\n<p class="map"><span>(0x[0-9a-f]{4}) \xe2\x80\x93 (0x[0-9a-f]{4})</span><span>\s*([\d,]+) B</span>', b)
+blocks = re.findall(rb'<(?:section|header) id="(\w+)"[^>]*>\n<p class="map"[^>]*><span>(0x[0-9a-f]{4}) \xe2\x80\x93 (0x[0-9a-f]{4})</span><span>\s*([\d,]+) B</span>', b)
 want = [b'top', b'about', b'edu', b'job', b'work', b'cert', b'skills', b'notes', b'contact', b'pad']
 assert [x[0] for x in blocks] == want, "blocks missing or out of order"
 pos = 0
@@ -46,7 +46,7 @@ for name, s, e, n in blocks:
     assert chunk.startswith(tag), f"{name}: range does not start at the block"
     pos = e
 assert pos == len(b) == 27490, "ranges do not cover the whole file"
-hexstr = re.search(rb'<p class="hex">([0-9a-f]+)', b).group(1).decode()
+hexstr = re.search(rb'<p class="hex"[^>]*>([0-9a-f]+)', b).group(1).decode()
 msg = bytes.fromhex(hexstr).rstrip(b'\0')
 assert msg and all(32 <= c < 127 or c == 10 for c in msg), "pad does not decode to ASCII"
 EOF
@@ -75,6 +75,14 @@ assert "mailto:konstantin@wbauer.com" in links, links
 assert "konstantin@wbauer.com" in texts, texts
 PY
 then ok "the encoded link decodes to mailto:konstantin@wbauer.com"; else bad "the encoded link decodes to mailto:konstantin@wbauer.com"; fi
+
+echo "# --- screen readers"
+n_bar=$(grep -oE '<a href="#[a-z]+"[^>]* style="width:' $P | wc -l)
+n_lab=$(grep -oE '<a href="#[a-z]+" aria-label="[^"]+" style="width:' $P | wc -l)
+[ "$n_bar" -gt 0 ] && [ "$n_bar" = "$n_lab" ] && ok "every bar link has an aria-label ($n_lab)" || bad "every bar link has an aria-label ($n_lab of $n_bar)"
+n_map=$(grep -c '<p class="map"' $P); n_maph=$(grep -c '<p class="map" aria-hidden="true">' $P)
+[ "$n_map" = "$n_maph" ] && ok "every .map is aria-hidden ($n_maph)" || bad "every .map is aria-hidden ($n_maph of $n_map)"
+contains $P '<p class="hex" aria-hidden="true">' ".pad hex is aria-hidden"
 
 echo "# --- head metadata (identical on both hosts)"
 contains $P '<link rel="canonical" href="https://6b62.com/">' "canonical is https://6b62.com/"

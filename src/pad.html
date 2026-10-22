@@ -1,9 +1,9 @@
 <section id="pad" class="sec" aria-labelledby="h-pad">
-<p class="map"><span>{{pad.start}} – {{pad.end}}</span><span>{{pad.size}} B</span></p>
+<p class="map" aria-hidden="true"><span>{{pad.start}} – {{pad.end}}</span><span>{{pad.size}} B</span></p>
 <div class="body">
 <h2 id="h-pad">.pad</h2>
 <p class="txt">The rest of the budget, padded the way a linker pads an image: a short message, then zero bytes. Decode it with <code>xxd -r -p</code>.</p>
-<p class="hex">{{pad.hex}}</p>
+<p class="hex" aria-hidden="true">{{pad.hex}}</p>
 <p class="total">total  27,490 B = 0x6b62</p>
 </div>
 </section>

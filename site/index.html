@@ -18,143 +18,143 @@
 /* 0x6b62: a CV laid out like a linker map. The margin shows each block's real byte range
    in this file; the bar on top is the whole file, 27,490 bytes, one segment per block.
    build.py fills in the numbers. System fonts, no JavaScript, one request. */
-:root {
-  --paper: #edeeec; --panel: #e6e7e4;
-  --ink: #16171a; --ink-2: #4e4f55; --faint: #77787d;
-  --rule: rgba(22,23,26,.15); --rule-2: rgba(22,23,26,.32);
-  --accent: #5a3ab0;
-  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  color-scheme: light;
+:root{
+--paper:#edeeec;--panel:#e6e7e4;
+--ink:#16171a;--ink-2:#4e4f55;--faint:#77787d;
+--rule:rgba(22,23,26,.15);--rule-2:rgba(22,23,26,.32);
+--accent:#5a3ab0;
+--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+--sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+color-scheme:light;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #0b0c0e; --panel: #111216;
-    --ink: #ecedee; --ink-2: #a7a8ae; --faint: #74757b;
-    --rule: rgba(236,237,238,.15); --rule-2: rgba(236,237,238,.30);
-    --accent: #c4a7e7; color-scheme: dark;
-  }
+@media (prefers-color-scheme:dark){
+:root{
+--paper:#0b0c0e;--panel:#111216;
+--ink:#ecedee;--ink-2:#a7a8ae;--faint:#74757b;
+--rule:rgba(236,237,238,.15);--rule-2:rgba(236,237,238,.30);
+--accent:#c4a7e7;color-scheme:dark;
 }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.6 var(--sans); }
-::selection { background: var(--accent); color: var(--paper); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-a { color: inherit; text-decoration: none; }
-p { margin: 0; }
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--sans);}
+::selection{background:var(--accent);color:var(--paper);}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+a{color:inherit;text-decoration:none;}
+p{margin:0;}
 
-.skip { position: absolute; left: 10px; top: -48px; z-index: 10; padding: 9px 13px; background: var(--ink); color: var(--paper); font: 500 13px var(--mono); }
-.skip:focus { top: 22px; }
+.skip{position:absolute;left:10px;top:-48px;z-index:10;padding:9px 13px;background:var(--ink);color:var(--paper);font:500 13px var(--mono);}
+.skip:focus{top:22px;}
 
 /* the bar: the whole file, one segment per block */
-.bar { position: sticky; top: 0; z-index: 5; display: flex; height: 12px; background: var(--paper); border-bottom: 1px solid var(--rule); }
-.bar a { position: relative; flex: 0 1 auto; min-width: 3px; height: 100%; background: var(--rule-2); border-right: 2px solid var(--paper); }
-.bar a:nth-child(even) { background: var(--rule); }
-.bar a:hover, .bar a:focus-visible { background: var(--accent); outline: 0; }
-.bar a span { display: none; position: absolute; top: 16px; left: 0; padding: 3px 7px; background: var(--ink); color: var(--paper); font: 500 11.5px var(--mono); white-space: pre; }
-.bar a:nth-last-child(-n+3) span { left: auto; right: 0; }
-.bar a:hover span, .bar a:focus-visible span { display: block; }
-body:has(#top:hover) .bar [href="#top"], body:has(#about:hover) .bar [href="#about"],
-body:has(#edu:hover) .bar [href="#edu"], body:has(#job:hover) .bar [href="#job"],
-body:has(#work:hover) .bar [href="#work"], body:has(#notes:hover) .bar [href="#notes"],
+.bar{position:sticky;top:0;z-index:5;display:flex;height:12px;background:var(--paper);border-bottom:1px solid var(--rule);}
+.bar a{position:relative;flex:0 1 auto;min-width:3px;height:100%;background:var(--rule-2);border-right:2px solid var(--paper);}
+.bar a:nth-child(even){background:var(--rule);}
+.bar a:hover,.bar a:focus-visible{background:var(--accent);outline:0;}
+.bar a span{display:none;position:absolute;top:16px;left:0;padding:3px 7px;background:var(--ink);color:var(--paper);font:500 11.5px var(--mono);white-space:pre;}
+.bar a:nth-last-child(-n+3) span{left:auto;right:0;}
+.bar a:hover span,.bar a:focus-visible span{display:block;}
+body:has(#top:hover) .bar [href="#top"],body:has(#about:hover) .bar [href="#about"],
+body:has(#edu:hover) .bar [href="#edu"],body:has(#job:hover) .bar [href="#job"],
+body:has(#work:hover) .bar [href="#work"],body:has(#notes:hover) .bar [href="#notes"],
 body:has(#cert:hover) .bar [href="#cert"],
-body:has(#skills:hover) .bar [href="#skills"], body:has(#contact:hover) .bar [href="#contact"],
-body:has(#pad:hover) .bar [href="#pad"] { background: var(--accent); }
+body:has(#skills:hover) .bar [href="#skills"],body:has(#contact:hover) .bar [href="#contact"],
+body:has(#pad:hover) .bar [href="#pad"]{background:var(--accent);}
 
 /* the ledger: [byte range | size] | content */
-.sheet { max-width: 960px; margin-inline: auto; padding-inline: max(22px, env(safe-area-inset-left, 0px)) max(22px, env(safe-area-inset-right, 0px)); }
-.sec { display: grid; grid-template-columns: 9.5rem minmax(0,1fr); padding-block: clamp(30px, 5vw, 56px); border-top: 1px solid var(--rule); scroll-margin-top: 13px; }
-#top { border-top: 0; }
-.map { padding-right: 20px; font: 500 12px/1.75 var(--mono); color: var(--faint); white-space: pre; }
-.map span { display: block; }
-.sec:hover .map, .sec:target .map { color: var(--accent); }
-.body { min-width: 0; padding-left: 32px; border-left: 1px solid var(--rule); }
-h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); letter-spacing: .03em; }
-@media (max-width: 720px) {
-  .sec { grid-template-columns: 1fr; row-gap: 12px; }
-  .map span { display: inline; }
-  .map span + span::before { content: "  "; }
-  .body { padding-left: 0; border-left: 0; }
+.sheet{max-width:960px;margin-inline:auto;padding-inline:max(22px,env(safe-area-inset-left,0px)) max(22px,env(safe-area-inset-right,0px));}
+.sec{display:grid;grid-template-columns:9.5rem minmax(0,1fr);padding-block:clamp(30px,5vw,56px);border-top:1px solid var(--rule);scroll-margin-top:13px;}
+#top{border-top:0;}
+.map{padding-right:20px;font:500 12px/1.75 var(--mono);color:var(--faint);white-space:pre;}
+.map span{display:block;}
+.sec:hover .map,.sec:target .map{color:var(--accent);}
+.body{min-width:0;padding-left:32px;border-left:1px solid var(--rule);}
+h2{margin:0 0 16px;font:500 12.5px/1.4 var(--mono);color:var(--accent);letter-spacing:.03em;}
+@media (max-width:720px){
+.sec{grid-template-columns:1fr;row-gap:12px;}
+.map span{display:inline;}
+.map span + span::before{content:"  ";}
+.body{padding-left:0;border-left:0;}
 }
 
 /* masthead */
-.name { margin: 0; font: 800 clamp(46px, 11.5vw, 96px)/.92 var(--sans); letter-spacing: -.04em; }
-.role { margin-top: 20px; max-width: 46ch; color: var(--ink-2); font-size: clamp(16px, 2.4vw, 18px); line-height: 1.5; }
-.sig { margin-top: 20px; font: 500 13px/1.7 var(--mono); color: var(--faint); }
-.sig b { color: var(--accent); font-weight: 500; }
-.printonly { display: none; }
+.name{margin:0;font:800 clamp(46px,11.5vw,96px)/.92 var(--sans);letter-spacing:-.04em;}
+.role{margin-top:20px;max-width:46ch;color:var(--ink-2);font-size:clamp(16px,2.4vw,18px);line-height:1.5;}
+.sig{margin-top:20px;font:500 13px/1.7 var(--mono);color:var(--faint);}
+.sig b{color:var(--accent);font-weight:500;}
+.printonly{display:none;}
 
 /* prose */
-.lead { max-width: 26ch; font-size: clamp(20px, 3.2vw, 26px); line-height: 1.3; letter-spacing: -.015em; }
-.txt { margin-top: 14px; max-width: 58ch; color: var(--ink-2); }
+.lead{max-width:26ch;font-size:clamp(20px,3.2vw,26px);line-height:1.3;letter-spacing:-.015em;}
+.txt{margin-top:14px;max-width:58ch;color:var(--ink-2);}
 
 /* entries */
-.item { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 6px 20px; align-items: baseline; padding-block: 16px; border-top: 1px solid var(--rule); }
-.item:first-of-type { padding-top: 0; border-top: 0; }
-.ttl { font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; }
-.ttl a, .desc a { border-bottom: 1px solid var(--rule-2); }
-.ttl a:hover, .desc a:hover { color: var(--accent); border-color: var(--accent); }
-.tag { font: 500 11.5px/1.5 var(--mono); color: var(--accent); text-align: right; white-space: nowrap; }
-.desc { grid-column: 1 / -1; max-width: 66ch; color: var(--ink-2); font-size: 15px; }
-.desc.lesson { color: var(--ink); font-size: 14.5px; }
-.desc.lesson::before { content: "lesson: "; font: 500 12px var(--mono); color: var(--accent); }
-.intro { margin: 0 0 18px; }
-@media (max-width: 540px) { .item { grid-template-columns: 1fr; } .tag { text-align: left; color: var(--faint); } }
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 20px;align-items:baseline;padding-block:16px;border-top:1px solid var(--rule);}
+.item:first-of-type{padding-top:0;border-top:0;}
+.ttl{font-size:18px;font-weight:600;line-height:1.3;letter-spacing:-.01em;}
+.ttl a,.desc a{border-bottom:1px solid var(--rule-2);}
+.ttl a:hover,.desc a:hover{color:var(--accent);border-color:var(--accent);}
+.tag{font:500 11.5px/1.5 var(--mono);color:var(--accent);text-align:right;white-space:nowrap;}
+.desc{grid-column:1 / -1;max-width:66ch;color:var(--ink-2);font-size:15px;}
+.desc.lesson{color:var(--ink);font-size:14.5px;}
+.desc.lesson::before{content:"lesson: ";font:500 12px var(--mono);color:var(--accent);}
+.intro{margin:0 0 18px;}
+@media (max-width:540px){.item{grid-template-columns:1fr;} .tag{text-align:left;color:var(--faint);}}
 
 /* certificates */
-.cert { display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 20px; align-items: baseline; padding-block: 12px; border-top: 1px solid var(--rule); }
-.cert:first-of-type { padding-top: 0; border-top: 0; }
-.cert .n { font-weight: 500; }
-.cert .y { font: 500 12px var(--mono); color: var(--faint); white-space: nowrap; }
-.cert .d { grid-column: 1 / -1; margin-top: 4px; color: var(--ink-2); font-size: 14px; }
+.cert{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:20px;align-items:baseline;padding-block:12px;border-top:1px solid var(--rule);}
+.cert:first-of-type{padding-top:0;border-top:0;}
+.cert .n{font-weight:500;}
+.cert .y{font:500 12px var(--mono);color:var(--faint);white-space:nowrap;}
+.cert .d{grid-column:1 / -1;margin-top:4px;color:var(--ink-2);font-size:14px;}
 
 /* skills and contact rows */
-.row { display: grid; grid-template-columns: 6rem minmax(0,1fr); column-gap: 14px; align-items: baseline; padding-block: 8px; border-top: 1px solid var(--rule); }
-.row:first-of-type { padding-top: 0; border-top: 0; }
-.row .k { font: 500 12px var(--mono); color: var(--faint); }
-.row .v { font: 500 13.5px/1.9 var(--mono); color: var(--ink-2); }
-.row a.v { color: var(--ink); border-bottom: 1px solid var(--rule-2); justify-self: start; }
-.row a.v:hover { color: var(--accent); border-color: var(--accent); }
-.v i { margin: 0 3px; color: var(--faint); font-style: normal; }
-.v span { white-space: nowrap; }
-@media (max-width: 560px) { .row { grid-template-columns: 1fr; row-gap: 2px; } }
+.row{display:grid;grid-template-columns:6rem minmax(0,1fr);column-gap:14px;align-items:baseline;padding-block:8px;border-top:1px solid var(--rule);}
+.row:first-of-type{padding-top:0;border-top:0;}
+.row .k{font:500 12px var(--mono);color:var(--faint);}
+.row .v{font:500 13.5px/1.9 var(--mono);color:var(--ink-2);}
+.row a.v{color:var(--ink);border-bottom:1px solid var(--rule-2);justify-self:start;}
+.row a.v:hover{color:var(--accent);border-color:var(--accent);}
+.v i{margin:0 3px;color:var(--faint);font-style:normal;}
+.v span{white-space:nowrap;}
+@media (max-width:560px){.row{grid-template-columns:1fr;row-gap:2px;}}
 
 /* the pad */
-.hex { max-height: calc(12 * 1.7em); margin-top: 14px; overflow-y: auto; padding: 10px 12px; border: 1px solid var(--rule); font: 500 12px/1.7 var(--mono); color: var(--faint); word-break: break-all; }
-.total { margin-top: 14px; font: 500 12px var(--mono); color: var(--ink-2); }
+.hex{max-height:calc(12 * 1.7em);margin-top:14px;overflow-y:auto;padding:10px 12px;border:1px solid var(--rule);font:500 12px/1.7 var(--mono);color:var(--faint);word-break:break-all;}
+.total{margin-top:14px;font:500 12px var(--mono);color:var(--ink-2);}
 
 /* print: a one-page A4 CV, without the bar, the byte ranges and the pad */
-@media print {
-  :root { --paper: #fff; --ink: #000; --ink-2: #222; --faint: #555; --rule: #ccc; --rule-2: #aaa; --accent: #000; color-scheme: light; }
-  @page { size: A4; margin: 10mm 13mm; }
-  .skip, .bar, .map, #notes, #pad, #contact, .noprint { display: none !important; }
-  body { font-size: 9pt; line-height: 1.32; }
-  .sheet { max-width: none; padding: 0; }
-  .sec { grid-template-columns: 1fr; padding-block: 4px; border-top: 1px solid #ccc; }
-  .body { padding-left: 0; border-left: 0; }
-  h2 { margin: 0 0 2px; font-size: 7.5pt; letter-spacing: .12em; text-transform: uppercase; color: #555; break-after: avoid; }
-  .name { font-size: 20pt; } .name br { display: none; }
-  .role { margin-top: 4px; max-width: none; font-size: 9pt; } .sig { display: none; }
-  .printonly { display: block; margin-top: 3px; font: 500 7.5pt/1.5 var(--mono); color: #222; }
-  .lead { display: none; } .txt { margin-top: 0; max-width: none; font-size: 8.5pt; } .txt + .txt { margin-top: 2px; }
-  .item, .row { padding-block: 2px; row-gap: 0; break-inside: avoid; }
-  .ttl { font-size: 9.5pt; } .tag { font-size: 7.5pt; } .desc { max-width: none; font-size: 8.3pt; }
-  .cert { display: inline; padding: 0; border: 0; } .cert .d { display: none; }
-  .cert .y { font: 400 8.3pt var(--sans); color: #222; } .cert .y::before { content: " ("; } .cert .y::after { content: ")"; }
-  .cert + .cert::before { content: " · "; color: #555; }
-  .row .k { font-size: 7.5pt; } .row .v { font-size: 8pt; line-height: 1.5; }
-  .ttl a[href]::after, .desc a[href]::after { content: " (" attr(href) ")"; font: 7.5pt var(--mono); color: #555; }
-  a { border: 0 !important; color: #000; }
+@media print{
+:root{--paper:#fff;--ink:#000;--ink-2:#222;--faint:#555;--rule:#ccc;--rule-2:#aaa;--accent:#000;color-scheme:light;}
+@page{size:A4;margin:8mm 13mm;}
+.skip,.bar,.map,#notes,#pad,#contact,.noprint{display:none !important;}
+body{font-size:9pt;line-height:1.32;}
+.sheet{max-width:none;padding:0;}
+.sec{grid-template-columns:1fr;padding-block:3px;border-top:1px solid #ccc;}
+.body{padding-left:0;border-left:0;}
+h2{margin:0 0 2px;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#555;break-after:avoid;}
+.name{font-size:20pt;} .name br{display:none;}
+.role{margin-top:4px;max-width:none;font-size:9pt;} .sig{display:none;}
+.printonly{display:block;margin-top:3px;font:500 7.5pt/1.5 var(--mono);color:#222;}
+.lead{display:none;} .txt{margin-top:0;max-width:none;font-size:8.5pt;} .txt + .txt{margin-top:2px;}
+.item,.row{padding-block:2px;row-gap:0;break-inside:avoid;}
+.ttl{font-size:9.5pt;} .tag{font-size:7.5pt;} .desc{max-width:none;font-size:8.3pt;}
+.cert{display:inline;padding:0;border:0;} .cert .d{display:none;}
+.cert .y{font:400 8.3pt var(--sans);color:#222;} .cert .y::before{content:" (";} .cert .y::after{content:")";}
+.cert + .cert::before{content:" · ";color:#555;}
+.row .k{font-size:7.5pt;} .row .v{font-size:8pt;line-height:1.5;}
+.ttl a[href]::after,.desc a[href]::after{content:" (" attr(href) ")";font:7.5pt var(--mono);color:#555;}
+a{border:0 !important;color:#000;}
 }
 </style>
 </head>
 <body>
 <a class="skip" href="#about">skip to content</a>
 <nav class="bar" aria-label="Byte map of this page">
-<a href="#top" style="width:41.6%"><span>.head    11,431 B</span></a><a href="#about" style="width:02.3%"><span>.about      642 B</span></a><a href="#edu" style="width:02.8%"><span>.edu        776 B</span></a><a href="#job" style="width:03.5%"><span>.job        969 B</span></a><a href="#work" style="width:11.8%"><span>.work     3,243 B</span></a><a href="#cert" style="width:02.3%"><span>.cert       628 B</span></a><a href="#skills" style="width:06.8%"><span>.skills   1,857 B</span></a><a href="#notes" style="width:17.3%"><span>.notes    4,747 B</span></a><a href="#contact" style="width:03.6%"><span>.contact    992 B</span></a><a href="#pad" style="width:08.0%"><span>.pad      2,205 B</span></a>
+<a href="#top" aria-label=".head, 10,936 bytes" style="width:39.8%"><span>.head    10,936 B</span></a><a href="#about" aria-label=".about,    808 bytes" style="width:02.9%"><span>.about      808 B</span></a><a href="#edu" aria-label=".edu,    795 bytes" style="width:02.9%"><span>.edu        795 B</span></a><a href="#job" aria-label=".job,    988 bytes" style="width:03.6%"><span>.job        988 B</span></a><a href="#work" aria-label=".work,  3,932 bytes" style="width:14.3%"><span>.work     3,932 B</span></a><a href="#cert" aria-label=".cert,    647 bytes" style="width:02.4%"><span>.cert       647 B</span></a><a href="#skills" aria-label=".skills,  1,876 bytes" style="width:06.8%"><span>.skills   1,876 B</span></a><a href="#notes" aria-label=".notes,  4,766 bytes" style="width:17.3%"><span>.notes    4,766 B</span></a><a href="#contact" aria-label=".contact,  1,011 bytes" style="width:03.7%"><span>.contact  1,011 B</span></a><a href="#pad" aria-label=".pad,  1,731 bytes" style="width:06.3%"><span>.pad      1,731 B</span></a>
 </nav>
 <div class="sheet">
 <header id="top" class="sec">
-<p class="map"><span>0x0000 – 0x2ca7</span><span>11,431 B</span></p>
+<p class="map" aria-hidden="true"><span>0x0000 – 0x2ab8</span><span>10,936 B</span></p>
 <div class="body">
 <h1 class="name">Konstantin<br> Bauer</h1>
 <p class="role">IT student at HTL&nbsp;TGM Wien, graduating in 2027, with a focus on IT security. I like Linux, networks, and finding out how systems work on the inside.</p>
@@ -164,16 +164,17 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </header>
 <main id="main">
 <section id="about" class="sec" aria-labelledby="h-about">
-<p class="map"><span>0x2ca7 – 0x2f29</span><span>   642 B</span></p>
+<p class="map" aria-hidden="true"><span>0x2ab8 – 0x2de0</span><span>   808 B</span></p>
 <div class="body">
 <h2 id="h-about">.about</h2>
 <p class="lead">I build things that run on a server, harden one, or simulate one.</p>
-<p class="txt">I'm careful by default: least privilege, tests and backups. The homelab is where I learn the parts school hasn't reached yet.</p>
-<p class="txt">IT security is where I want to go, penetration testing most of all. After the Matura in 2027 comes military service, and I'm applying for the Austrian Armed Forces' cyber track. I live in Vienna.</p>
+<p class="txt noprint">I'm careful by default: least privilege, tests and backups. The homelab is where I learn the parts school hasn't reached yet.</p>
+<p class="txt">After the Matura in 2027 comes military service, and I'm applying for the Austrian Armed Forces' cyber track.</p>
+<p class="txt"><strong>What I'm looking for:</strong> after my service, a first job in IT security in Vienna, where I live. Penetration testing interests me most, including on-site assessments. I'm open about the sector.</p>
 </div>
 </section>
 <section id="edu" class="sec" aria-labelledby="h-edu">
-<p class="map"><span>0x2f29 – 0x3231</span><span>   776 B</span></p>
+<p class="map" aria-hidden="true"><span>0x2de0 – 0x30fb</span><span>   795 B</span></p>
 <div class="body">
 <h2 id="h-edu">.edu</h2>
 <div class="item">
@@ -187,7 +188,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </div>
 </section>
 <section id="job" class="sec" aria-labelledby="h-job">
-<p class="map"><span>0x3231 – 0x35fa</span><span>   969 B</span></p>
+<p class="map" aria-hidden="true"><span>0x30fb – 0x34d7</span><span>   988 B</span></p>
 <div class="body">
 <h2 id="h-job">.job</h2>
 <div class="item">
@@ -201,7 +202,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </div>
 </section>
 <section id="work" class="sec" aria-labelledby="h-work">
-<p class="map"><span>0x35fa – 0x42a5</span><span> 3,243 B</span></p>
+<p class="map" aria-hidden="true"><span>0x34d7 – 0x4433</span><span> 3,932 B</span></p>
 <div class="body">
 <h2 id="h-work">.work</h2>
 <div class="item">
@@ -210,7 +211,8 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </div>
 <div class="item">
 <span class="ttl">Homelab agent</span><span class="tag">bash · python · claude code</span>
-<p class="desc">An AI assistant for my homelab with ten scheduled jobs, from a morning briefing to a watchdog that checks the servers every five minutes and restarts failed services. I built it around one rule: scripts fetch the data and the model only reads it. Anything that changes a system waits for my approval on my phone, with signed buttons and rate limits, and more than 350 tests keep it that way.</p>
+<p class="desc noprint">An AI assistant for my homelab with ten scheduled jobs, from a morning briefing with weather, timetable changes, calendar, mail and parcels to a watchdog that checks the servers every five minutes and restarts failed services. It also answers questions in a private chat and through Siri.</p>
+<p class="desc">I designed it so the model can never change anything on its own. Small scripts fetch the data, each with an empty environment, only its own secrets file and a timeout. Their output counts as untrusted, and the model reads it in one call with no tools by default, then answers in a fixed JSON format. It can only propose actions from a whitelist per job, and every proposal waits for my approval on my phone, through buttons signed with HMAC. Only a few actions may run on their own, and those are rate-limited. Root access goes through two whitelisted helpers: one reads the system state, the other can only restart named containers. On the media server, its SSH key is locked to a single command. More than 350 tests keep these rules in place.</p>
 </div>
 <div class="item">
 <span class="ttl">Homelab</span><span class="tag">debian · docker · tailscale</span>
@@ -235,7 +237,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </div>
 </section>
 <section id="cert" class="sec" aria-labelledby="h-cert">
-<p class="map"><span>0x42a5 – 0x4519</span><span>   628 B</span></p>
+<p class="map" aria-hidden="true"><span>0x4433 – 0x46ba</span><span>   647 B</span></p>
 <div class="body">
 <h2 id="h-cert">.cert</h2>
 <div class="cert"><span class="n">CompTIA IT Fundamentals (ITF+)</span><span class="y">2023</span></div>
@@ -244,7 +246,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </div>
 </section>
 <section id="skills" class="sec" aria-labelledby="h-skills">
-<p class="map"><span>0x4519 – 0x4c5a</span><span> 1,857 B</span></p>
+<p class="map" aria-hidden="true"><span>0x46ba – 0x4e0e</span><span> 1,876 B</span></p>
 <div class="body">
 <h2 id="h-skills">.skills</h2>
 <div class="row"><span class="k">systems</span><span class="v"><span>Linux (Debian, Arch)</span>&nbsp;<i>·</i> <span>Docker</span>&nbsp;<i>·</i> <span>Bash</span>&nbsp;<i>·</i> <span>DNS</span>&nbsp;<i>·</i> <span>WireGuard</span>&nbsp;<i>·</i> <span>Tailscale</span>&nbsp;<i>·</i> <span>Cloudflare Tunnel</span>&nbsp;<i>·</i> <span>Home Assistant</span></span></div>
@@ -256,7 +258,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </div>
 </section>
 <section id="notes" class="sec" aria-labelledby="h-notes">
-<p class="map"><span>0x4c5a – 0x5ee5</span><span> 4,747 B</span></p>
+<p class="map" aria-hidden="true"><span>0x4e0e – 0x60ac</span><span> 4,766 B</span></p>
 <div class="body">
 <h2 id="h-notes">.notes</h2>
 <p class="txt intro">Things I broke and fixed in my homelab, and what each one taught me.</p>
@@ -308,7 +310,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </div>
 </section>
 <section id="contact" class="sec" aria-labelledby="h-contact">
-<p class="map"><span>0x5ee5 – 0x62c5</span><span>   992 B</span></p>
+<p class="map" aria-hidden="true"><span>0x60ac – 0x649f</span><span> 1,011 B</span></p>
 <div class="body">
 <h2 id="h-contact">.contact</h2>
 <div class="row"><span class="k">email</span><a class="v" href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6b;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x69;&#x6e;&#x40;&#x77;&#x62;&#x61;&#x75;&#x65;&#x72;&#x2e;&#x63;&#x6f;&#x6d;">&#x6b;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x69;&#x6e;&#x40;&#x77;&#x62;&#x61;&#x75;&#x65;&#x72;&#x2e;&#x63;&#x6f;&#x6d;</a></div>
@@ -319,11 +321,11 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </section>
 </main>
 <section id="pad" class="sec" aria-labelledby="h-pad">
-<p class="map"><span>0x62c5 – 0x6b62</span><span> 2,205 B</span></p>
+<p class="map" aria-hidden="true"><span>0x649f – 0x6b62</span><span> 1,731 B</span></p>
 <div class="body">
 <h2 id="h-pad">.pad</h2>
 <p class="txt">The rest of the budget, padded the way a linker pads an image: a short message, then zero bytes. Decode it with <code>xxd -r -p</code>.</p>
-<p class="hex">48692c20796f75206465636f646564207468652070616464696e672e204576657279206f6e65206f662074686573652032372c343930206279746573206973206163636f756e74656420666f722c20616e642074686520666c616720697320696e2074686520726573706f6e736520686561646572732e0a0a53696e636520796f752061726520746865206b696e64206f6620706572736f6e2077686f206465636f6465732070616464696e673a20746869732070616765206973206f6e652048544d4c2066696c652c206275696c74206279206120507974686f6e20736372697074207468617420636f756e747320657665727920627974652c20616e6420736572766564206279206e67696e78206f6e206120526173706265727279205069203420617420686f6d6520696e205669656e6e612c207468726f756768206120436c6f7564666c6172652054756e6e656c2c2077697468206e6f206f70656e20706f7274732e204e6f204a6176615363726970742c206e6f20747261636b6572732c206e6f20666f6e747320746f20646f776e6c6f61642e20496620796f752077616e7420746f2074616c6b2061626f757420616e79206f662069742c20777269746520746f206b6f6e7374616e74696e407762617565722e636f6d2e0a0a4b6f6e7374616e74696e0a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+<p class="hex" aria-hidden="true">48692c20796f75206465636f646564207468652070616464696e672e204576657279206f6e65206f662074686573652032372c343930206279746573206973206163636f756e74656420666f722c20616e642074686520666c616720697320696e2074686520726573706f6e736520686561646572732e0a0a53696e636520796f752061726520746865206b696e64206f6620706572736f6e2077686f206465636f6465732070616464696e673a20746869732070616765206973206f6e652048544d4c2066696c652c206275696c74206279206120507974686f6e20736372697074207468617420636f756e747320657665727920627974652c20616e6420736572766564206279206e67696e78206f6e206120526173706265727279205069203420617420686f6d6520696e205669656e6e612c207468726f756768206120436c6f7564666c6172652054756e6e656c2c2077697468206e6f206f70656e20706f7274732e204e6f204a6176615363726970742c206e6f20747261636b6572732c206e6f20666f6e747320746f20646f776e6c6f61642e20496620796f752077616e7420746f2074616c6b2061626f757420616e79206f662069742c20777269746520746f206b6f6e7374616e74696e407762617565722e636f6d2e0a0a4b6f6e7374616e74696e0a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 </p>
 <p class="total">total  27,490 B = 0x6b62</p>
 </div>

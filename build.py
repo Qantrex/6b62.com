@@ -111,6 +111,9 @@ def main():
         v = values[b]
         print(f".{b:<8} {fmt('start', v['start'])} – {fmt('end', v['end'])}  {fmt('size', v['size'])} B  {fmt('pct', v['pct'])}")
     print(f"          total  {len(out):,} B = 0x{len(out):04x}")
+    hexstr = re.search(rb'<p class="hex"[^>]*>([0-9a-f]+)', out).group(1)
+    zeros = len(hexstr) - len(hexstr.rstrip(b"0"))
+    print(f"          .pad = message ({2 * len(MESSAGE)} hex chars) + {zeros} zero chars")
 
 
 if __name__ == "__main__":

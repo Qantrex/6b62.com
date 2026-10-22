@@ -1,5 +1,5 @@
 <section id="work" class="sec" aria-labelledby="h-work">
-<p class="map"><span>{{work.start}} – {{work.end}}</span><span>{{work.size}} B</span></p>
+<p class="map" aria-hidden="true"><span>{{work.start}} – {{work.end}}</span><span>{{work.size}} B</span></p>
 <div class="body">
 <h2 id="h-work">.work</h2>
 <div class="item">
@@ -8,7 +8,8 @@
 </div>
 <div class="item">
 <span class="ttl">Homelab agent</span><span class="tag">bash · python · claude code</span>
-<p class="desc">An AI assistant for my homelab with ten scheduled jobs, from a morning briefing to a watchdog that checks the servers every five minutes and restarts failed services. I built it around one rule: scripts fetch the data and the model only reads it. Anything that changes a system waits for my approval on my phone, with signed buttons and rate limits, and more than 350 tests keep it that way.</p>
+<p class="desc noprint">An AI assistant for my homelab with ten scheduled jobs, from a morning briefing with weather, timetable changes, calendar, mail and parcels to a watchdog that checks the servers every five minutes and restarts failed services. It also answers questions in a private chat and through Siri.</p>
+<p class="desc">I designed it so the model can never change anything on its own. Small scripts fetch the data, each with an empty environment, only its own secrets file and a timeout. Their output counts as untrusted, and the model reads it in one call with no tools by default, then answers in a fixed JSON format. It can only propose actions from a whitelist per job, and every proposal waits for my approval on my phone, through buttons signed with HMAC. Only a few actions may run on their own, and those are rate-limited. Root access goes through two whitelisted helpers: one reads the system state, the other can only restart named containers. On the media server, its SSH key is locked to a single command. More than 350 tests keep these rules in place.</p>
 </div>
 <div class="item">
 <span class="ttl">Homelab</span><span class="tag">debian · docker · tailscale</span>
