@@ -16,8 +16,10 @@ always has a working version. **Promote** a tested change with a normal merge: `
 git merge staging`, then deploy `main`.
 
 The two branches share everything below (`deploy.sh`, `tests/run`, CI, `nginx/nginx.conf`); they differ
-only in `site/` and `nginx/default.conf`. The staging site is the richer design (an inline Canvas
-tailnet wireframe + shell, self-hosted fonts); `main` is the current lean, zero-JS site.
+only in `site/` and `nginx/default.conf`. The staging site is the richer design (self-hosted fonts, a live
+trace of how the page reached the visitor, and a pocket version of revelOS with a small flag hunt);
+`main` is the current lean, zero-JS site. The trace reads the `Server-Timing: pi` stamp that
+staging's `nginx/default.conf` adds, so keep that header (and `connect-src 'self'`) if you change the config.
 
 ## Layout
 
