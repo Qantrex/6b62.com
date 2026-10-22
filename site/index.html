@@ -1,231 +1,336 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Konstantin Bauer</title>
-  <meta name="description" content="Konstantin Bauer: IT student at HTL TGM Vienna, IT security track, graduating 2027. A self-hosted homelab, a simulated OS for a game, hardening scripts.">
-  <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
-  <link rel="canonical" href="https://6b62.com/">
-  <meta property="og:type" content="profile">
-  <meta property="og:title" content="Konstantin Bauer">
-  <meta property="og:description" content="IT student at HTL TGM Vienna: systems engineering, IT security, a self-hosted homelab.">
-  <meta property="og:url" content="https://6b62.com/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20fill='%23000'/%3E%3Ctext%20x='16'%20y='22'%20font-family='monospace'%20font-size='16'%20font-weight='700'%20fill='%23fff'%20text-anchor='middle'%3Ekb%3C/text%3E%3C/svg%3E">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Konstantin Bauer","url":"https://6b62.com/","email":"mailto:konstantin@wbauer.com","jobTitle":"IT student","alumniOf":"HTL TGM Wien","address":{"@type":"PostalAddress","addressLocality":"Vienna","addressCountry":"AT"},"knowsAbout":["Linux","Networking","IT security","Penetration testing","Docker","Python","C#","Unity"],"sameAs":["https://github.com/Qantrex","https://www.linkedin.com/in/konstantin-bauer-9a5952266/"]}</script>
-  <style>
-    :root {
-      --bg: #000; --text: #e8e8e8; --muted: #8a8a8a; --faint: #1c1c1c; --line: #2a2a2a; --link: #444;
-      --accent: #c4a7e7; --strong: #fff;
-      --mono: ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
-    }
-    @media (prefers-color-scheme: light) {
-      :root { --bg: #fafafa; --text: #161616; --muted: #5f5f5f; --faint: #e6e6e6; --line: #d4d4d4; --link: #bbb;
-              --accent: #7a4fb8; --strong: #000; }
-    }
-    * { box-sizing: border-box; }
-    html { background: var(--bg); }
-    body {
-      margin: 0 auto; max-width: 680px; padding: 72px 20px 56px;
-      background: var(--bg); color: var(--text);
-      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Noto Sans", Arial, sans-serif;
-    }
-    .hex { font: 500 13px var(--mono); color: var(--muted); letter-spacing: .5px; }
-    .hex b { color: var(--accent); font-weight: 500; }
-    h1 { margin: 10px 0 8px; font-size: clamp(30px, 6vw, 40px); line-height: 1.1; letter-spacing: -1px; }
-    /* Markdown markers: same font, colour and weight everywhere; decoration only (not read out, not printed) */
-    h1::before, h2::before { font-family: var(--mono); font-weight: 400; color: var(--accent); opacity: .75; }
-    h1::before { content: "#"; margin-right: .4em; font-size: .7em; letter-spacing: 0; vertical-align: .12em; }
-    .lead { margin: 0; color: var(--muted); font-size: 17px; }
-    h2 { margin: 52px 0 16px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 2px; color: var(--muted); }
-    h2::before { content: "## "; }
-    p { margin: 0 0 12px; }
-    ul { list-style: none; margin: 0; padding: 0; }
-    .rows li { padding: 14px 0; border-top: 1px solid var(--faint); }
-    .rows li:last-child { border-bottom: 1px solid var(--faint); }
-    .head { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 12px; flex-wrap: wrap; }
-    .name { font-weight: 600; }
-    a.name { border-bottom-color: transparent; }
-    a.name::after { content: " ↗"; font: 400 12px var(--mono); color: var(--muted); }
-    a.name:hover, a.name:focus-visible { border-bottom-color: var(--accent); }
-    .meta { font: 12px var(--mono); color: var(--muted); }
-    .desc { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
-    .desc + .desc { margin-top: 6px; }
-    a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--link); }
-    a:hover, a:focus-visible { border-bottom-color: var(--accent); color: var(--strong); }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tags li { font: 13px var(--mono); padding: 2px 8px; background: var(--faint); border-radius: 4px; color: var(--text); }
-    .contact li { display: grid; grid-template-columns: 90px minmax(0, 1fr); align-items: baseline; padding: 4px 0; font: 14px var(--mono); }
-    .contact li a { justify-self: start; }
-    .contact span { color: var(--muted); }
-    .group { display: grid; grid-template-columns: 90px minmax(0, 1fr); align-items: baseline; padding: 6px 0; }
-    .group > span { font: 12px var(--mono); color: var(--muted); }
-    .printonly { display: none; }
-    footer { margin-top: 64px; font: 12px var(--mono); color: var(--muted); opacity: .7; }
-    @media (max-width: 480px) { body { padding-top: 48px; } }
-    /* Print / "Save as PDF" = a one-page CV */
-    @media print {
-      :root { --bg: #fff; --text: #000; --muted: #444; --faint: #ddd; --line: #bbb; --accent: #000; }
-      @page { size: A4; margin: 10mm 13mm; }
-      body { max-width: none; padding: 0; font-size: 9pt; line-height: 1.32; }
-      h1 { font-size: 20pt; margin: 0 0 3px; }
-      .lead { font-size: 9.5pt; }
-      .printonly { display: block; margin: 3px 0 0; font: 7.5pt/1.5 var(--mono); color: var(--muted); }
-      h2 { margin: 8px 0 2px; font-size: 7.5pt; break-after: avoid; }
-      p { margin: 0 0 3px; }
-      .rows li { padding: 2px 0; break-inside: avoid; }
-      .desc { font-size: 8.3pt; margin-top: 1px; }
-      .desc + .desc { margin-top: 2px; }
-      .meta { font-size: 7.5pt; }
-      a { border: 0; }
-      .rows a.name::after, .desc a::after { content: " (" attr(href) ")"; font: 7.5pt var(--mono); color: var(--muted); }
-      .noprint, .hex { display: none; }
-      h1::before, h2::before { content: none; }
-      /* certificates: one line */
-      .certs li, .certs li:last-child { display: inline; padding: 0; border: 0; }
-      .certs .head { display: inline; } .certs .desc { display: none; }
-      .certs .meta { font: 8.5pt system-ui, sans-serif; color: var(--muted); }
-      .certs .meta::before { content: " ("; } .certs .meta::after { content: ")"; }
-      .certs li + li::before { content: " · "; color: var(--muted); }
-      .tags { gap: 0; }
-      .tags li { background: none; padding: 0; font-size: 8.5pt; }
-      .tags li:not(:last-child)::after { content: "·"; margin: 0 7px; color: var(--muted); }   /* wraps after a dot, never before */
-      .group { padding: 1px 0; } .group > span { font-size: 7.5pt; }
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Konstantin Bauer</title>
+<meta name="description" content="Konstantin Bauer, IT student at HTL TGM Vienna graduating in 2027, focused on IT security. A self-hosted homelab, a simulated OS for a game, and hardening scripts.">
+<link rel="canonical" href="https://6b62.com/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#edeeec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Konstantin Bauer">
+<meta property="og:description" content="IT student at HTL TGM Vienna, focused on IT security. A self-hosted homelab, a simulated OS for a game, and hardening scripts.">
+<meta property="og:url" content="https://6b62.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cstyle%3Erect%7Bfill:%2316171a%7Dtext%7Bfill:%23edeeec%7D@media(prefers-color-scheme:dark)%7Brect%7Bfill:%23edeeec%7Dtext%7Bfill:%230b0c0e%7D%7D%3C/style%3E%3Crect%20width='32'%20height='32'/%3E%3Ctext%20x='16'%20y='22'%20font-family='monospace'%20font-size='15'%20font-weight='700'%20text-anchor='middle'%3Ekb%3C/text%3E%3C/svg%3E">
+<style>
+/* 0x6b62: a CV laid out like a linker map. Each margin shows its block's real byte range in this
+   file; the bar is the whole file. build.py fills in the numbers. No JavaScript, one request. */
+:root{
+--paper:#edeeec;--panel:#e6e7e4;
+--ink:#16171a;--ink-2:#4e4f55;--faint:#77787d;
+--rule:rgba(22,23,26,.15);--rule-2:rgba(22,23,26,.32);
+--accent:#5a3ab0;
+--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+--sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+:root{
+--paper:#0b0c0e;--panel:#111216;
+--ink:#ecedee;--ink-2:#a7a8ae;--faint:#74757b;
+--rule:rgba(236,237,238,.15);--rule-2:rgba(236,237,238,.30);
+--accent:#c4a7e7;color-scheme:dark;
+}
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--sans);}
+::selection{background:var(--accent);color:var(--paper);}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+a{color:inherit;text-decoration:none;}
+p{margin:0;}
 
-  </style>
+.skip{position:absolute;left:10px;top:-48px;z-index:10;padding:9px 13px;background:var(--ink);color:var(--paper);font:500 13px var(--mono);}
+.skip:focus{top:22px;}
+
+/* the bar: the whole file, one segment per block */
+.bar{position:sticky;top:0;z-index:5;display:flex;height:12px;background:var(--paper);border-bottom:1px solid var(--rule);}
+.bar a{position:relative;flex:0 1 auto;min-width:3px;height:100%;background:var(--rule-2);border-right:2px solid var(--paper);}
+.bar a:nth-child(even){background:var(--rule);}
+.bar a:hover,.bar a:focus-visible{background:var(--accent);outline:0;}
+.bar a span{display:none;position:absolute;top:16px;left:0;padding:3px 7px;background:var(--ink);color:var(--paper);font:500 11.5px var(--mono);white-space:pre;}
+.bar a:nth-last-child(-n+3) span{left:auto;right:0;}
+.bar a:hover span,.bar a:focus-visible span{display:block;}
+:has(#top:hover) .bar [href="#top"],:has(#about:hover) .bar [href="#about"],
+:has(#edu:hover) .bar [href="#edu"],:has(#job:hover) .bar [href="#job"],
+:has(#work:hover) .bar [href="#work"],:has(#notes:hover) .bar [href="#notes"],
+:has(#cert:hover) .bar [href="#cert"],
+:has(#skills:hover) .bar [href="#skills"],:has(#contact:hover) .bar [href="#contact"],
+:has(#pad:hover) .bar [href="#pad"]{background:var(--accent);}
+
+/* the ledger: [byte range | size] | content */
+.sheet{max-width:960px;margin-inline:auto;padding-inline:max(22px,env(safe-area-inset-left,0px)) max(22px,env(safe-area-inset-right,0px));}
+.sec{display:grid;grid-template-columns:9.5rem minmax(0,1fr);padding-block:clamp(30px,5vw,56px);border-top:1px solid var(--rule);scroll-margin-top:13px;}
+#top{border-top:0;}
+.map{padding-right:20px;font:500 12px/1.75 var(--mono);color:var(--faint);white-space:pre;}
+.map span{display:block;}
+.sec:hover .map,.sec:target .map{color:var(--accent);}
+.body{min-width:0;padding-left:32px;border-left:1px solid var(--rule);}
+h2{margin:0 0 16px;font:500 12.5px/1.4 var(--mono);color:var(--accent);letter-spacing:.03em;}
+@media (max-width:720px){
+.sec{grid-template-columns:1fr;row-gap:12px;}
+.map span{display:inline;}
+.map span + span::before{content:"  ";}
+.body{padding-left:0;border-left:0;}
+}
+
+/* masthead */
+.name{margin:0;font:800 clamp(46px,11.5vw,96px)/.92 var(--sans);letter-spacing:-.04em;}
+.role{margin-top:20px;max-width:46ch;color:var(--ink-2);font-size:clamp(16px,2.4vw,18px);line-height:1.5;}
+.sig{margin-top:20px;font:500 13px/1.7 var(--mono);color:var(--faint);}
+.sig b{color:var(--accent);font-weight:500;}
+.printonly{display:none;}
+
+/* prose */
+.lead{max-width:26ch;font-size:clamp(20px,3.2vw,26px);line-height:1.3;letter-spacing:-.015em;}
+.txt{margin-top:14px;max-width:58ch;color:var(--ink-2);}
+
+/* entries */
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 20px;align-items:baseline;padding-block:16px;border-top:1px solid var(--rule);}
+.item:first-of-type{padding-top:0;border-top:0;}
+.ttl{font-size:18px;font-weight:600;line-height:1.3;letter-spacing:-.01em;}
+.ttl a,.desc a{border-bottom:1px solid var(--rule-2);}
+.ttl a:hover,.desc a:hover{color:var(--accent);border-color:var(--accent);}
+.tag{font:500 11.5px/1.5 var(--mono);color:var(--accent);text-align:right;white-space:nowrap;}
+.desc{grid-column:1 / -1;max-width:66ch;color:var(--ink-2);font-size:15px;}
+.desc.lesson{color:var(--ink);font-size:14.5px;}
+.desc.lesson::before{content:"lesson: ";font:500 12px var(--mono);color:var(--accent);}
+.intro{margin:0 0 18px;}
+@media (max-width:540px){.item{grid-template-columns:1fr;} .tag{text-align:left;color:var(--faint);}}
+
+/* certificates */
+.cert{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:20px;align-items:baseline;padding-block:12px;border-top:1px solid var(--rule);}
+.cert:first-of-type{padding-top:0;border-top:0;}
+.cert .n{font-weight:500;}
+.cert .y{font:500 12px var(--mono);color:var(--faint);white-space:nowrap;}
+.cert .d{grid-column:1 / -1;margin-top:4px;color:var(--ink-2);font-size:14px;}
+
+/* skills and contact rows */
+.row{display:grid;grid-template-columns:6rem minmax(0,1fr);column-gap:14px;align-items:baseline;padding-block:8px;border-top:1px solid var(--rule);}
+.row:first-of-type{padding-top:0;border-top:0;}
+.row .k{font:500 12px var(--mono);color:var(--faint);}
+.row .v{font:500 13.5px/1.9 var(--mono);color:var(--ink-2);}
+.row a.v{color:var(--ink);border-bottom:1px solid var(--rule-2);justify-self:start;}
+.row a.v:hover{color:var(--accent);border-color:var(--accent);}
+.v i{margin:0 3px;color:var(--faint);font-style:normal;}
+.v span{white-space:nowrap;}
+@media (max-width:560px){.row{grid-template-columns:1fr;row-gap:2px;}}
+
+/* the pad */
+.hex{max-height:20.4em;margin-top:14px;overflow-y:auto;padding:10px 12px;border:1px solid var(--rule);font:500 12px/1.7 var(--mono);color:var(--faint);word-break:break-all;}
+.total{display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:14px;font:500 12px var(--mono);color:var(--ink-2);}
+.total code{font:inherit;color:var(--ink);white-space:pre-wrap;}
+.total code span{color:var(--faint);}
+
+/* print: a one-page A4 CV */
+@media print{
+:root{--paper:#fff;--ink:#000;--ink-2:#222;--faint:#555;--rule:#ccc;--rule-2:#aaa;--accent:#000;color-scheme:light;}
+@page{size:A4;margin:8mm 13mm;}
+.skip,.bar,.map,#notes,#pad,#contact,.noprint{display:none;}
+body{font-size:9pt;line-height:1.32;}
+.sheet{max-width:none;padding:0;}
+.sec{grid-template-columns:1fr;padding-block:3px;border-top:1px solid #ccc;}
+.body{padding-left:0;border-left:0;}
+h2{margin:0 0 2px;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#555;break-after:avoid;}
+.name{font-size:20pt;} .name br{display:none;}
+.role{margin-top:4px;max-width:none;font-size:9pt;} .sig{display:none;}
+.printonly{display:block;margin-top:3px;font:500 7.5pt/1.5 var(--mono);color:#222;}
+.lead{display:none;} .txt{margin-top:0;max-width:none;font-size:8.5pt;} .txt + .txt{margin-top:2px;}
+.item,.row{padding-block:2px;row-gap:0;break-inside:avoid;}
+.ttl{font-size:9.5pt;} .tag{font-size:7.5pt;} .desc{max-width:none;font-size:8.3pt;}
+.cert{display:inline;padding:0;border:0;} .cert .d{display:none;}
+.cert .y{font:400 8.3pt var(--sans);color:#222;} .cert .y::before{content:" (";} .cert .y::after{content:")";}
+.cert + .cert::before{content:" · ";color:#555;}
+.row .k{font-size:7.5pt;} .row .v{font-size:8pt;line-height:1.5;}
+.ttl a[href]::after,.desc a[href]::after{content:" (" attr(href) ")";font:7.5pt var(--mono);color:#555;}
+a{border:0 !important;color:#000;}
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="hex">0x<b>6b62</b> → kb</div>
-    <h1>Konstantin Bauer</h1>
-    <p class="lead">IT student at HTL TGM Vienna, focused on systems engineering and IT security. Graduating in 2027.</p>
-    <p class="printonly">konstantin@wbauer.com · github.com/Qantrex · linkedin.com/in/konstantin-bauer-9a5952266 · Vienna,&nbsp;Austria · EU&nbsp;citizen · driving&nbsp;licence&nbsp;B</p>
-  </header>
-
-  <main>
-    <section>
-      <h2>About</h2>
-      <p class="noprint">I like Linux, networks, and finding out how systems work on the inside. Most of what I build either runs on a server, hardens one, or simulates one.</p>
-      <p>IT security is where I want to go, penetration testing most of all. Next, after the Matura in 2027: military service, for which I'm applying to the Austrian Armed Forces' cyber track. Based in Vienna.</p>
-    </section>
-
-    <section>
-      <h2>Education</h2>
-      <ul class="rows">
-        <li>
-          <div class="head"><span class="name">HTL TGM Wien: Information Technology</span><span class="meta">2022 – 2027</span></div>
-          <p class="desc">Systems engineering, specialising in IT security (class 5BHIT). Matura and diploma in summer 2027. Year 2 passed with distinction (ausgezeichneter Erfolg), years 3 and 4 with merit (guter Erfolg).</p>
-        </li>
-        <li>
-          <div class="head"><span class="name">GRG 23: Dual Language Program</span><span class="meta">2018 – 2022</span></div>
-          <p class="desc">Lower secondary school with subjects taught in English by native speakers.</p>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Experience</h2>
-      <ul class="rows">
-        <li>
-          <div class="head"><span class="name">Event staff, Sulzenbacher Eventmanagement</span><span class="meta">Vienna · Jul – Aug 2026</span></div>
-          <p class="desc">Summer job with a Vienna event company: service, bar, kitchen help and logistics at events.</p>
-        </li>
-        <li>
-          <div class="head"><span class="name">IT intern, A1 Telekom Austria</span><span class="meta">Technology unit · Aug 2024</span></div>
-          <p class="desc">A month in the Technology unit of Austria's largest telecom. I commissioned Cisco ACI leaf switches, decommissioned network and server hardware (Catalyst 6500, firewalls, storage), supported customer network planning, ran fibre, RJ45 and DAC cabling, and swapped disks, power supplies and battery packs in servers.</p>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Projects</h2>
-      <ul class="rows">
-        <li>
-          <div class="head"><span class="name">Project River Zero</span><span class="meta">diploma thesis · unity · c#</span></div>
-          <p class="desc">A hacking simulation game by a team of four, with equal shares; release planned for spring 2027. I develop revelOS, the simulated operating system the whole game takes place in: a virtual file system with owners and permissions, command processing, and SSH into other simulated machines. My thesis asks how to build such a system so it stays extensible.</p>
-          <p class="desc">I also built the <a href="https://qantrex.github.io/prz-website/">project site</a>, a replica of the revelOS desktop in Vue and three.js. Prototype on <a href="https://kbauer.itch.io/prz">itch.io</a>.</p>
-        </li>
-        <li>
-          <div class="head"><span class="name">Homelab</span><span class="meta">debian · docker · ongoing</span></div>
-          <p class="desc">Three hosts, two Raspberry Pis and a ThinkPad, running about 30 containers: a media server behind a VPN kill switch, Pi-hole with Unbound, Home Assistant and Paperless-ngx. Everything is reachable only over Tailscale. This site is the one exception: a Cloudflare Tunnel, no open ports. Nightly encrypted backups, off-site on free tiers with hard caps. The media stack has been in daily use for over a year.</p>
-        </li>
-        <li>
-          <div class="head"><span class="name">Homelab agent</span><span class="meta">bash · python · claude code</span></div>
-          <p class="desc">An AI assistant for the homelab, built as a small plugin system with ten scheduled jobs. It writes a morning briefing (weather, school timetable changes, calendar, mail, parcels), checks the servers every five minutes and restarts failed services. It answers questions in a private chat and through Siri.</p>
-          <p class="desc">Built security-first: scripts collect the data and the model only reads it, with no tools by default. Anything that changes the system is a whitelisted action that waits for my approval on the phone, with signed buttons and rate limits. More than 350 automated tests.</p>
-        </li>
-        <li>
-          <div class="head"><span class="name">Security practice</span><span class="meta">ctf · web · forensics</span></div>
-          <p class="desc">Hacker101 CTFs and school labs: web testing with Burp Suite, ffuf and sqlmap, password attacks with Hydra and hashcat, and network forensics in Wireshark, where I traced a worm infection through a Windows domain from a packet capture. I document every tool and attack flow in my own notes.</p>
-        </li>
-        <li>
-          <div class="head"><a class="name" href="https://github.com/Qantrex/Arch-Linux-Hardening">Arch-Linux-Hardening</a><span class="meta">bash</span></div>
-          <p class="desc">Scripts that harden a Linux system (SSH, users, file permissions, services) and a check script that verifies the result.</p>
-        </li>
-        <li>
-          <div class="head"><a class="name" href="https://github.com/Qantrex/ITSI-7.5">ITSI-7.5</a><span class="meta">docker compose</span></div>
-          <p class="desc">A web app behind Caddy (HTTPS) and a ModSecurity WAF, with PHP and MariaDB.</p>
-        </li>
-        <li>
-          <div class="head"><a class="name" href="https://wbauer.com">wbauer.com</a><span class="meta">web</span></div>
-          <p class="desc">Website for my father's business, designed, built and published by me.</p>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Certificates</h2>
-      <ul class="rows certs">
-        <li>
-          <div class="head"><span class="name">CompTIA IT Fundamentals (ITF+)</span><span class="meta">2023</span></div>
-        </li>
-        <li>
-          <div class="head"><span class="name">Cloudflight Coding Contest</span><span class="meta">5× · 2023–2025</span></div>
-          <p class="desc">Took part in five contests in a row (CCC 37 to 41), each in the classic and the school round.</p>
-        </li>
-        <li>
-          <div class="head"><span class="name">ECDL Standard</span><span class="meta">2021</span></div>
-          <p class="desc">All five modules.</p>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Skills</h2>
-      <div class="group"><span>systems</span><ul class="tags">
-        <li>Linux (Debian, Arch)</li><li>Docker</li><li>Bash</li><li>DNS</li><li>WireGuard</li><li>Tailscale</li><li>Cloudflare Tunnel</li><li>Home Assistant</li>
-      </ul></div>
-      <div class="group"><span>security</span><ul class="tags">
-        <li>Burp Suite</li><li>Wireshark</li><li>nmap</li><li>ffuf</li><li>sqlmap</li><li>Hydra</li><li>hashcat</li><li>ModSecurity</li>
-      </ul></div>
-      <div class="group"><span>code</span><ul class="tags">
-        <li>Python</li><li>C# / Unity</li><li>C / C++</li><li>Java</li><li>TypeScript / Vue</li><li>SQL</li>
-      </ul></div>
-      <div class="group"><span>hardware</span><ul class="tags">
-        <li>Raspberry Pi</li><li>ESP32 / Arduino</li><li>soldering</li><li>3D printing</li><li>DIY speakers</li>
-      </ul></div>
-      <div class="group noprint"><span>interests</span><ul class="tags">
-        <li>game development</li><li>Linux ricing (Arch + Hyprland)</li><li>building hardware</li>
-      </ul></div>
-      <div class="group"><span>languages</span><ul class="tags">
-        <li>German, native</li><li>English, fluent (C2 certificate)</li>
-      </ul></div>
-    </section>
-
-    <section class="noprint">
-      <h2>Contact</h2>
-      <ul class="contact">
-        <li><span>email</span><a href="mailto:konstantin@wbauer.com">konstantin@wbauer.com</a></li>
-        <li><span>github</span><a href="https://github.com/Qantrex">Qantrex</a></li>
-        <li><span>linkedin</span><a href="https://www.linkedin.com/in/konstantin-bauer-9a5952266/">konstantin-bauer</a></li>
-        <li><span>based</span>Vienna, Austria · EU citizen · driving licence B</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="noprint">Static HTML · served from a Raspberry Pi</footer>
+<a class="skip" href="#about">skip to content</a>
+<nav class="bar" aria-label="Byte map of this page">
+<a href="#top" aria-label=".head, 10,886 bytes" style="width:39.6%"><span>.head 10,886 B</span></a><a href="#about" aria-label=".about,    805 bytes" style="width:02.9%"><span>.about    805 B</span></a><a href="#edu" aria-label=".edu,    795 bytes" style="width:02.9%"><span>.edu    795 B</span></a><a href="#job" aria-label=".job,    988 bytes" style="width:03.6%"><span>.job    988 B</span></a><a href="#work" aria-label=".work,  4,016 bytes" style="width:14.6%"><span>.work  4,016 B</span></a><a href="#cert" aria-label=".cert,    647 bytes" style="width:02.4%"><span>.cert    647 B</span></a><a href="#skills" aria-label=".skills,  1,876 bytes" style="width:06.8%"><span>.skills  1,876 B</span></a><a href="#notes" aria-label=".notes,  4,784 bytes" style="width:17.4%"><span>.notes  4,784 B</span></a><a href="#contact" aria-label=".contact,  1,011 bytes" style="width:03.7%"><span>.contact  1,011 B</span></a><a href="#pad" aria-label=".pad,  1,682 bytes" style="width:06.1%"><span>.pad  1,682 B</span></a>
+</nav>
+<div class="sheet">
+<header id="top" class="sec">
+<p class="map" aria-hidden="true"><span>0x0000 – 0x2a86</span><span>10,886 B</span></p>
+<div class="body">
+<h1 class="name">Konstantin<br> Bauer</h1>
+<p class="role">IT student at HTL&nbsp;TGM Wien, graduating in 2027, with a focus on IT security. I like Linux, networks, and finding out how systems work on the inside.</p>
+<p class="sig">0x6b = <b>k</b>, 0x62 = <b>b</b>: my initials in hex, and the exact size of this page, 27,490 bytes.</p>
+<p class="printonly">&#x6b;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x69;&#x6e;&#x40;&#x77;&#x62;&#x61;&#x75;&#x65;&#x72;&#x2e;&#x63;&#x6f;&#x6d; · github.com/Qantrex · linkedin.com/in/konstantin-bauer-9a5952266 · Vienna,&nbsp;Austria · EU&nbsp;citizen · driving&nbsp;licence&nbsp;B</p>
+</div>
+</header>
+<main id="main">
+<section id="about" class="sec" aria-labelledby="h-about">
+<p class="map" aria-hidden="true"><span>0x2a86 – 0x2dab</span><span>   805 B</span></p>
+<div class="body">
+<h2 id="h-about">.about</h2>
+<p class="lead">I build things that run on a server, harden one, or simulate one.</p>
+<p class="txt noprint">I'm careful by default: least privilege, tests and backups. The homelab is where I learn the parts school hasn't reached yet.</p>
+<p class="txt">After the Matura in 2027 comes military service, and I'm applying for the Austrian Armed Forces' cyber track.</p>
+<p class="txt"><strong>What I'm looking for:</strong> after my service, a first job in IT security in Vienna, where I live. Penetration testing interests me most, including on-site assessments. I'm open to any sector.</p>
+</div>
+</section>
+<section id="edu" class="sec" aria-labelledby="h-edu">
+<p class="map" aria-hidden="true"><span>0x2dab – 0x30c6</span><span>   795 B</span></p>
+<div class="body">
+<h2 id="h-edu">.edu</h2>
+<div class="item">
+<span class="ttl">HTL TGM Wien, Information Technology</span><span class="tag">2022 – 2027</span>
+<p class="desc">Systems engineering with a specialisation in IT security, class 5BHIT. I finish with the Matura and diploma in summer 2027. I passed year 2 with distinction (ausgezeichneter Erfolg) and years 3 and 4 with merit (guter Erfolg).</p>
+</div>
+<div class="item">
+<span class="ttl">GRG 23, Dual Language Program</span><span class="tag">2018 – 2022</span>
+<p class="desc">Lower secondary school, with subjects taught in English by native speakers.</p>
+</div>
+</div>
+</section>
+<section id="job" class="sec" aria-labelledby="h-job">
+<p class="map" aria-hidden="true"><span>0x30c6 – 0x34a2</span><span>   988 B</span></p>
+<div class="body">
+<h2 id="h-job">.job</h2>
+<div class="item">
+<span class="ttl">Event staff at Sulzenbacher Eventmanagement</span><span class="tag">Vienna · Jul – Aug 2026</span>
+<p class="desc">A summer job with a Vienna event company. I worked in service, at the bar, in the kitchen and in logistics at events.</p>
+</div>
+<div class="item">
+<span class="ttl">IT intern at A1 Telekom Austria</span><span class="tag">Technology unit · Aug 2024</span>
+<p class="desc">A month in the Technology unit of Austria's largest telecom. I commissioned Cisco ACI leaf switches, took enterprise network and server hardware out of service (Catalyst&nbsp;6500, firewalls, storage), helped plan customer networks, ran fibre, RJ45 and DAC cabling, and fixed servers down to swapping disks, power supplies and battery packs.</p>
+</div>
+</div>
+</section>
+<section id="work" class="sec" aria-labelledby="h-work">
+<p class="map" aria-hidden="true"><span>0x34a2 – 0x4452</span><span> 4,016 B</span></p>
+<div class="body">
+<h2 id="h-work">.work</h2>
+<div class="item">
+<span class="ttl">Project River Zero</span><span class="tag">diploma thesis · unity · c#</span>
+<p class="desc">A story-driven hacking game about money, pressure and never knowing who is watching, made by four of us with equal shares and planned for release in 2027. My part is revelOS, the operating system the whole game takes place in. It has a virtual file system with owners and permissions, command processing, and SSH into other simulated machines. My thesis asks how a simulated OS like that can be written, managed and extended with design patterns and best practices. I also built the project site, a replica of the revelOS desktop in Vue and three.js. <a href="https://qantrex.github.io/prz-website/">project site ↗</a> · <a href="https://kbauer.itch.io/prz">itch.io ↗</a></p>
+</div>
+<div class="item">
+<span class="ttl">Homelab agent</span><span class="tag">bash · python · claude code</span>
+<p class="desc noprint">An AI assistant for my homelab with ten scheduled jobs, from a morning briefing with weather, timetable changes, calendar, mail and parcels to a watchdog that checks the servers every five minutes and restarts failed services. It also answers questions in a private chat and through Siri.</p>
+<p class="desc">I designed it so the model has no way to change anything directly. Small scripts fetch the data, each with an empty environment, only its own secrets file and a timeout. Their output counts as untrusted, and the model reads it in one call with no tools by default, then answers in a fixed JSON format. It can only propose actions from a whitelist per job, and every proposal waits for my approval on my phone, through buttons signed with HMAC. Only a few actions may run on their own, and those are rate-limited. Root access goes through two whitelisted helpers: one reads the system state, the other can only restart named containers. On the media server, its SSH key is locked to a single command. More than 350 tests keep these rules in place.</p>
+</div>
+<div class="item">
+<span class="ttl">Homelab</span><span class="tag">debian · docker · tailscale</span>
+<p class="desc">Two Raspberry Pis and an old ThinkPad, running about 30 containers on a private tailnet: a media server, Pi-hole with Unbound, Home Assistant and Paperless. The one public exception is this site, which goes out through a Cloudflare Tunnel. Backups run every night, encrypted and off-site, on free tiers with hard caps. The media server has been in daily use for over a year.</p>
+</div>
+<div class="item">
+<span class="ttl">Security practice</span><span class="tag">ctf · web · forensics</span>
+<p class="desc">Hacker101 CTFs and school labs. I've done web testing with Burp Suite, ffuf and sqlmap, password attacks with Hydra and hashcat, and network forensics in Wireshark, where I traced a worm infection through a Windows domain from a packet capture. I write up every tool and attack flow in my own notes.</p>
+</div>
+<div class="item">
+<span class="ttl"><a href="https://github.com/Qantrex/Arch-Linux-Hardening">Arch-Linux-Hardening ↗</a></span><span class="tag">bash</span>
+<p class="desc">Scripts that harden SSH, users, permissions and services. A second script then checks the result instead of assuming it worked.</p>
+</div>
+<div class="item">
+<span class="ttl"><a href="https://github.com/Qantrex/ITSI-7.5">ITSI-7.5 ↗</a></span><span class="tag">docker compose</span>
+<p class="desc">A PHP and MariaDB web app behind Caddy and a ModSecurity WAF, all set up from a single compose file.</p>
+</div>
+<div class="item">
+<span class="ttl"><a href="https://wbauer.com">wbauer.com ↗</a></span><span class="tag">freelance · web</span>
+<p class="desc">My first client project: a business website that I designed, built and shipped myself.</p>
+</div>
+</div>
+</section>
+<section id="cert" class="sec" aria-labelledby="h-cert">
+<p class="map" aria-hidden="true"><span>0x4452 – 0x46d9</span><span>   647 B</span></p>
+<div class="body">
+<h2 id="h-cert">.cert</h2>
+<div class="cert"><span class="n">CompTIA IT Fundamentals (ITF+)</span><span class="y">2023</span></div>
+<div class="cert"><span class="n">Cloudflight Coding Contest</span><span class="y">5× · 2023–2025</span><span class="d">CCC 37 through 41, each in both the classic and the school round.</span></div>
+<div class="cert"><span class="n">ECDL Standard</span><span class="y">2021</span><span class="d">All five modules.</span></div>
+</div>
+</section>
+<section id="skills" class="sec" aria-labelledby="h-skills">
+<p class="map" aria-hidden="true"><span>0x46d9 – 0x4e2d</span><span> 1,876 B</span></p>
+<div class="body">
+<h2 id="h-skills">.skills</h2>
+<div class="row"><span class="k">systems</span><span class="v"><span>Linux (Debian, Arch)</span>&nbsp;<i>·</i> <span>Docker</span>&nbsp;<i>·</i> <span>Bash</span>&nbsp;<i>·</i> <span>DNS</span>&nbsp;<i>·</i> <span>WireGuard</span>&nbsp;<i>·</i> <span>Tailscale</span>&nbsp;<i>·</i> <span>Cloudflare Tunnel</span>&nbsp;<i>·</i> <span>Home Assistant</span></span></div>
+<div class="row"><span class="k">security</span><span class="v"><span>Burp Suite</span>&nbsp;<i>·</i> <span>Wireshark</span>&nbsp;<i>·</i> <span>nmap</span>&nbsp;<i>·</i> <span>ffuf</span>&nbsp;<i>·</i> <span>sqlmap</span>&nbsp;<i>·</i> <span>Hydra</span>&nbsp;<i>·</i> <span>hashcat</span>&nbsp;<i>·</i> <span>ModSecurity</span></span></div>
+<div class="row"><span class="k">code</span><span class="v"><span>Python</span>&nbsp;<i>·</i> <span>C# / Unity</span>&nbsp;<i>·</i> <span>C / C++</span>&nbsp;<i>·</i> <span>Java</span>&nbsp;<i>·</i> <span>TypeScript / Vue</span>&nbsp;<i>·</i> <span>SQL</span></span></div>
+<div class="row"><span class="k">hardware</span><span class="v"><span>Raspberry Pi</span>&nbsp;<i>·</i> <span>ESP32 / Arduino</span>&nbsp;<i>·</i> <span>soldering</span>&nbsp;<i>·</i> <span>3D printing</span>&nbsp;<i>·</i> <span>DIY speakers</span></span></div>
+<div class="row noprint"><span class="k">interests</span><span class="v"><span>game development</span>&nbsp;<i>·</i> <span>Linux ricing (Arch + Hyprland)</span>&nbsp;<i>·</i> <span>building hardware</span></span></div>
+<div class="row"><span class="k">languages</span><span class="v"><span>German, native</span>&nbsp;<i>·</i> <span>English, fluent (C2 certificate)</span></span></div>
+</div>
+</section>
+<section id="notes" class="sec" aria-labelledby="h-notes">
+<p class="map" aria-hidden="true"><span>0x4e2d – 0x60dd</span><span> 4,784 B</span></p>
+<div class="body">
+<h2 id="h-notes">.notes</h2>
+<p class="txt intro">Things that broke in my homelab, and what each one taught me.</p>
+<div class="item">
+<span class="ttl">Pi-hole answered nobody</span><span class="tag">2026-10-14</span>
+<p class="desc">After setting up Pi-hole, its stats showed 99 queries, all of them from the Pi itself. Inside Docker, the listening mode LOCAL only trusts the Docker bridge network, so every query from the LAN and the tailnet was dropped without an error anywhere. Switching to listeningMode ALL fixed it.</p>
+<p class="desc lesson">Test from the client, not from the server.</p>
+</div>
+<div class="item">
+<span class="ttl">Two servers, gone since July</span><span class="tag">2026-09-28</span>
+<p class="desc">Both Pis had dropped off my tailnet in early July because their keys expired, and nobody noticed for almost three months. The servers no longer have expiring keys, and a dead-man check on a different machine pings the others every five minutes and tells my phone when one goes quiet.</p>
+<p class="desc lesson">Whatever watches a server has to run somewhere else.</p>
+</div>
+<div class="item">
+<span class="ttl">Memory limits that did nothing</span><span class="tag">2026-10-14</span>
+<p class="desc">I gave Paperless a 1.5&nbsp;GB memory limit so it could not starve the rest of a 4&nbsp;GB Pi. Docker took the setting, but the kernel had the memory cgroup switched off, so nothing enforced it. Now cgroup_enable=memory is set in cmdline.txt, and I checked that the limit actually holds.</p>
+<p class="desc lesson">A setting you haven't seen enforced is only a wish.</p>
+</div>
+<div class="item">
+<span class="ttl">A synced setting that turned DNS off</span><span class="tag">2026-10-14</span>
+<p class="desc">The second Pi-hole copies its settings from the first. The first had DHCP switched on, the sync carried that over, and the replica, whose container lacks the network permissions DHCP needs, stopped answering DNS. DHCP is now pinned off on both, so no sync can switch it back on.</p>
+<p class="desc lesson">Replicating a config also replicates its mistakes.</p>
+</div>
+<div class="item">
+<span class="ttl">A config that undid itself</span><span class="tag">2026-10-14</span>
+<p class="desc">Home Assistant treats a changed http block as pending and rolls it back after five minutes unless someone confirms it in the UI. Before onboarding there is no UI to confirm it in, so my reverse proxy settings kept disappearing. I promoted the pending config by hand in Home Assistant's storage files, after a backup, and found out that deleting the pending key instead breaks the component.</p>
+<p class="desc lesson">When a tool keeps undoing a change, find out what it is protecting you from.</p>
+</div>
+<div class="item">
+<span class="ttl">A sync job that wore out flash</span><span class="tag">2026-10-15</span>
+<p class="desc">nebula-sync copied the Pi-hole lists to the second Pi every 30 minutes, and every run rebuilt the blocklist database on both. That came to about 200&nbsp;MB of writes a day on an SD card and a USB stick. Once a day at 04:15 is plenty.</p>
+<p class="desc lesson">On flash storage, ask what a schedule costs in writes.</p>
+</div>
+<div class="item">
+<span class="ttl">A disk that wasn't ready for backups</span><span class="tag">2026-10-16</span>
+<p class="desc">An old 1&nbsp;TB drive on the ThinkPad failed its SMART long test with a read error at sector 38,347,006. It is out of the setup, and its replacement has to pass the same long test before it holds anything.</p>
+<p class="desc lesson">A disk is not trusted until the long test says so.</p>
+</div>
+<div class="item">
+<span class="ttl">301 under-voltage warnings a day</span><span class="tag">2026-10-21</span>
+<p class="desc">My media server kept logging under-voltage, worst in the afternoon, and the peaks lined up with the SSD being busy. Its SATA board is meant to have its own 5&nbsp;V supply, but it was powered from the Pi, so the Pi, the SSD and a fan shared one 3&nbsp;A input. The fix is to move the SSD off the Pi and onto the ThinkPad.</p>
+<p class="desc lesson">Line the errors up against the load before blaming the power supply.</p>
+</div>
+<div class="item">
+<span class="ttl">One missing disk can stop a boot</span><span class="tag">2026-10-21</span>
+<p class="desc">My media server mounts its SSD from fstab without nofail. If the SSD is missing at boot, Debian drops into emergency mode and nothing starts. The fix is nofail on the mount, so a missing disk can't block the boot.</p>
+<p class="desc lesson">Plan the failure of the thing you unplug.</p>
+</div>
+</div>
+</section>
+<section id="contact" class="sec" aria-labelledby="h-contact">
+<p class="map" aria-hidden="true"><span>0x60dd – 0x64d0</span><span> 1,011 B</span></p>
+<div class="body">
+<h2 id="h-contact">.contact</h2>
+<div class="row"><span class="k">email</span><a class="v" href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6b;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x69;&#x6e;&#x40;&#x77;&#x62;&#x61;&#x75;&#x65;&#x72;&#x2e;&#x63;&#x6f;&#x6d;">&#x6b;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x69;&#x6e;&#x40;&#x77;&#x62;&#x61;&#x75;&#x65;&#x72;&#x2e;&#x63;&#x6f;&#x6d;</a></div>
+<div class="row"><span class="k">github</span><a class="v" href="https://github.com/Qantrex">github.com/Qantrex ↗</a></div>
+<div class="row"><span class="k">linkedin</span><a class="v" href="https://www.linkedin.com/in/konstantin-bauer-9a5952266/">in/konstantin-bauer ↗</a></div>
+<div class="row"><span class="k">based</span><span class="v">Vienna, Austria · EU citizen · driving licence B</span></div>
+</div>
+</section>
+</main>
+<section id="pad" class="sec" aria-labelledby="h-pad">
+<p class="map" aria-hidden="true"><span>0x64d0 – 0x6b62</span><span> 1,682 B</span></p>
+<div class="body">
+<h2 id="h-pad">.pad</h2>
+<p class="txt">The rest of the budget, padded the way a linker pads an image: a message, then zero bytes. Decode it with <code>xxd -r -p</code>.</p>
+<p class="hex" aria-hidden="true" tabindex="-1">48692c20796f75206465636f646564207468652070616464696e672e204576657279206f6e65206f662074686573652032372c343930206279746573206973206163636f756e74656420666f722c20616e642074686520666c616720697320696e2074686520726573706f6e736520686561646572732e0a0a53696e636520796f752061726520746865206b696e64206f6620706572736f6e2077686f206465636f6465732070616464696e673a20746869732070616765206973206f6e652048544d4c2066696c652c206275696c74206279206120507974686f6e20736372697074207468617420636f756e747320657665727920627974652c20616e6420736572766564206279206e67696e78206f6e2061205261737062657272792050692034422c207468726f756768206120436c6f7564666c6172652054756e6e656c2c2077697468206e6f206f70656e20706f7274732e204e6f204a6176615363726970742c206e6f20747261636b6572732c206e6f20666f6e747320746f20646f776e6c6f61642e20496620796f752077616e7420746f2074616c6b2061626f757420616e79206f662069742c20777269746520746f206b6f6e7374616e74696e407762617565722e636f6d2e0a0a4b6f6e7374616e74696e0a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+</p>
+<p class="total"><span>total 27,490 B = 0x6b62</span><code>curl -s https://6b62.com | wc -c  <span># 27490</span></code></p>
+</div>
+</section>
+</div>
 </body>
 </html>

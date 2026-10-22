@@ -1,0 +1,52 @@
+<section id="notes" class="sec" aria-labelledby="h-notes">
+<p class="map" aria-hidden="true"><span>{{notes.start}} – {{notes.end}}</span><span>{{notes.size}} B</span></p>
+<div class="body">
+<h2 id="h-notes">.notes</h2>
+<p class="txt intro">Things that broke in my homelab, and what each one taught me.</p>
+<div class="item">
+<span class="ttl">Pi-hole answered nobody</span><span class="tag">2026-10-14</span>
+<p class="desc">After setting up Pi-hole, its stats showed 99 queries, all of them from the Pi itself. Inside Docker, the listening mode LOCAL only trusts the Docker bridge network, so every query from the LAN and the tailnet was dropped without an error anywhere. Switching to listeningMode ALL fixed it.</p>
+<p class="desc lesson">Test from the client, not from the server.</p>
+</div>
+<div class="item">
+<span class="ttl">Two servers, gone since July</span><span class="tag">2026-09-28</span>
+<p class="desc">Both Pis had dropped off my tailnet in early July because their keys expired, and nobody noticed for almost three months. The servers no longer have expiring keys, and a dead-man check on a different machine pings the others every five minutes and tells my phone when one goes quiet.</p>
+<p class="desc lesson">Whatever watches a server has to run somewhere else.</p>
+</div>
+<div class="item">
+<span class="ttl">Memory limits that did nothing</span><span class="tag">2026-10-14</span>
+<p class="desc">I gave Paperless a 1.5&nbsp;GB memory limit so it could not starve the rest of a 4&nbsp;GB Pi. Docker took the setting, but the kernel had the memory cgroup switched off, so nothing enforced it. Now cgroup_enable=memory is set in cmdline.txt, and I checked that the limit actually holds.</p>
+<p class="desc lesson">A setting you haven't seen enforced is only a wish.</p>
+</div>
+<div class="item">
+<span class="ttl">A synced setting that turned DNS off</span><span class="tag">2026-10-14</span>
+<p class="desc">The second Pi-hole copies its settings from the first. The first had DHCP switched on, the sync carried that over, and the replica, whose container lacks the network permissions DHCP needs, stopped answering DNS. DHCP is now pinned off on both, so no sync can switch it back on.</p>
+<p class="desc lesson">Replicating a config also replicates its mistakes.</p>
+</div>
+<div class="item">
+<span class="ttl">A config that undid itself</span><span class="tag">2026-10-14</span>
+<p class="desc">Home Assistant treats a changed http block as pending and rolls it back after five minutes unless someone confirms it in the UI. Before onboarding there is no UI to confirm it in, so my reverse proxy settings kept disappearing. I promoted the pending config by hand in Home Assistant's storage files, after a backup, and found out that deleting the pending key instead breaks the component.</p>
+<p class="desc lesson">When a tool keeps undoing a change, find out what it is protecting you from.</p>
+</div>
+<div class="item">
+<span class="ttl">A sync job that wore out flash</span><span class="tag">2026-10-15</span>
+<p class="desc">nebula-sync copied the Pi-hole lists to the second Pi every 30 minutes, and every run rebuilt the blocklist database on both. That came to about 200&nbsp;MB of writes a day on an SD card and a USB stick. Once a day at 04:15 is plenty.</p>
+<p class="desc lesson">On flash storage, ask what a schedule costs in writes.</p>
+</div>
+<div class="item">
+<span class="ttl">A disk that wasn't ready for backups</span><span class="tag">2026-10-16</span>
+<p class="desc">An old 1&nbsp;TB drive on the ThinkPad failed its SMART long test with a read error at sector 38,347,006. It is out of the setup, and its replacement has to pass the same long test before it holds anything.</p>
+<p class="desc lesson">A disk is not trusted until the long test says so.</p>
+</div>
+<div class="item">
+<span class="ttl">301 under-voltage warnings a day</span><span class="tag">2026-10-21</span>
+<p class="desc">My media server kept logging under-voltage, worst in the afternoon, and the peaks lined up with the SSD being busy. Its SATA board is meant to have its own 5&nbsp;V supply, but it was powered from the Pi, so the Pi, the SSD and a fan shared one 3&nbsp;A input. The fix is to move the SSD off the Pi and onto the ThinkPad.</p>
+<p class="desc lesson">Line the errors up against the load before blaming the power supply.</p>
+</div>
+<div class="item">
+<span class="ttl">One missing disk can stop a boot</span><span class="tag">2026-10-21</span>
+<p class="desc">My media server mounts its SSD from fstab without nofail. If the SSD is missing at boot, Debian drops into emergency mode and nothing starts. The fix is nofail on the mount, so a missing disk can't block the boot.</p>
+<p class="desc lesson">Plan the failure of the thing you unplug.</p>
+</div>
+</div>
+</section>

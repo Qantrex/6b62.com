@@ -1,0 +1,12 @@
+<section id="pad" class="sec" aria-labelledby="h-pad">
+<p class="map" aria-hidden="true"><span>{{pad.start}} – {{pad.end}}</span><span>{{pad.size}} B</span></p>
+<div class="body">
+<h2 id="h-pad">.pad</h2>
+<p class="txt">The rest of the budget, padded the way a linker pads an image: a message, then zero bytes. Decode it with <code>xxd -r -p</code>.</p>
+<p class="hex" aria-hidden="true" tabindex="-1">{{pad.hex}}</p>
+<p class="total"><span>total 27,490 B = 0x6b62</span><code>curl -s https://6b62.com | wc -c  <span># 27490</span></code></p>
+</div>
+</section>
+</div>
+</body>
+</html>

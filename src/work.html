@@ -1,0 +1,35 @@
+<section id="work" class="sec" aria-labelledby="h-work">
+<p class="map" aria-hidden="true"><span>{{work.start}} – {{work.end}}</span><span>{{work.size}} B</span></p>
+<div class="body">
+<h2 id="h-work">.work</h2>
+<div class="item">
+<span class="ttl">Project River Zero</span><span class="tag">diploma thesis · unity · c#</span>
+<p class="desc">A story-driven hacking game about money, pressure and never knowing who is watching, made by four of us with equal shares and planned for release in 2027. My part is revelOS, the operating system the whole game takes place in. It has a virtual file system with owners and permissions, command processing, and SSH into other simulated machines. My thesis asks how a simulated OS like that can be written, managed and extended with design patterns and best practices. I also built the project site, a replica of the revelOS desktop in Vue and three.js. <a href="https://qantrex.github.io/prz-website/">project site ↗</a> · <a href="https://kbauer.itch.io/prz">itch.io ↗</a></p>
+</div>
+<div class="item">
+<span class="ttl">Homelab agent</span><span class="tag">bash · python · claude code</span>
+<p class="desc noprint">An AI assistant for my homelab with ten scheduled jobs, from a morning briefing with weather, timetable changes, calendar, mail and parcels to a watchdog that checks the servers every five minutes and restarts failed services. It also answers questions in a private chat and through Siri.</p>
+<p class="desc">I designed it so the model has no way to change anything directly. Small scripts fetch the data, each with an empty environment, only its own secrets file and a timeout. Their output counts as untrusted, and the model reads it in one call with no tools by default, then answers in a fixed JSON format. It can only propose actions from a whitelist per job, and every proposal waits for my approval on my phone, through buttons signed with HMAC. Only a few actions may run on their own, and those are rate-limited. Root access goes through two whitelisted helpers: one reads the system state, the other can only restart named containers. On the media server, its SSH key is locked to a single command. More than 350 tests keep these rules in place.</p>
+</div>
+<div class="item">
+<span class="ttl">Homelab</span><span class="tag">debian · docker · tailscale</span>
+<p class="desc">Two Raspberry Pis and an old ThinkPad, running about 30 containers on a private tailnet: a media server, Pi-hole with Unbound, Home Assistant and Paperless. The one public exception is this site, which goes out through a Cloudflare Tunnel. Backups run every night, encrypted and off-site, on free tiers with hard caps. The media server has been in daily use for over a year.</p>
+</div>
+<div class="item">
+<span class="ttl">Security practice</span><span class="tag">ctf · web · forensics</span>
+<p class="desc">Hacker101 CTFs and school labs. I've done web testing with Burp Suite, ffuf and sqlmap, password attacks with Hydra and hashcat, and network forensics in Wireshark, where I traced a worm infection through a Windows domain from a packet capture. I write up every tool and attack flow in my own notes.</p>
+</div>
+<div class="item">
+<span class="ttl"><a href="https://github.com/Qantrex/Arch-Linux-Hardening">Arch-Linux-Hardening ↗</a></span><span class="tag">bash</span>
+<p class="desc">Scripts that harden SSH, users, permissions and services. A second script then checks the result instead of assuming it worked.</p>
+</div>
+<div class="item">
+<span class="ttl"><a href="https://github.com/Qantrex/ITSI-7.5">ITSI-7.5 ↗</a></span><span class="tag">docker compose</span>
+<p class="desc">A PHP and MariaDB web app behind Caddy and a ModSecurity WAF, all set up from a single compose file.</p>
+</div>
+<div class="item">
+<span class="ttl"><a href="https://wbauer.com">wbauer.com ↗</a></span><span class="tag">freelance · web</span>
+<p class="desc">My first client project: a business website that I designed, built and shipped myself.</p>
+</div>
+</div>
+</section>
