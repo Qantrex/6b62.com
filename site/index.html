@@ -15,9 +15,8 @@
 <meta property="og:url" content="https://6b62.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cstyle%3Erect%7Bfill:%2316171a%7Dtext%7Bfill:%23edeeec%7D@media(prefers-color-scheme:dark)%7Brect%7Bfill:%23edeeec%7Dtext%7Bfill:%230b0c0e%7D%7D%3C/style%3E%3Crect%20width='32'%20height='32'/%3E%3Ctext%20x='16'%20y='22'%20font-family='monospace'%20font-size='15'%20font-weight='700'%20text-anchor='middle'%3Ekb%3C/text%3E%3C/svg%3E">
 <style>
-/* 0x6b62: a CV laid out like a linker map. The margin shows each block's real byte range
-   in this file; the bar on top is the whole file, 27,490 bytes, one segment per block.
-   build.py fills in the numbers. System fonts, no JavaScript, one request. */
+/* 0x6b62: a CV laid out like a linker map. Each margin shows its block's real byte range in this
+   file; the bar is the whole file. build.py fills in the numbers. No JavaScript, one request. */
 :root{
 --paper:#edeeec;--panel:#e6e7e4;
 --ink:#16171a;--ink-2:#4e4f55;--faint:#77787d;
@@ -53,12 +52,12 @@ p{margin:0;}
 .bar a span{display:none;position:absolute;top:16px;left:0;padding:3px 7px;background:var(--ink);color:var(--paper);font:500 11.5px var(--mono);white-space:pre;}
 .bar a:nth-last-child(-n+3) span{left:auto;right:0;}
 .bar a:hover span,.bar a:focus-visible span{display:block;}
-body:has(#top:hover) .bar [href="#top"],body:has(#about:hover) .bar [href="#about"],
-body:has(#edu:hover) .bar [href="#edu"],body:has(#job:hover) .bar [href="#job"],
-body:has(#work:hover) .bar [href="#work"],body:has(#notes:hover) .bar [href="#notes"],
-body:has(#cert:hover) .bar [href="#cert"],
-body:has(#skills:hover) .bar [href="#skills"],body:has(#contact:hover) .bar [href="#contact"],
-body:has(#pad:hover) .bar [href="#pad"]{background:var(--accent);}
+:has(#top:hover) .bar [href="#top"],:has(#about:hover) .bar [href="#about"],
+:has(#edu:hover) .bar [href="#edu"],:has(#job:hover) .bar [href="#job"],
+:has(#work:hover) .bar [href="#work"],:has(#notes:hover) .bar [href="#notes"],
+:has(#cert:hover) .bar [href="#cert"],
+:has(#skills:hover) .bar [href="#skills"],:has(#contact:hover) .bar [href="#contact"],
+:has(#pad:hover) .bar [href="#pad"]{background:var(--accent);}
 
 /* the ledger: [byte range | size] | content */
 .sheet{max-width:960px;margin-inline:auto;padding-inline:max(22px,env(safe-area-inset-left,0px)) max(22px,env(safe-area-inset-right,0px));}
@@ -119,14 +118,16 @@ h2{margin:0 0 16px;font:500 12.5px/1.4 var(--mono);color:var(--accent);letter-sp
 @media (max-width:560px){.row{grid-template-columns:1fr;row-gap:2px;}}
 
 /* the pad */
-.hex{max-height:calc(12 * 1.7em);margin-top:14px;overflow-y:auto;padding:10px 12px;border:1px solid var(--rule);font:500 12px/1.7 var(--mono);color:var(--faint);word-break:break-all;}
-.total{margin-top:14px;font:500 12px var(--mono);color:var(--ink-2);}
+.hex{max-height:20.4em;margin-top:14px;overflow-y:auto;padding:10px 12px;border:1px solid var(--rule);font:500 12px/1.7 var(--mono);color:var(--faint);word-break:break-all;}
+.total{display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:14px;font:500 12px var(--mono);color:var(--ink-2);}
+.total code{font:inherit;color:var(--ink);white-space:pre-wrap;}
+.total code span{color:var(--faint);}
 
-/* print: a one-page A4 CV, without the bar, the byte ranges and the pad */
+/* print: a one-page A4 CV */
 @media print{
 :root{--paper:#fff;--ink:#000;--ink-2:#222;--faint:#555;--rule:#ccc;--rule-2:#aaa;--accent:#000;color-scheme:light;}
 @page{size:A4;margin:8mm 13mm;}
-.skip,.bar,.map,#notes,#pad,#contact,.noprint{display:none !important;}
+.skip,.bar,.map,#notes,#pad,#contact,.noprint{display:none;}
 body{font-size:9pt;line-height:1.32;}
 .sheet{max-width:none;padding:0;}
 .sec{grid-template-columns:1fr;padding-block:3px;border-top:1px solid #ccc;}
@@ -150,11 +151,11 @@ a{border:0 !important;color:#000;}
 <body>
 <a class="skip" href="#about">skip to content</a>
 <nav class="bar" aria-label="Byte map of this page">
-<a href="#top" aria-label=".head, 10,936 bytes" style="width:39.8%"><span>.head    10,936 B</span></a><a href="#about" aria-label=".about,    808 bytes" style="width:02.9%"><span>.about      808 B</span></a><a href="#edu" aria-label=".edu,    795 bytes" style="width:02.9%"><span>.edu        795 B</span></a><a href="#job" aria-label=".job,    988 bytes" style="width:03.6%"><span>.job        988 B</span></a><a href="#work" aria-label=".work,  3,932 bytes" style="width:14.3%"><span>.work     3,932 B</span></a><a href="#cert" aria-label=".cert,    647 bytes" style="width:02.4%"><span>.cert       647 B</span></a><a href="#skills" aria-label=".skills,  1,876 bytes" style="width:06.8%"><span>.skills   1,876 B</span></a><a href="#notes" aria-label=".notes,  4,766 bytes" style="width:17.3%"><span>.notes    4,766 B</span></a><a href="#contact" aria-label=".contact,  1,011 bytes" style="width:03.7%"><span>.contact  1,011 B</span></a><a href="#pad" aria-label=".pad,  1,731 bytes" style="width:06.3%"><span>.pad      1,731 B</span></a>
+<a href="#top" aria-label=".head, 10,886 bytes" style="width:39.6%"><span>.head 10,886 B</span></a><a href="#about" aria-label=".about,    808 bytes" style="width:02.9%"><span>.about    808 B</span></a><a href="#edu" aria-label=".edu,    795 bytes" style="width:02.9%"><span>.edu    795 B</span></a><a href="#job" aria-label=".job,    988 bytes" style="width:03.6%"><span>.job    988 B</span></a><a href="#work" aria-label=".work,  3,932 bytes" style="width:14.3%"><span>.work  3,932 B</span></a><a href="#cert" aria-label=".cert,    647 bytes" style="width:02.4%"><span>.cert    647 B</span></a><a href="#skills" aria-label=".skills,  1,876 bytes" style="width:06.8%"><span>.skills  1,876 B</span></a><a href="#notes" aria-label=".notes,  4,766 bytes" style="width:17.3%"><span>.notes  4,766 B</span></a><a href="#contact" aria-label=".contact,  1,011 bytes" style="width:03.7%"><span>.contact  1,011 B</span></a><a href="#pad" aria-label=".pad,  1,781 bytes" style="width:06.5%"><span>.pad  1,781 B</span></a>
 </nav>
 <div class="sheet">
 <header id="top" class="sec">
-<p class="map" aria-hidden="true"><span>0x0000 – 0x2ab8</span><span>10,936 B</span></p>
+<p class="map" aria-hidden="true"><span>0x0000 – 0x2a86</span><span>10,886 B</span></p>
 <div class="body">
 <h1 class="name">Konstantin<br> Bauer</h1>
 <p class="role">IT student at HTL&nbsp;TGM Wien, graduating in 2027, with a focus on IT security. I like Linux, networks, and finding out how systems work on the inside.</p>
@@ -164,7 +165,7 @@ a{border:0 !important;color:#000;}
 </header>
 <main id="main">
 <section id="about" class="sec" aria-labelledby="h-about">
-<p class="map" aria-hidden="true"><span>0x2ab8 – 0x2de0</span><span>   808 B</span></p>
+<p class="map" aria-hidden="true"><span>0x2a86 – 0x2dae</span><span>   808 B</span></p>
 <div class="body">
 <h2 id="h-about">.about</h2>
 <p class="lead">I build things that run on a server, harden one, or simulate one.</p>
@@ -174,7 +175,7 @@ a{border:0 !important;color:#000;}
 </div>
 </section>
 <section id="edu" class="sec" aria-labelledby="h-edu">
-<p class="map" aria-hidden="true"><span>0x2de0 – 0x30fb</span><span>   795 B</span></p>
+<p class="map" aria-hidden="true"><span>0x2dae – 0x30c9</span><span>   795 B</span></p>
 <div class="body">
 <h2 id="h-edu">.edu</h2>
 <div class="item">
@@ -188,7 +189,7 @@ a{border:0 !important;color:#000;}
 </div>
 </section>
 <section id="job" class="sec" aria-labelledby="h-job">
-<p class="map" aria-hidden="true"><span>0x30fb – 0x34d7</span><span>   988 B</span></p>
+<p class="map" aria-hidden="true"><span>0x30c9 – 0x34a5</span><span>   988 B</span></p>
 <div class="body">
 <h2 id="h-job">.job</h2>
 <div class="item">
@@ -202,7 +203,7 @@ a{border:0 !important;color:#000;}
 </div>
 </section>
 <section id="work" class="sec" aria-labelledby="h-work">
-<p class="map" aria-hidden="true"><span>0x34d7 – 0x4433</span><span> 3,932 B</span></p>
+<p class="map" aria-hidden="true"><span>0x34a5 – 0x4401</span><span> 3,932 B</span></p>
 <div class="body">
 <h2 id="h-work">.work</h2>
 <div class="item">
@@ -237,7 +238,7 @@ a{border:0 !important;color:#000;}
 </div>
 </section>
 <section id="cert" class="sec" aria-labelledby="h-cert">
-<p class="map" aria-hidden="true"><span>0x4433 – 0x46ba</span><span>   647 B</span></p>
+<p class="map" aria-hidden="true"><span>0x4401 – 0x4688</span><span>   647 B</span></p>
 <div class="body">
 <h2 id="h-cert">.cert</h2>
 <div class="cert"><span class="n">CompTIA IT Fundamentals (ITF+)</span><span class="y">2023</span></div>
@@ -246,7 +247,7 @@ a{border:0 !important;color:#000;}
 </div>
 </section>
 <section id="skills" class="sec" aria-labelledby="h-skills">
-<p class="map" aria-hidden="true"><span>0x46ba – 0x4e0e</span><span> 1,876 B</span></p>
+<p class="map" aria-hidden="true"><span>0x4688 – 0x4ddc</span><span> 1,876 B</span></p>
 <div class="body">
 <h2 id="h-skills">.skills</h2>
 <div class="row"><span class="k">systems</span><span class="v"><span>Linux (Debian, Arch)</span>&nbsp;<i>·</i> <span>Docker</span>&nbsp;<i>·</i> <span>Bash</span>&nbsp;<i>·</i> <span>DNS</span>&nbsp;<i>·</i> <span>WireGuard</span>&nbsp;<i>·</i> <span>Tailscale</span>&nbsp;<i>·</i> <span>Cloudflare Tunnel</span>&nbsp;<i>·</i> <span>Home Assistant</span></span></div>
@@ -258,7 +259,7 @@ a{border:0 !important;color:#000;}
 </div>
 </section>
 <section id="notes" class="sec" aria-labelledby="h-notes">
-<p class="map" aria-hidden="true"><span>0x4e0e – 0x60ac</span><span> 4,766 B</span></p>
+<p class="map" aria-hidden="true"><span>0x4ddc – 0x607a</span><span> 4,766 B</span></p>
 <div class="body">
 <h2 id="h-notes">.notes</h2>
 <p class="txt intro">Things I broke and fixed in my homelab, and what each one taught me.</p>
@@ -310,7 +311,7 @@ a{border:0 !important;color:#000;}
 </div>
 </section>
 <section id="contact" class="sec" aria-labelledby="h-contact">
-<p class="map" aria-hidden="true"><span>0x60ac – 0x649f</span><span> 1,011 B</span></p>
+<p class="map" aria-hidden="true"><span>0x607a – 0x646d</span><span> 1,011 B</span></p>
 <div class="body">
 <h2 id="h-contact">.contact</h2>
 <div class="row"><span class="k">email</span><a class="v" href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6b;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x69;&#x6e;&#x40;&#x77;&#x62;&#x61;&#x75;&#x65;&#x72;&#x2e;&#x63;&#x6f;&#x6d;">&#x6b;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x69;&#x6e;&#x40;&#x77;&#x62;&#x61;&#x75;&#x65;&#x72;&#x2e;&#x63;&#x6f;&#x6d;</a></div>
@@ -321,13 +322,12 @@ a{border:0 !important;color:#000;}
 </section>
 </main>
 <section id="pad" class="sec" aria-labelledby="h-pad">
-<p class="map" aria-hidden="true"><span>0x649f – 0x6b62</span><span> 1,731 B</span></p>
+<p class="map" aria-hidden="true"><span>0x646d – 0x6b62</span><span> 1,781 B</span></p>
 <div class="body">
 <h2 id="h-pad">.pad</h2>
-<p class="txt">The rest of the budget, padded the way a linker pads an image: a short message, then zero bytes. Decode it with <code>xxd -r -p</code>.</p>
-<p class="hex" aria-hidden="true">48692c20796f75206465636f646564207468652070616464696e672e204576657279206f6e65206f662074686573652032372c343930206279746573206973206163636f756e74656420666f722c20616e642074686520666c616720697320696e2074686520726573706f6e736520686561646572732e0a0a53696e636520796f752061726520746865206b696e64206f6620706572736f6e2077686f206465636f6465732070616464696e673a20746869732070616765206973206f6e652048544d4c2066696c652c206275696c74206279206120507974686f6e20736372697074207468617420636f756e747320657665727920627974652c20616e6420736572766564206279206e67696e78206f6e206120526173706265727279205069203420617420686f6d6520696e205669656e6e612c207468726f756768206120436c6f7564666c6172652054756e6e656c2c2077697468206e6f206f70656e20706f7274732e204e6f204a6176615363726970742c206e6f20747261636b6572732c206e6f20666f6e747320746f20646f776e6c6f61642e20496620796f752077616e7420746f2074616c6b2061626f757420616e79206f662069742c20777269746520746f206b6f6e7374616e74696e407762617565722e636f6d2e0a0a4b6f6e7374616e74696e0a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-</p>
-<p class="total">total  27,490 B = 0x6b62</p>
+<p class="txt">The rest of the budget, padded the way a linker pads an image: a message, then zero bytes. Decode it with <code>xxd -r -p</code>.</p>
+<p class="hex" aria-hidden="true">48692c20796f75206465636f646564207468652070616464696e672e204576657279206f6e65206f662074686573652032372c343930206279746573206973206163636f756e74656420666f722c20616e642074686520666c616720697320696e2074686520726573706f6e736520686561646572732e0a0a53696e636520796f752061726520746865206b696e64206f6620706572736f6e2077686f206465636f6465732070616464696e673a20746869732070616765206973206f6e652048544d4c2066696c652c206275696c74206279206120507974686f6e20736372697074207468617420636f756e747320657665727920627974652c20616e6420736572766564206279206e67696e78206f6e206120526173706265727279205069203420617420686f6d6520696e205669656e6e612c207468726f756768206120436c6f7564666c6172652054756e6e656c2c2077697468206e6f206f70656e20706f7274732e204e6f204a6176615363726970742c206e6f20747261636b6572732c206e6f20666f6e747320746f20646f776e6c6f61642e20496620796f752077616e7420746f2074616c6b2061626f757420616e79206f662069742c20777269746520746f206b6f6e7374616e74696e407762617565722e636f6d2e0a0a4b6f6e7374616e74696e0a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</p>
+<p class="total"><span>total 27,490 B = 0x6b62</span><code>curl -s https://6b62.com | wc -c  <span># 27490</span></code></p>
 </div>
 </section>
 </div>

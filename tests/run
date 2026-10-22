@@ -53,6 +53,8 @@ EOF
 then ok "ranges are contiguous, start at their blocks, cover all 27490 bytes; .pad decodes to ASCII"
 else bad "linker map ranges"; fi
 
+contains $P '<code>curl -s https://6b62\.com \| wc -c +<span># 27490</span></code>' "the size check is on the page, as text"
+
 echo "# --- one request: no scripts, fonts, images or external requests"
 lacks $P '<script'                          "no <script> (no JavaScript, no JSON-LD)"
 lacks $P '<link[^>]*stylesheet'             "no external stylesheet"
