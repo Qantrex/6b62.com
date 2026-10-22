@@ -55,7 +55,8 @@ p { margin: 0; }
 .bar a:hover span, .bar a:focus-visible span { display: block; }
 body:has(#top:hover) .bar [href="#top"], body:has(#about:hover) .bar [href="#about"],
 body:has(#edu:hover) .bar [href="#edu"], body:has(#job:hover) .bar [href="#job"],
-body:has(#work:hover) .bar [href="#work"], body:has(#cert:hover) .bar [href="#cert"],
+body:has(#work:hover) .bar [href="#work"], body:has(#notes:hover) .bar [href="#notes"],
+body:has(#cert:hover) .bar [href="#cert"],
 body:has(#skills:hover) .bar [href="#skills"], body:has(#contact:hover) .bar [href="#contact"],
 body:has(#pad:hover) .bar [href="#pad"] { background: var(--accent); }
 
@@ -94,6 +95,9 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 .ttl a:hover, .desc a:hover { color: var(--accent); border-color: var(--accent); }
 .tag { font: 500 11.5px/1.5 var(--mono); color: var(--accent); text-align: right; white-space: nowrap; }
 .desc { grid-column: 1 / -1; max-width: 66ch; color: var(--ink-2); font-size: 15px; }
+.desc.lesson { color: var(--ink); font-size: 14.5px; }
+.desc.lesson::before { content: "lesson: "; font: 500 12px var(--mono); color: var(--accent); }
+.intro { margin: 0 0 18px; }
 @media (max-width: 540px) { .item { grid-template-columns: 1fr; } .tag { text-align: left; color: var(--faint); } }
 
 /* certificates */
@@ -122,7 +126,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 @media print {
   :root { --paper: #fff; --ink: #000; --ink-2: #222; --faint: #555; --rule: #ccc; --rule-2: #aaa; --accent: #000; color-scheme: light; }
   @page { size: A4; margin: 10mm 13mm; }
-  .skip, .bar, .map, #pad, #contact, .noprint { display: none !important; }
+  .skip, .bar, .map, #notes, #pad, #contact, .noprint { display: none !important; }
   body { font-size: 9pt; line-height: 1.32; }
   .sheet { max-width: none; padding: 0; }
   .sec { grid-template-columns: 1fr; padding-block: 4px; border-top: 1px solid #ccc; }
@@ -146,7 +150,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 <body>
 <a class="skip" href="#about">skip to content</a>
 <nav class="bar" aria-label="Byte map of this page">
-<a href="#top" style="width:{{head.pct}}"><span>.head    {{head.size}} B</span></a><a href="#about" style="width:{{about.pct}}"><span>.about   {{about.size}} B</span></a><a href="#edu" style="width:{{edu.pct}}"><span>.edu     {{edu.size}} B</span></a><a href="#job" style="width:{{job.pct}}"><span>.job     {{job.size}} B</span></a><a href="#work" style="width:{{work.pct}}"><span>.work    {{work.size}} B</span></a><a href="#cert" style="width:{{cert.pct}}"><span>.cert    {{cert.size}} B</span></a><a href="#skills" style="width:{{skills.pct}}"><span>.skills  {{skills.size}} B</span></a><a href="#contact" style="width:{{contact.pct}}"><span>.contact {{contact.size}} B</span></a><a href="#pad" style="width:{{pad.pct}}"><span>.pad     {{pad.size}} B</span></a>
+<a href="#top" style="width:{{head.pct}}"><span>.head    {{head.size}} B</span></a><a href="#about" style="width:{{about.pct}}"><span>.about   {{about.size}} B</span></a><a href="#edu" style="width:{{edu.pct}}"><span>.edu     {{edu.size}} B</span></a><a href="#job" style="width:{{job.pct}}"><span>.job     {{job.size}} B</span></a><a href="#work" style="width:{{work.pct}}"><span>.work    {{work.size}} B</span></a><a href="#cert" style="width:{{cert.pct}}"><span>.cert    {{cert.size}} B</span></a><a href="#skills" style="width:{{skills.pct}}"><span>.skills  {{skills.size}} B</span></a><a href="#notes" style="width:{{notes.pct}}"><span>.notes   {{notes.size}} B</span></a><a href="#contact" style="width:{{contact.pct}}"><span>.contact {{contact.size}} B</span></a><a href="#pad" style="width:{{pad.pct}}"><span>.pad     {{pad.size}} B</span></a>
 </nav>
 <div class="sheet">
 <header id="top" class="sec">

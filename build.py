@@ -18,9 +18,13 @@ ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
 OUT = ROOT / "site" / "index.html"
 TOTAL = 0x6B62  # 27,490 bytes
-BLOCKS = ["head", "about", "edu", "job", "work", "cert", "skills", "contact", "pad"]
+BLOCKS = ["head", "about", "edu", "job", "work", "cert", "skills", "notes", "contact", "pad"]
 MESSAGE = ("Hi, you decoded the padding. Every one of these 27,490 bytes is accounted for, "
-           "and the flag is in the response headers. Konstantin\n")
+           "and the flag is in the response headers.\n\n"
+           "Since you are the kind of person who decodes padding: this page is one HTML file, built by a "
+           "Python script that counts every byte, and served by nginx on a Raspberry Pi 4 at home in Vienna, "
+           "through a Cloudflare Tunnel, with no open ports. No JavaScript, no trackers, no fonts to download. "
+           "If you want to talk about any of it, write to konstantin@wbauer.com.\n\nKonstantin\n")
 MIN_PAD_HEX = 2 * len(MESSAGE)
 FIELD = re.compile(r"\{\{(\w+)\.(start|end|size|pct|hex)\}\}")
 

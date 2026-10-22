@@ -35,7 +35,7 @@ if python3 - "$P" <<'EOF'
 import re, sys
 b = open(sys.argv[1], 'rb').read()
 blocks = re.findall(rb'<(?:section|header) id="(\w+)"[^>]*>\n<p class="map"><span>(0x[0-9a-f]{4}) \xe2\x80\x93 (0x[0-9a-f]{4})</span><span>\s*([\d,]+) B</span>', b)
-want = [b'top', b'about', b'edu', b'job', b'work', b'cert', b'skills', b'contact', b'pad']
+want = [b'top', b'about', b'edu', b'job', b'work', b'cert', b'skills', b'notes', b'contact', b'pad']
 assert [x[0] for x in blocks] == want, "blocks missing or out of order"
 pos = 0
 for name, s, e, n in blocks:

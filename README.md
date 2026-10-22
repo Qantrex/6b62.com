@@ -19,7 +19,8 @@ its size, and the bar at the top shows the whole file as one segment per block. 
 curl -s -H "Accept-Encoding: identity" https://6b62.com | tail -c +<start+1> | head -c <size>
 ```
 
-`.pad` is the last block. It takes whatever is left of the budget: a hex string that decodes to a short
+`.notes` (things I broke and fixed in the homelab) is on screen only; print stays a one-page CV.
+`.pad` is the last block. It takes whatever is left of the budget: a hex string that decodes to a
 message followed by zero bytes (`xxd -r -p`). Response headers are not part of the budget.
 
 ## Build
@@ -30,7 +31,7 @@ message followed by zero bytes (`xxd -r -p`). Response headers are not part of t
 ```
 
 Edit the text in `src/` (one file per block, in order: `head`, `about`, `edu`, `job`, `work`, `cert`,
-`skills`, `contact`, `pad`), never `site/index.html` directly. Every number on the page is a fixed-width
+`skills`, `notes`, `contact`, `pad`), never `site/index.html` directly. Every number on the page is a fixed-width
 field (`0x0412`, `   910`, `07.3%`), so filling in the real values never changes the length. If the text
 grows past the budget, the build fails and says by how much.
 

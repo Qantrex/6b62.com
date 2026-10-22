@@ -55,7 +55,8 @@ p { margin: 0; }
 .bar a:hover span, .bar a:focus-visible span { display: block; }
 body:has(#top:hover) .bar [href="#top"], body:has(#about:hover) .bar [href="#about"],
 body:has(#edu:hover) .bar [href="#edu"], body:has(#job:hover) .bar [href="#job"],
-body:has(#work:hover) .bar [href="#work"], body:has(#cert:hover) .bar [href="#cert"],
+body:has(#work:hover) .bar [href="#work"], body:has(#notes:hover) .bar [href="#notes"],
+body:has(#cert:hover) .bar [href="#cert"],
 body:has(#skills:hover) .bar [href="#skills"], body:has(#contact:hover) .bar [href="#contact"],
 body:has(#pad:hover) .bar [href="#pad"] { background: var(--accent); }
 
@@ -94,6 +95,9 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 .ttl a:hover, .desc a:hover { color: var(--accent); border-color: var(--accent); }
 .tag { font: 500 11.5px/1.5 var(--mono); color: var(--accent); text-align: right; white-space: nowrap; }
 .desc { grid-column: 1 / -1; max-width: 66ch; color: var(--ink-2); font-size: 15px; }
+.desc.lesson { color: var(--ink); font-size: 14.5px; }
+.desc.lesson::before { content: "lesson: "; font: 500 12px var(--mono); color: var(--accent); }
+.intro { margin: 0 0 18px; }
 @media (max-width: 540px) { .item { grid-template-columns: 1fr; } .tag { text-align: left; color: var(--faint); } }
 
 /* certificates */
@@ -122,7 +126,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 @media print {
   :root { --paper: #fff; --ink: #000; --ink-2: #222; --faint: #555; --rule: #ccc; --rule-2: #aaa; --accent: #000; color-scheme: light; }
   @page { size: A4; margin: 10mm 13mm; }
-  .skip, .bar, .map, #pad, #contact, .noprint { display: none !important; }
+  .skip, .bar, .map, #notes, #pad, #contact, .noprint { display: none !important; }
   body { font-size: 9pt; line-height: 1.32; }
   .sheet { max-width: none; padding: 0; }
   .sec { grid-template-columns: 1fr; padding-block: 4px; border-top: 1px solid #ccc; }
@@ -146,11 +150,11 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 <body>
 <a class="skip" href="#about">skip to content</a>
 <nav class="bar" aria-label="Byte map of this page">
-<a href="#top" style="width:40.1%"><span>.head    11,022 B</span></a><a href="#about" style="width:02.3%"><span>.about      642 B</span></a><a href="#edu" style="width:02.8%"><span>.edu        776 B</span></a><a href="#job" style="width:03.5%"><span>.job        969 B</span></a><a href="#work" style="width:11.8%"><span>.work     3,243 B</span></a><a href="#cert" style="width:02.3%"><span>.cert       628 B</span></a><a href="#skills" style="width:06.8%"><span>.skills   1,857 B</span></a><a href="#contact" style="width:02.7%"><span>.contact    747 B</span></a><a href="#pad" style="width:27.7%"><span>.pad      7,606 B</span></a>
+<a href="#top" style="width:41.2%"><span>.head    11,326 B</span></a><a href="#about" style="width:02.3%"><span>.about      642 B</span></a><a href="#edu" style="width:02.8%"><span>.edu        776 B</span></a><a href="#job" style="width:03.5%"><span>.job        969 B</span></a><a href="#work" style="width:11.8%"><span>.work     3,243 B</span></a><a href="#cert" style="width:02.3%"><span>.cert       628 B</span></a><a href="#skills" style="width:06.8%"><span>.skills   1,857 B</span></a><a href="#notes" style="width:17.3%"><span>.notes    4,747 B</span></a><a href="#contact" style="width:02.7%"><span>.contact    747 B</span></a><a href="#pad" style="width:09.3%"><span>.pad      2,555 B</span></a>
 </nav>
 <div class="sheet">
 <header id="top" class="sec">
-<p class="map"><span>0x0000 – 0x2b0e</span><span>11,022 B</span></p>
+<p class="map"><span>0x0000 – 0x2c3e</span><span>11,326 B</span></p>
 <div class="body">
 <h1 class="name">Konstantin<br> Bauer</h1>
 <p class="role">IT student at HTL&nbsp;TGM Wien, graduating in 2027, with a focus on IT security. I like Linux, networks, and finding out how systems work on the inside.</p>
@@ -160,7 +164,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </header>
 <main id="main">
 <section id="about" class="sec" aria-labelledby="h-about">
-<p class="map"><span>0x2b0e – 0x2d90</span><span>   642 B</span></p>
+<p class="map"><span>0x2c3e – 0x2ec0</span><span>   642 B</span></p>
 <div class="body">
 <h2 id="h-about">.about</h2>
 <p class="lead">I build things that run on a server, harden one, or simulate one.</p>
@@ -169,7 +173,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </div>
 </section>
 <section id="edu" class="sec" aria-labelledby="h-edu">
-<p class="map"><span>0x2d90 – 0x3098</span><span>   776 B</span></p>
+<p class="map"><span>0x2ec0 – 0x31c8</span><span>   776 B</span></p>
 <div class="body">
 <h2 id="h-edu">.edu</h2>
 <div class="item">
@@ -183,7 +187,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </div>
 </section>
 <section id="job" class="sec" aria-labelledby="h-job">
-<p class="map"><span>0x3098 – 0x3461</span><span>   969 B</span></p>
+<p class="map"><span>0x31c8 – 0x3591</span><span>   969 B</span></p>
 <div class="body">
 <h2 id="h-job">.job</h2>
 <div class="item">
@@ -197,7 +201,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </div>
 </section>
 <section id="work" class="sec" aria-labelledby="h-work">
-<p class="map"><span>0x3461 – 0x410c</span><span> 3,243 B</span></p>
+<p class="map"><span>0x3591 – 0x423c</span><span> 3,243 B</span></p>
 <div class="body">
 <h2 id="h-work">.work</h2>
 <div class="item">
@@ -231,7 +235,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </div>
 </section>
 <section id="cert" class="sec" aria-labelledby="h-cert">
-<p class="map"><span>0x410c – 0x4380</span><span>   628 B</span></p>
+<p class="map"><span>0x423c – 0x44b0</span><span>   628 B</span></p>
 <div class="body">
 <h2 id="h-cert">.cert</h2>
 <div class="cert"><span class="n">CompTIA IT Fundamentals (ITF+)</span><span class="y">2023</span></div>
@@ -240,7 +244,7 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </div>
 </section>
 <section id="skills" class="sec" aria-labelledby="h-skills">
-<p class="map"><span>0x4380 – 0x4ac1</span><span> 1,857 B</span></p>
+<p class="map"><span>0x44b0 – 0x4bf1</span><span> 1,857 B</span></p>
 <div class="body">
 <h2 id="h-skills">.skills</h2>
 <div class="row"><span class="k">systems</span><span class="v"><span>Linux (Debian, Arch)</span>&nbsp;<i>·</i> <span>Docker</span>&nbsp;<i>·</i> <span>Bash</span>&nbsp;<i>·</i> <span>DNS</span>&nbsp;<i>·</i> <span>WireGuard</span>&nbsp;<i>·</i> <span>Tailscale</span>&nbsp;<i>·</i> <span>Cloudflare Tunnel</span>&nbsp;<i>·</i> <span>Home Assistant</span></span></div>
@@ -251,8 +255,60 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 <div class="row"><span class="k">languages</span><span class="v"><span>German, native</span>&nbsp;<i>·</i> <span>English, fluent (C2 certificate)</span></span></div>
 </div>
 </section>
+<section id="notes" class="sec" aria-labelledby="h-notes">
+<p class="map"><span>0x4bf1 – 0x5e7c</span><span> 4,747 B</span></p>
+<div class="body">
+<h2 id="h-notes">.notes</h2>
+<p class="txt intro">Things I broke and fixed in my homelab, and what each one taught me.</p>
+<div class="item">
+<span class="ttl">Pi-hole answered nobody</span><span class="tag">2026-10-14</span>
+<p class="desc">After setting up Pi-hole, its stats showed 99 queries, all of them from the Pi itself. Inside Docker, the listening mode LOCAL only trusts the Docker bridge network, so every query from the LAN and the tailnet was dropped without an error anywhere. Switching to listeningMode ALL fixed it.</p>
+<p class="desc lesson">Test from the client, not from the server.</p>
+</div>
+<div class="item">
+<span class="ttl">Two servers, gone since July</span><span class="tag">2026-09-28</span>
+<p class="desc">Both Pis had dropped off my tailnet in early July because their keys expired, and nobody noticed for almost three months. The servers no longer have expiring keys, and a dead-man check on a different machine pings the others every five minutes and tells my phone when one goes quiet.</p>
+<p class="desc lesson">Whatever watches a server has to run somewhere else.</p>
+</div>
+<div class="item">
+<span class="ttl">Memory limits that did nothing</span><span class="tag">2026-10-14</span>
+<p class="desc">I gave Paperless a 1.5&nbsp;GB memory limit so it could not starve the rest of a 4&nbsp;GB Pi. Docker took the setting, but the kernel had the memory cgroup switched off, so nothing enforced it. Now cgroup_enable=memory is set in cmdline.txt, and I checked that the limit actually holds.</p>
+<p class="desc lesson">A setting you haven't seen enforced is only a wish.</p>
+</div>
+<div class="item">
+<span class="ttl">A synced setting that turned DNS off</span><span class="tag">2026-10-14</span>
+<p class="desc">The second Pi-hole copies its settings from the first. The first had DHCP switched on, the sync carried that over, and the replica, whose container has no NET_ADMIN capability, stopped answering DNS. DHCP is now pinned off on both, so no sync can switch it back on.</p>
+<p class="desc lesson">Replicating a config also replicates its mistakes.</p>
+</div>
+<div class="item">
+<span class="ttl">A config that undid itself</span><span class="tag">2026-10-14</span>
+<p class="desc">Home Assistant treats a changed http block as pending and rolls it back after five minutes unless someone confirms it in the UI. Before onboarding there is no UI to confirm it in, so my reverse proxy settings kept disappearing. I promoted the pending config by hand in .storage/http, after a backup, and found out that deleting the pending key instead breaks the component.</p>
+<p class="desc lesson">When a tool keeps undoing a change, find out what it is protecting you from.</p>
+</div>
+<div class="item">
+<span class="ttl">A sync job that wore out flash</span><span class="tag">2026-10-15</span>
+<p class="desc">nebula-sync copied the Pi-hole lists to the second Pi every 30 minutes, and every run rebuilt the blocklist database on both. That came to about 200&nbsp;MB of writes a day on an SD card and a USB stick. Once a day at 04:15 is plenty.</p>
+<p class="desc lesson">On flash storage, ask what a schedule costs in writes.</p>
+</div>
+<div class="item">
+<span class="ttl">A disk that wasn't ready for backups</span><span class="tag">2026-10-16</span>
+<p class="desc">An old 1&nbsp;TB drive on the ThinkPad failed its SMART long test with a read error at sector 38,347,006. It is unplugged now, and its replacement has to pass the same long test before it holds anything.</p>
+<p class="desc lesson">A disk is not trusted until the long test says so.</p>
+</div>
+<div class="item">
+<span class="ttl">301 under-voltage warnings a day</span><span class="tag">2026-10-21</span>
+<p class="desc">pi-media kept logging under-voltage, worst in the afternoon, and the peaks lined up with the SSD being busy. Its SATA board wants its own 5&nbsp;V supply, but it was powered from the Pi, so the Pi, the SSD and a fan shared one 3&nbsp;A input. The board goes back, and the SSD moves to the ThinkPad.</p>
+<p class="desc lesson">Line the errors up against the load before blaming the power supply.</p>
+</div>
+<div class="item">
+<span class="ttl">One missing disk can stop a boot</span><span class="tag">2026-10-21</span>
+<p class="desc">pi-media mounts its SSD from fstab without nofail. If the SSD is missing at boot, Debian drops into emergency mode and nothing starts. Before the SSD moves, that line gets commented out, and the new line on the ThinkPad has nofail.</p>
+<p class="desc lesson">Plan the failure of the thing you are about to unplug.</p>
+</div>
+</div>
+</section>
 <section id="contact" class="sec" aria-labelledby="h-contact">
-<p class="map"><span>0x4ac1 – 0x4dac</span><span>   747 B</span></p>
+<p class="map"><span>0x5e7c – 0x6167</span><span>   747 B</span></p>
 <div class="body">
 <h2 id="h-contact">.contact</h2>
 <div class="row"><span class="k">email</span><a class="v" href="mailto:konstantin@wbauer.com">konstantin@wbauer.com</a></div>
@@ -263,11 +319,12 @@ h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); l
 </section>
 </main>
 <section id="pad" class="sec" aria-labelledby="h-pad">
-<p class="map"><span>0x4dac – 0x6b62</span><span> 7,606 B</span></p>
+<p class="map"><span>0x6167 – 0x6b62</span><span> 2,555 B</span></p>
 <div class="body">
 <h2 id="h-pad">.pad</h2>
 <p class="txt">The rest of the budget, padded the way a linker pads an image: a short message, then zero bytes. Decode it with <code>xxd -r -p</code>.</p>
-<p class="hex">48692c20796f75206465636f646564207468652070616464696e672e204576657279206f6e65206f662074686573652032372c343930206279746573206973206163636f756e74656420666f722c20616e642074686520666c616720697320696e2074686520726573706f6e736520686561646572732e204b6f6e7374616e74696e0a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</p>
+<p class="hex">48692c20796f75206465636f646564207468652070616464696e672e204576657279206f6e65206f662074686573652032372c343930206279746573206973206163636f756e74656420666f722c20616e642074686520666c616720697320696e2074686520726573706f6e736520686561646572732e0a0a53696e636520796f752061726520746865206b696e64206f6620706572736f6e2077686f206465636f6465732070616464696e673a20746869732070616765206973206f6e652048544d4c2066696c652c206275696c74206279206120507974686f6e20736372697074207468617420636f756e747320657665727920627974652c20616e6420736572766564206279206e67696e78206f6e206120526173706265727279205069203420617420686f6d6520696e205669656e6e612c207468726f756768206120436c6f7564666c6172652054756e6e656c2c2077697468206e6f206f70656e20706f7274732e204e6f204a6176615363726970742c206e6f20747261636b6572732c206e6f20666f6e747320746f20646f776e6c6f61642e20496620796f752077616e7420746f2074616c6b2061626f757420616e79206f662069742c20777269746520746f206b6f6e7374616e74696e407762617565722e636f6d2e0a0a4b6f6e7374616e74696e0a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+</p>
 <p class="total">total  27,490 B = 0x6b62</p>
 </div>
 </section>
