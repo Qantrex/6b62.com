@@ -2,7 +2,7 @@
 <p class="map" aria-hidden="true"><span>{{notes.start}} – {{notes.end}}</span><span>{{notes.size}} B</span></p>
 <div class="body">
 <h2 id="h-notes">.notes</h2>
-<p class="txt intro">Things I broke and fixed in my homelab, and what each one taught me.</p>
+<p class="txt intro">Things that broke in my homelab, and what each one taught me.</p>
 <div class="item">
 <span class="ttl">Pi-hole answered nobody</span><span class="tag">2026-10-14</span>
 <p class="desc">After setting up Pi-hole, its stats showed 99 queries, all of them from the Pi itself. Inside Docker, the listening mode LOCAL only trusts the Docker bridge network, so every query from the LAN and the tailnet was dropped without an error anywhere. Switching to listeningMode ALL fixed it.</p>
@@ -20,12 +20,12 @@
 </div>
 <div class="item">
 <span class="ttl">A synced setting that turned DNS off</span><span class="tag">2026-10-14</span>
-<p class="desc">The second Pi-hole copies its settings from the first. The first had DHCP switched on, the sync carried that over, and the replica, whose container has no NET_ADMIN capability, stopped answering DNS. DHCP is now pinned off on both, so no sync can switch it back on.</p>
+<p class="desc">The second Pi-hole copies its settings from the first. The first had DHCP switched on, the sync carried that over, and the replica, whose container lacks the network permissions DHCP needs, stopped answering DNS. DHCP is now pinned off on both, so no sync can switch it back on.</p>
 <p class="desc lesson">Replicating a config also replicates its mistakes.</p>
 </div>
 <div class="item">
 <span class="ttl">A config that undid itself</span><span class="tag">2026-10-14</span>
-<p class="desc">Home Assistant treats a changed http block as pending and rolls it back after five minutes unless someone confirms it in the UI. Before onboarding there is no UI to confirm it in, so my reverse proxy settings kept disappearing. I promoted the pending config by hand in .storage/http, after a backup, and found out that deleting the pending key instead breaks the component.</p>
+<p class="desc">Home Assistant treats a changed http block as pending and rolls it back after five minutes unless someone confirms it in the UI. Before onboarding there is no UI to confirm it in, so my reverse proxy settings kept disappearing. I promoted the pending config by hand in Home Assistant's storage files, after a backup, and found out that deleting the pending key instead breaks the component.</p>
 <p class="desc lesson">When a tool keeps undoing a change, find out what it is protecting you from.</p>
 </div>
 <div class="item">
@@ -40,12 +40,12 @@
 </div>
 <div class="item">
 <span class="ttl">301 under-voltage warnings a day</span><span class="tag">2026-10-21</span>
-<p class="desc">pi-media kept logging under-voltage, worst in the afternoon, and the peaks lined up with the SSD being busy. Its SATA board wants its own 5&nbsp;V supply, but it was powered from the Pi, so the Pi, the SSD and a fan shared one 3&nbsp;A input. The board goes back, and the SSD moves to the ThinkPad.</p>
+<p class="desc">My media server kept logging under-voltage, worst in the afternoon, and the peaks lined up with the SSD being busy. Its SATA board is meant to have its own 5&nbsp;V supply, but it was powered from the Pi, so the Pi, the SSD and a fan shared one 3&nbsp;A input. The fix is to move the SSD off the Pi and onto the ThinkPad.</p>
 <p class="desc lesson">Line the errors up against the load before blaming the power supply.</p>
 </div>
 <div class="item">
 <span class="ttl">One missing disk can stop a boot</span><span class="tag">2026-10-21</span>
-<p class="desc">pi-media mounts its SSD from fstab without nofail. If the SSD is missing at boot, Debian drops into emergency mode and nothing starts. Before the SSD moves, that line gets commented out, and the new line on the ThinkPad has nofail.</p>
+<p class="desc">My media server mounts its SSD from fstab without nofail. If the SSD is missing at boot, Debian drops into emergency mode and nothing starts. The fix is to comment out that line before the SSD leaves, and to add nofail to the new line on the ThinkPad.</p>
 <p class="desc lesson">Plan the failure of the thing you are about to unplug.</p>
 </div>
 </div>

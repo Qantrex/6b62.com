@@ -84,7 +84,7 @@ n_lab=$(grep -oE '<a href="#[a-z]+" aria-label="[^"]+" style="width:' $P | wc -l
 [ "$n_bar" -gt 0 ] && [ "$n_bar" = "$n_lab" ] && ok "every bar link has an aria-label ($n_lab)" || bad "every bar link has an aria-label ($n_lab of $n_bar)"
 n_map=$(grep -c '<p class="map"' $P); n_maph=$(grep -c '<p class="map" aria-hidden="true">' $P)
 [ "$n_map" = "$n_maph" ] && ok "every .map is aria-hidden ($n_maph)" || bad "every .map is aria-hidden ($n_maph of $n_map)"
-contains $P '<p class="hex" aria-hidden="true">' ".pad hex is aria-hidden"
+contains $P '<p class="hex" aria-hidden="true" tabindex="-1">' ".pad hex is aria-hidden and out of the tab order"
 
 echo "# --- head metadata (identical on both hosts)"
 contains $P '<link rel="canonical" href="https://6b62.com/">' "canonical is https://6b62.com/"
