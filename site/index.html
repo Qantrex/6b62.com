@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Konstantin Bauer</title>
 <meta name="description" content="Konstantin Bauer, IT student at HTL TGM Vienna graduating in 2027, focused on IT security. A self-hosted homelab, a simulated OS for a game, and hardening scripts.">
-<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://6b62.com/">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#edeeec" media="(prefers-color-scheme: light)">
@@ -13,721 +12,265 @@
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Konstantin Bauer">
 <meta property="og:description" content="IT student at HTL TGM Vienna, focused on IT security. A self-hosted homelab, a simulated OS for a game, and hardening scripts.">
-<meta property="og:url" content="https://new.6b62.com/">
-<meta name="twitter:card" content="summary">
+<meta property="og:url" content="https://6b62.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cstyle%3Erect%7Bfill:%2316171a%7Dtext%7Bfill:%23edeeec%7D@media(prefers-color-scheme:dark)%7Brect%7Bfill:%23edeeec%7Dtext%7Bfill:%230b0c0e%7D%7D%3C/style%3E%3Crect%20width='32'%20height='32'/%3E%3Ctext%20x='16'%20y='22'%20font-family='monospace'%20font-size='15'%20font-weight='700'%20text-anchor='middle'%3Ekb%3C/text%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Konstantin Bauer","url":"https://6b62.com/","email":"mailto:konstantin@wbauer.com","jobTitle":"IT student","alumniOf":"HTL TGM Wien","address":{"@type":"PostalAddress","addressLocality":"Vienna","addressCountry":"AT"},"knowsAbout":["Linux","Networking","IT security","Penetration testing","Docker","Python","C#","Unity"],"sameAs":["https://github.com/Qantrex","https://www.linkedin.com/in/konstantin-bauer-9a5952266/"]}</script>
 <style>
-  /* Self-hosted Archivo + JetBrains Mono (latin + latin-ext, from Google Fonts via gwfh).
-     No external requests: the whole page loads only from this origin. */
-  @font-face{font-family:'Archivo';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/archivo-v25-latin_latin-ext-regular.woff2') format('woff2')}
-  @font-face{font-family:'Archivo';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/archivo-v25-latin_latin-ext-500.woff2') format('woff2')}
-  @font-face{font-family:'Archivo';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/archivo-v25-latin_latin-ext-600.woff2') format('woff2')}
-  @font-face{font-family:'Archivo';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/archivo-v25-latin_latin-ext-700.woff2') format('woff2')}
-  @font-face{font-family:'Archivo';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/archivo-v25-latin_latin-ext-800.woff2') format('woff2')}
-  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/jetbrains-mono-v24-latin_latin-ext-regular.woff2') format('woff2')}
-  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/jetbrains-mono-v24-latin_latin-ext-500.woff2') format('woff2')}
-  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/jetbrains-mono-v24-latin_latin-ext-700.woff2') format('woff2')}
-</style>
-<style>
-  /* ----------------------------------------------------------------------
-     0x6b62: personal site, typeset like a disassembly.
-     A left margin of section "addresses" on a continuous hairline ledger,
-     flat colour, sharp corners. Human grotesque for the name, machine mono
-     for the data. Two instruments: a live trace of how this page reached
-     the visitor (filled in from the request itself), and a pocket version
-     of revelOS, the OS from River Zero. Flat light + flat dark. Prints as a CV.
-     -------------------------------------------------------------------- */
+/* 0x6b62: a CV laid out like a linker map. The margin shows each block's real byte range
+   in this file; the bar on top is the whole file, 27,490 bytes, one segment per block.
+   build.py fills in the numbers. System fonts, no JavaScript, one request. */
+:root {
+  --paper: #edeeec; --panel: #e6e7e4;
+  --ink: #16171a; --ink-2: #4e4f55; --faint: #77787d;
+  --rule: rgba(22,23,26,.15); --rule-2: rgba(22,23,26,.32);
+  --accent: #5a3ab0;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
   :root {
-    --paper:  #edeeec; --panel: #e6e7e4;
-    --ink:    #16171a; --ink-2: #4e4f55; --faint: #77787d;
-    --rule:   rgba(22,23,26,0.15); --rule-2: rgba(22,23,26,0.32);
-    --accent: #5a3ab0;
-    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    --sans: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #0b0c0e; --panel: #111216;
-      --ink: #ecedee; --ink-2: #a7a8ae; --faint: #74757b;
-      --rule: rgba(236,237,238,0.15); --rule-2: rgba(236,237,238,0.30);
-      --accent: #c4a7e7; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
     --paper: #0b0c0e; --panel: #111216;
     --ink: #ecedee; --ink-2: #a7a8ae; --faint: #74757b;
-    --rule: rgba(236,237,238,0.15); --rule-2: rgba(236,237,238,0.30);
+    --rule: rgba(236,237,238,.15); --rule-2: rgba(236,237,238,.30);
     --accent: #c4a7e7; color-scheme: dark;
   }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.6 var(--sans); }
+::selection { background: var(--accent); color: var(--paper); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
 
-  * { box-sizing: border-box; }
-  body { background: var(--paper); color: var(--ink);
-    font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-  ::selection { background: var(--accent); color: var(--paper); }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  a { color: inherit; text-decoration: none; }
-  h1, h2 { font-weight: 800; }
+.skip { position: absolute; left: 10px; top: -48px; z-index: 10; padding: 9px 13px; background: var(--ink); color: var(--paper); font: 500 13px var(--mono); }
+.skip:focus { top: 22px; }
 
-  .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-  .skip { position: fixed; left: 10px; top: -48px; z-index: 100; background: var(--ink); color: var(--paper);
-    padding: 9px 13px; font: 500 13px var(--mono); transition: top .15s; }
-  .skip:focus { top: calc(10px + env(safe-area-inset-top, 0px)); }
+/* the bar: the whole file, one segment per block */
+.bar { position: sticky; top: 0; z-index: 5; display: flex; height: 12px; background: var(--paper); border-bottom: 1px solid var(--rule); }
+.bar a { position: relative; flex: 0 1 auto; min-width: 3px; height: 100%; background: var(--rule-2); border-right: 2px solid var(--paper); }
+.bar a:nth-child(even) { background: var(--rule); }
+.bar a:hover, .bar a:focus-visible { background: var(--accent); outline: 0; }
+.bar a span { display: none; position: absolute; top: 16px; left: 0; padding: 3px 7px; background: var(--ink); color: var(--paper); font: 500 11.5px var(--mono); white-space: pre; }
+.bar a:nth-last-child(-n+3) span { left: auto; right: 0; }
+.bar a:hover span, .bar a:focus-visible span { display: block; }
+body:has(#top:hover) .bar [href="#top"], body:has(#about:hover) .bar [href="#about"],
+body:has(#edu:hover) .bar [href="#edu"], body:has(#job:hover) .bar [href="#job"],
+body:has(#work:hover) .bar [href="#work"], body:has(#cert:hover) .bar [href="#cert"],
+body:has(#skills:hover) .bar [href="#skills"], body:has(#contact:hover) .bar [href="#contact"],
+body:has(#pad:hover) .bar [href="#pad"] { background: var(--accent); }
 
-  .sheet { max-width: 920px; margin-inline: auto;
-    padding-inline: max(22px, env(safe-area-inset-left,0px)) max(22px, env(safe-area-inset-right,0px)); }
+/* the ledger: [byte range | size] | content */
+.sheet { max-width: 960px; margin-inline: auto; padding-inline: max(22px, env(safe-area-inset-left, 0px)) max(22px, env(safe-area-inset-right, 0px)); }
+.sec { display: grid; grid-template-columns: 9.5rem minmax(0,1fr); padding-block: clamp(30px, 5vw, 56px); border-top: 1px solid var(--rule); scroll-margin-top: 13px; }
+#top { border-top: 0; }
+.map { padding-right: 20px; font: 500 12px/1.75 var(--mono); color: var(--faint); white-space: pre; }
+.map span { display: block; }
+.sec:hover .map, .sec:target .map { color: var(--accent); }
+.body { min-width: 0; padding-left: 32px; border-left: 1px solid var(--rule); }
+h2 { margin: 0 0 16px; font: 500 12.5px/1.4 var(--mono); color: var(--accent); letter-spacing: .03em; }
+@media (max-width: 720px) {
+  .sec { grid-template-columns: 1fr; row-gap: 12px; }
+  .map span { display: inline; }
+  .map span + span::before { content: "  "; }
+  .body { padding-left: 0; border-left: 0; }
+}
 
-  /* the ledger grid: [address margin] | [content] */
-  .block { display: grid; grid-template-columns: 6.5rem minmax(0,1fr);
-    padding-block: clamp(36px, 6vw, 68px); border-top: 1px solid var(--rule); }
-  .block:first-of-type { border-top: 0; }
-  .addr { font: 500 12px/1.9 var(--mono); color: var(--faint); letter-spacing: .02em; padding-right: 22px; }
-  .addr b { color: var(--accent); font-weight: 500; }
-  .body { min-width: 0; border-left: 1px solid var(--rule); padding-left: 34px; }
-  @media (max-width: 720px) {
-    .block { grid-template-columns: 1fr; row-gap: 12px; }
-    .body { border-left: 0; padding-left: 0; }
-    .addr { padding-right: 0; font-size: 11px; }
-  }
+/* masthead */
+.name { margin: 0; font: 800 clamp(46px, 11.5vw, 96px)/.92 var(--sans); letter-spacing: -.04em; }
+.role { margin-top: 20px; max-width: 46ch; color: var(--ink-2); font-size: clamp(16px, 2.4vw, 18px); line-height: 1.5; }
+.sig { margin-top: 20px; font: 500 13px/1.7 var(--mono); color: var(--faint); }
+.sig b { color: var(--accent); font-weight: 500; }
+.printonly { display: none; }
 
-  /* masthead */
-  .name { margin: 0; font-size: clamp(46px, 11.5vw, 100px); line-height: 0.92; letter-spacing: -0.04em; text-wrap: balance; }
-  .role { margin: 20px 0 0; font: 500 clamp(15px,2.6vw,18px)/1.5 var(--sans); color: var(--ink-2); max-width: 42ch; }
-  .sig  { margin: 22px 0 0; font: 500 13px/1.7 var(--mono); color: var(--faint); }
-  .sig b { color: var(--accent); font-weight: 500; }
-  .printonly { display: none; }
+/* prose */
+.lead { max-width: 26ch; font-size: clamp(20px, 3.2vw, 26px); line-height: 1.3; letter-spacing: -.015em; }
+.txt { margin-top: 14px; max-width: 58ch; color: var(--ink-2); }
 
-  /* figure captions */
-  .kicker { margin: 0 0 18px; font: 500 12px/1.6 var(--mono); color: var(--faint); letter-spacing: .02em; }
+/* entries */
+.item { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 6px 20px; align-items: baseline; padding-block: 16px; border-top: 1px solid var(--rule); }
+.item:first-of-type { padding-top: 0; border-top: 0; }
+.ttl { font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; }
+.ttl a, .desc a { border-bottom: 1px solid var(--rule-2); }
+.ttl a:hover, .desc a:hover { color: var(--accent); border-color: var(--accent); }
+.tag { font: 500 11.5px/1.5 var(--mono); color: var(--accent); text-align: right; white-space: nowrap; }
+.desc { grid-column: 1 / -1; max-width: 66ch; color: var(--ink-2); font-size: 15px; }
+@media (max-width: 540px) { .item { grid-template-columns: 1fr; } .tag { text-align: left; color: var(--faint); } }
 
-  /* fig.1: how this page got to you */
-  .trace { position: relative; margin: 0; padding: 0; list-style: none; }
-  .trace::before { content: ""; position: absolute; left: 4px; top: 16px; bottom: 16px; border-left: 1px solid var(--rule-2); }
-  .trace.private { margin-top: 22px; }
-  .trace.private::before { border-left-style: dashed; top: 30px; }
-  .hop { position: relative; display: grid; grid-template-columns: 22px 6.5rem minmax(0,1fr); column-gap: 8px; padding-block: 8px; align-items: baseline; }
-  .hop .dot { position: relative; z-index: 1; align-self: start; margin-top: 7px; width: 9px; height: 9px; background: var(--paper); border: 1px solid var(--ink-2); }
-  .hop.on .dot { background: var(--ink); border-color: var(--ink); }
-  .hop .hn { font: 500 13px/1.5 var(--mono); color: var(--ink); }
-  .hop .hd { font-size: 14.5px; line-height: 1.5; color: var(--ink-2); max-width: 58ch; }
-  .hop .hd b { font: 500 13px var(--mono); color: var(--accent); }
-  .hop.idle .dot { background: var(--paper); border-color: var(--faint); }
-  .hop.idle .hn { color: var(--faint); }
-  .via { padding: 2px 0 2px 30px; font: 500 12px/1.5 var(--mono); color: var(--faint); }
-  .packet { position: absolute; left: 2px; top: 0; z-index: 2; width: 5px; height: 5px; background: var(--accent); pointer-events: none; }
-  .caption { margin: 12px 0 0; font: 500 12.5px/1.7 var(--mono); color: var(--faint); }
-  .caption b { color: var(--ink-2); font-weight: 500; }
-  .verdict { margin: 14px 0 0 30px; max-width: 58ch; color: var(--ink); }
-  @media (max-width: 560px) {
-    .hop { grid-template-columns: 22px minmax(0,1fr); row-gap: 1px; }
-    .hop .hd { grid-column: 2; }
-    .verdict { margin-left: 0; }
-  }
+/* certificates */
+.cert { display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 20px; align-items: baseline; padding-block: 12px; border-top: 1px solid var(--rule); }
+.cert:first-of-type { padding-top: 0; border-top: 0; }
+.cert .n { font-weight: 500; }
+.cert .y { font: 500 12px var(--mono); color: var(--faint); white-space: nowrap; }
+.cert .d { grid-column: 1 / -1; margin-top: 4px; color: var(--ink-2); font-size: 14px; }
 
-  /* prose */
-  .lead { margin: 0; font-size: clamp(20px,3.2vw,27px); line-height: 1.3; letter-spacing: -0.015em; max-width: 24ch; }
-  .txt { margin: 15px 0 0; color: var(--ink-2); max-width: 56ch; }
+/* skills and contact rows */
+.row { display: grid; grid-template-columns: 6rem minmax(0,1fr); column-gap: 14px; align-items: baseline; padding-block: 8px; border-top: 1px solid var(--rule); }
+.row:first-of-type { padding-top: 0; border-top: 0; }
+.row .k { font: 500 12px var(--mono); color: var(--faint); }
+.row .v { font: 500 13.5px/1.9 var(--mono); color: var(--ink-2); }
+.row a.v { color: var(--ink); border-bottom: 1px solid var(--rule-2); justify-self: start; }
+.row a.v:hover { color: var(--accent); border-color: var(--accent); }
+.v i { margin: 0 3px; color: var(--faint); font-style: normal; }
+.v span { white-space: nowrap; }
+@media (max-width: 560px) { .row { grid-template-columns: 1fr; row-gap: 2px; } }
 
-  /* projects */
-  .item { display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 20px; row-gap: 6px;
-    padding-block: 18px; border-top: 1px solid var(--rule); align-items: baseline; }
-  .item:first-child { border-top: 0; padding-top: 0; }
-  .ttl { font: 600 18px/1.25 var(--sans); letter-spacing: -0.01em; }
-  .ttl a { border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
-  .ttl a:hover { color: var(--accent); border-color: var(--accent); }
-  .ttl .ar { color: var(--faint); font: 400 12px var(--mono); }
-  .tag { font: 500 11.5px/1.5 var(--mono); color: var(--accent); text-align: right; white-space: nowrap; }
-  .desc { grid-column: 1 / -1; margin: 0; color: var(--ink-2); font-size: 14.5px; max-width: 64ch; }
-  .desc a { color: var(--accent); border-bottom: 1px solid transparent; } .desc a:hover { border-color: var(--accent); }
-  @media (max-width: 540px) { .item { grid-template-columns: 1fr; } .tag { text-align: left; color: var(--faint); } }
+/* the pad */
+.hex { max-height: calc(12 * 1.7em); margin-top: 14px; overflow-y: auto; padding: 10px 12px; border: 1px solid var(--rule); font: 500 12px/1.7 var(--mono); color: var(--faint); word-break: break-all; }
+.total { margin-top: 14px; font: 500 12px var(--mono); color: var(--ink-2); }
 
-  /* certs */
-  .cert { display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 20px; padding-block: 13px; border-top: 1px solid var(--rule); align-items: baseline; }
-  .cert:first-child { border-top: 0; padding-top: 0; }
-  .cert .n { font-weight: 500; } .cert .y { font: 500 12px var(--mono); color: var(--faint); white-space: nowrap; }
-  .cert .d { grid-column: 1 / -1; margin: 5px 0 0; color: var(--ink-2); font-size: 13.5px; }
-
-  /* stack */
-  .syms { font: 500 13.5px/2.1 var(--mono); color: var(--ink-2); }
-  .syms span { white-space: nowrap; } .syms i { color: var(--faint); font-style: normal; margin: 0 3px; }
-  .symrow { display: grid; grid-template-columns: 5.5rem minmax(0,1fr); column-gap: 14px; padding-block: 8px; border-top: 1px solid var(--rule); align-items: baseline; }
-  .symrow:first-child { border-top: 0; padding-top: 0; }
-  .symrow .k { font: 500 12px var(--mono); color: var(--faint); }
-  @media (max-width: 560px) { .symrow { grid-template-columns: 1fr; row-gap: 2px; } }
-
-  /* fig.2: pocket revelOS */
-  html:not(.js) .needs-js { display: none; }
-  .shell { border: 1px solid var(--rule-2); background: var(--panel); }
-  .shell .bar { display: flex; justify-content: space-between; gap: 12px; padding: 9px 14px; border-bottom: 1px solid var(--rule); font: 500 12px/1.4 var(--mono); color: var(--faint); }
-  .shell .bar .got { color: var(--accent); }
-  .shell .scr { height: 360px; overflow-y: auto; overscroll-behavior: contain; padding: 14px 15px; font: 500 13px/1.7 var(--mono); cursor: text; }
-  .shell .ln { min-height: 1.7em; white-space: pre-wrap; word-break: break-word; color: var(--ink-2); }
-  .shell .ln.cmd { color: var(--ink); }
-  .shell .pr { color: var(--accent); }
-  .shell .ln.dim { color: var(--faint); }
-  .shell .ln.hi { color: var(--accent); }
-  .shell .ls { display: flex; flex-wrap: wrap; gap: 0 20px; }
-  .shell .ls button { font: inherit; color: var(--ink); background: none; border: 0; border-bottom: 1px solid var(--rule-2); padding: 0; cursor: pointer; }
-  .shell .ls button.dir { color: var(--accent); }
-  .shell .ls button:hover, .shell .ls button:focus-visible { border-color: var(--accent); }
-  .shell form { display: flex; gap: 8px; }
-  .shell input { flex: 1; min-width: 0; background: transparent; border: 0; padding: 0; color: var(--ink); font: inherit; caret-color: var(--accent); }
-  .shell input:focus { outline: none; }
-  @media (max-width: 720px) { .shell .scr { height: 440px; font-size: 12.5px; } .shell input { font-size: 16px; } }
-
-  /* contact */
-  .rel { display: grid; grid-template-columns: 5.5rem minmax(0,1fr) auto; column-gap: 14px; padding-block: 12px; border-top: 1px solid var(--rule); align-items: baseline; font: 500 14px var(--mono); }
-  .rel:first-child { border-top: 0; padding-top: 0; }
-  .rel .k { color: var(--faint); font-size: 12px; } .rel .v { color: var(--ink); word-break: break-all; }
-  .rel span.v { word-break: normal; }
-  .rel a.v { border-bottom: 1px solid transparent; } .rel a.v:hover { color: var(--accent); border-color: var(--accent); }
-  .copy { font: 500 12px var(--mono); color: var(--accent); background: none; border: 0; border-bottom: 1px solid var(--rule-2); cursor: pointer; padding: 0 0 1px; white-space: nowrap; }
-  .copy:hover { border-color: var(--accent); }
-  @media (max-width: 560px) { .rel { grid-template-columns: 4.5rem minmax(0,1fr); } .rel .copy { grid-column: 2; justify-self: start; margin-top: 5px; } }
-
-  footer { padding: 26px 0 60px; border-top: 1px solid var(--rule); font: 500 12px/1.8 var(--mono); color: var(--faint); }
-
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
-
-  /* print: a clean one-page CV */
-  @media print {
-    :root { --paper:#fff; --panel:#fff; --ink:#000; --ink-2:#222; --faint:#555; --rule:#ccc; --rule-2:#aaa; --accent:#000; color-scheme: light; }
-    .skip, .plot, .noprint, .copy, footer, .lead { display: none !important; }
-    body { font-size: 9pt; line-height: 1.32; } .sheet { max-width: none; padding: 0; }
-    /* blocks may split across pages (a tall one would otherwise leave page 1 half empty); rows may not */
-    .block { grid-template-columns: 1fr; padding-block: 4px; border-top: 1px solid #ccc; }
-    .addr { display: none; } .body { border-left: 0; padding-left: 0; }
-    .sr { position: static; width: auto; height: auto; clip: auto; margin: 0 0 2px; font: 700 7.5pt var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #555; break-after: avoid; }
-    .name { font-size: 20pt; } .name br { display: none; } .role { font-size: 9pt; margin-top: 4px; max-width: none; } .sig { display: none; }
-    .printonly { display: block; margin: 3px 0 0; font: 500 7.5pt/1.5 var(--mono); color: #222; }
-    .txt { font-size: 8.5pt; margin-top: 0; max-width: none; } .txt + .txt { margin-top: 2px; }
-    .item, .symrow { break-inside: avoid; padding-block: 2px; row-gap: 0; }
-    .ttl { font-size: 9.5pt; } .tag { font-size: 7.5pt; } .desc { font-size: 8.3pt; max-width: none; }
-    /* certificates: one line */
-    .cert { display: inline; padding: 0; border: 0; } .cert .n { font-weight: 500; } .cert .d { display: none; }
-    .cert .y { font: 400 8.3pt var(--sans); color: var(--ink-2); } .cert .y::before { content: " ("; } .cert .y::after { content: ")"; }
-    .cert + .cert::before { content: " · "; color: #555; }
-    .syms { font-size: 8pt; line-height: 1.5; } .symrow .k { font-size: 7.5pt; }
-    .ttl a[href]::after, .desc a[href]::after { content: " (" attr(href) ")"; font: 7.5pt var(--mono); color: #555; }
-    a { color: #000; border: 0 !important; } @page { size: A4; margin: 10mm 13mm; }
-  }
-
+/* print: a one-page A4 CV, without the bar, the byte ranges and the pad */
+@media print {
+  :root { --paper: #fff; --ink: #000; --ink-2: #222; --faint: #555; --rule: #ccc; --rule-2: #aaa; --accent: #000; color-scheme: light; }
+  @page { size: A4; margin: 10mm 13mm; }
+  .skip, .bar, .map, #pad, #contact, .noprint { display: none !important; }
+  body { font-size: 9pt; line-height: 1.32; }
+  .sheet { max-width: none; padding: 0; }
+  .sec { grid-template-columns: 1fr; padding-block: 4px; border-top: 1px solid #ccc; }
+  .body { padding-left: 0; border-left: 0; }
+  h2 { margin: 0 0 2px; font-size: 7.5pt; letter-spacing: .12em; text-transform: uppercase; color: #555; break-after: avoid; }
+  .name { font-size: 20pt; } .name br { display: none; }
+  .role { margin-top: 4px; max-width: none; font-size: 9pt; } .sig { display: none; }
+  .printonly { display: block; margin-top: 3px; font: 500 7.5pt/1.5 var(--mono); color: #222; }
+  .lead { display: none; } .txt { margin-top: 0; max-width: none; font-size: 8.5pt; } .txt + .txt { margin-top: 2px; }
+  .item, .row { padding-block: 2px; row-gap: 0; break-inside: avoid; }
+  .ttl { font-size: 9.5pt; } .tag { font-size: 7.5pt; } .desc { max-width: none; font-size: 8.3pt; }
+  .cert { display: inline; padding: 0; border: 0; } .cert .d { display: none; }
+  .cert .y { font: 400 8.3pt var(--sans); color: #222; } .cert .y::before { content: " ("; } .cert .y::after { content: ")"; }
+  .cert + .cert::before { content: " · "; color: #555; }
+  .row .k { font-size: 7.5pt; } .row .v { font-size: 8pt; line-height: 1.5; }
+  .ttl a[href]::after, .desc a[href]::after { content: " (" attr(href) ")"; font: 7.5pt var(--mono); color: #555; }
+  a { border: 0 !important; color: #000; }
+}
 </style>
 </head>
 <body>
-
-<a class="skip" href="#main">skip to content</a>
-<main class="sheet" id="main">
-
-  <section class="block" aria-label="Konstantin Bauer">
-    <p class="addr" aria-hidden="true"><b>0x6b62</b></p>
-    <div class="body">
-      <h1 class="name">Konstantin<br> Bauer</h1>
-      <p class="role">IT student at HTL&nbsp;TGM Wien, graduating in 2027, with a focus on IT security. I like Linux, networks, and finding out how systems work on the inside.</p>
-      <p class="sig">0x6b = <b>k</b>&nbsp;&nbsp;&nbsp;0x62 = <b>b</b>&nbsp;&nbsp;·&nbsp;&nbsp;two bytes, my initials</p>
-      <p class="printonly">konstantin@wbauer.com · github.com/Qantrex · linkedin.com/in/konstantin-bauer-9a5952266 · Vienna,&nbsp;Austria · EU&nbsp;citizen · driving&nbsp;licence&nbsp;B</p>
-    </div>
-  </section>
-
-  <section class="block noprint" aria-labelledby="h-net">
-    <p class="addr" aria-hidden="true">.net</p>
-    <div class="body">
-      <h2 class="kicker" id="h-net">fig.1&nbsp;&nbsp;how this page got to you</h2>
-      <ol class="trace" id="trace">
-        <li class="hop on" id="hop-you"><span class="dot"></span><span class="hn">you</span><span class="hd" id="d-you">Your browser, wherever you are.</span></li>
-        <li class="hop on" id="hop-edge"><span class="dot"></span><span class="hn">cloudflare</span><span class="hd" id="d-edge">The nearest Cloudflare edge. It keeps a copy of this page for up to an hour.</span></li>
-        <li class="via">a tunnel, opened from inside my network, so no ports are open at home</li>
-        <li class="hop on" id="hop-pi"><span class="dot"></span><span class="hn">pi-two</span><span class="hd">A Raspberry Pi 4 with 4&nbsp;GB, at home in Vienna. It also runs DNS for the whole home network, Home Assistant and my agent.</span></li>
-        <li class="hop on" id="hop-nginx"><span class="dot"></span><span class="hn">nginx</span><span class="hd" id="d-nginx">A read-only container capped at 32&nbsp;MB, of which it uses about 2.</span></li>
-      </ol>
-      <p class="verdict" id="verdict">Most visits never reach the Pi, because Cloudflare answers from its copy.</p>
-      <ol class="trace private" aria-label="The private part of the homelab">
-        <li class="via">behind it, reachable only over my tailnet</li>
-        <li class="hop"><span class="dot"></span><span class="hn">pi-media</span><span class="hd">A Raspberry Pi 4 with 8&nbsp;GB. The media server, behind a VPN kill switch.</span></li>
-        <li class="hop"><span class="dot"></span><span class="hn">mediabox</span><span class="hd">An old ThinkPad T460 with 16&nbsp;GB. It keeps my documents, and the media server moves here next.</span></li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-about">
-    <p class="addr" aria-hidden="true">.text</p>
-    <div class="body">
-      <h2 class="sr" id="h-about">About</h2>
-      <p class="lead">I build things that run on a server, harden one, or simulate one.</p>
-      <p class="txt">I'm careful by default: least privilege, tests and backups. The homelab is where I learn the parts school hasn't reached yet.</p>
-      <p class="txt">IT security is where I want to go, penetration testing most of all. After the Matura in 2027 comes military service, and I'm applying for the Austrian Armed Forces' cyber track. I live in Vienna.</p>
-    </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-edu">
-    <p class="addr" aria-hidden="true">.edu</p>
-    <div class="body">
-      <h2 class="sr" id="h-edu">Education</h2>
-      <div class="item">
-        <span class="ttl">HTL TGM Wien, Information Technology</span><span class="tag">2022 – 2027</span>
-        <p class="desc">Systems engineering with a specialisation in IT security, class 5BHIT. I finish with the Matura and diploma in summer 2027. I passed year 2 with distinction (ausgezeichneter Erfolg) and years 3 and 4 with merit (guter Erfolg).</p>
-      </div>
-      <div class="item">
-        <span class="ttl">GRG 23, Dual Language Program</span><span class="tag">2018 – 2022</span>
-        <p class="desc">Lower secondary school, with subjects taught in English by native speakers.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-exp">
-    <p class="addr" aria-hidden="true">.job</p>
-    <div class="body">
-      <h2 class="sr" id="h-exp">Experience</h2>
-      <div class="item">
-        <span class="ttl">Event staff at Sulzenbacher Eventmanagement</span><span class="tag">Vienna · Jul – Aug 2026</span>
-        <p class="desc">A summer job with a Vienna event company. I worked in service, at the bar, in the kitchen and in logistics at events.</p>
-      </div>
-      <div class="item">
-        <span class="ttl">IT intern at A1 Telekom Austria</span><span class="tag">Technology unit · Aug 2024</span>
-        <p class="desc">A month in the Technology unit of Austria's largest telecom. I commissioned Cisco ACI leaf switches, took enterprise network and server hardware out of service (Catalyst&nbsp;6500, firewalls, storage), helped plan customer networks, ran fibre, RJ45 and DAC cabling, and fixed servers down to swapping disks, power supplies and battery packs.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-work">
-    <p class="addr" aria-hidden="true">.work</p>
-    <div class="body">
-      <h2 class="sr" id="h-work">Selected work</h2>
-      <div class="item">
-        <span class="ttl">Project River Zero</span><span class="tag">diploma thesis · unity · c#</span>
-        <p class="desc">A psychological horror game about hacking, made by four of us with equal shares and planned for release in spring 2027. My part is revelOS, the operating system the whole game takes place in. It has a virtual file system with owners and permissions, command processing, and SSH into other simulated machines. My thesis asks how to build a system like that so it stays easy to extend. I also built the project site, a replica of the revelOS desktop in Vue and three.js.<span class="noprint"> You can try a small version of revelOS further down this page.</span> <a href="https://qantrex.github.io/prz-website/">project site ↗</a> · <a href="https://kbauer.itch.io/prz">itch.io ↗</a></p>
-      </div>
-      <div class="item">
-        <span class="ttl">Homelab agent</span><span class="tag">bash · python · claude code</span>
-        <p class="desc">An AI assistant for my homelab with ten scheduled jobs, from a morning briefing to a watchdog that checks the servers every five minutes and restarts failed services. I built it around one rule: scripts fetch the data and the model only reads it. Anything that changes a system waits for my approval on my phone, with signed buttons and rate limits, and more than 350 tests keep it that way.</p>
-      </div>
-      <div class="item">
-        <span class="ttl">Homelab</span><span class="tag">debian · docker · tailscale</span>
-        <p class="desc">Two Raspberry Pis and an old ThinkPad, running about 30 containers on a private tailnet: a media server, Pi-hole with Unbound, Home Assistant and Paperless. The one public exception is this site, which goes out through a Cloudflare Tunnel. Backups run every night, encrypted and off-site, on free tiers with hard caps. The media server has been in daily use for over a year.</p>
-      </div>
-      <div class="item">
-        <span class="ttl">Security practice</span><span class="tag">ctf · web · forensics</span>
-        <p class="desc">Hacker101 CTFs and school labs. I've done web testing with Burp Suite, ffuf and sqlmap, password attacks with Hydra and hashcat, and network forensics in Wireshark, where I traced a worm infection through a Windows domain from a packet capture. I write up every tool and attack flow in my own notes.</p>
-      </div>
-      <div class="item">
-        <span class="ttl"><a href="https://github.com/Qantrex/Arch-Linux-Hardening">Arch-Linux-Hardening <span class="ar">↗</span></a></span><span class="tag">bash</span>
-        <p class="desc">Scripts that harden SSH, users, permissions and services. A second script then checks the result instead of assuming it worked.</p>
-      </div>
-      <div class="item">
-        <span class="ttl"><a href="https://github.com/Qantrex/ITSI-7.5">ITSI-7.5 <span class="ar">↗</span></a></span><span class="tag">docker compose</span>
-        <p class="desc">A PHP and MariaDB web app behind Caddy and a ModSecurity WAF, all set up from a single compose file.</p>
-      </div>
-      <div class="item">
-        <span class="ttl"><a href="https://wbauer.com">wbauer.com <span class="ar">↗</span></a></span><span class="tag">freelance · web</span>
-        <p class="desc">My first client project: a business website that I designed, built and shipped myself.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-cert">
-    <p class="addr" aria-hidden="true">.cert</p>
-    <div class="body">
-      <h2 class="sr" id="h-cert">Certificates</h2>
-      <div class="cert"><span class="n">CompTIA IT Fundamentals (ITF+)</span><span class="y">2023</span></div>
-      <div class="cert"><span class="n">Cloudflight Coding Contest</span><span class="y">5× · 2023–2025</span><span class="d">CCC 37 through 41, each in both the classic and the school round.</span></div>
-      <div class="cert"><span class="n">ECDL Standard</span><span class="y">2021</span><span class="d">All five modules.</span></div>
-    </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-sym">
-    <p class="addr" aria-hidden="true">.sym</p>
-    <div class="body">
-      <h2 class="sr" id="h-sym">Skills</h2>
-      <div class="symrow"><span class="k">systems</span><div class="syms">
-        <span>Linux (Debian, Arch)</span>&nbsp;<i>·</i> <span>Docker</span>&nbsp;<i>·</i> <span>Bash</span>&nbsp;<i>·</i> <span>DNS</span>&nbsp;<i>·</i> <span>WireGuard</span>&nbsp;<i>·</i> <span>Tailscale</span>&nbsp;<i>·</i> <span>Cloudflare&nbsp;Tunnel</span>&nbsp;<i>·</i> <span>Home&nbsp;Assistant</span>
-      </div></div>
-      <div class="symrow"><span class="k">security</span><div class="syms">
-        <span>Burp&nbsp;Suite</span>&nbsp;<i>·</i> <span>Wireshark</span>&nbsp;<i>·</i> <span>nmap</span>&nbsp;<i>·</i> <span>ffuf</span>&nbsp;<i>·</i> <span>sqlmap</span>&nbsp;<i>·</i> <span>Hydra</span>&nbsp;<i>·</i> <span>hashcat</span>&nbsp;<i>·</i> <span>ModSecurity</span>
-      </div></div>
-      <div class="symrow"><span class="k">code</span><div class="syms">
-        <span>Python</span>&nbsp;<i>·</i> <span>C#&nbsp;/ Unity</span>&nbsp;<i>·</i> <span>C / C++</span>&nbsp;<i>·</i> <span>Java</span>&nbsp;<i>·</i> <span>TypeScript&nbsp;/ Vue</span>&nbsp;<i>·</i> <span>SQL</span>
-      </div></div>
-      <div class="symrow"><span class="k">hardware</span><div class="syms">
-        <span>Raspberry&nbsp;Pi</span>&nbsp;<i>·</i> <span>ESP32&nbsp;/ Arduino</span>&nbsp;<i>·</i> <span>soldering</span>&nbsp;<i>·</i> <span>3D&nbsp;printing</span>&nbsp;<i>·</i> <span>DIY&nbsp;speakers</span>
-      </div></div>
-      <div class="symrow noprint"><span class="k">interests</span><div class="syms">
-        <span>game&nbsp;development</span>&nbsp;<i>·</i> <span>Linux ricing (Arch&nbsp;+&nbsp;Hyprland)</span>&nbsp;<i>·</i> <span>building&nbsp;hardware</span>
-      </div></div>
-      <div class="symrow"><span class="k">languages</span><div class="syms">
-        <span>German, native</span>&nbsp;<i>·</i> <span>English, fluent (C2 certificate)</span>
-      </div></div>
-    </div>
-  </section>
-
-  <section class="block noprint needs-js" aria-labelledby="h-sh">
-    <p class="addr" aria-hidden="true">.sh</p>
-    <div class="body">
-      <h2 class="kicker" id="h-sh">fig.2&nbsp;&nbsp;a pocket version of revelOS, the operating system I'm writing for River Zero</h2>
-      <div class="shell">
-        <div class="bar"><span id="sh-title">guest@6b62: ~</span><span id="sh-flag">flag: not found yet</span></div>
-        <div class="scr" id="scr">
-          <div id="shellout" role="log" aria-live="polite"></div>
-          <form id="shellform" autocomplete="off"><label class="pr" id="ps1" for="shellin">guest@6b62:~$</label><input id="shellin" type="text" spellcheck="false" autocapitalize="off" autocomplete="off" enterkeyhint="send"></form>
-        </div>
-      </div>
-      <p class="caption">Tap a file to open it, or type <b>help</b>. There is a flag hidden in here somewhere.</p>
-    </div>
-  </section>
-
-  <section class="block noprint" aria-labelledby="h-rel">
-    <p class="addr" aria-hidden="true">.rel</p>
-    <div class="body">
-      <h2 class="sr" id="h-rel">Contact</h2>
-      <div class="rel"><span class="k">email</span><a class="v" href="mailto:konstantin@wbauer.com">konstantin@wbauer.com</a><button class="copy" type="button" data-copy="konstantin@wbauer.com">copy</button></div>
-      <div class="rel"><span class="k">github</span><a class="v" href="https://github.com/Qantrex">github.com/Qantrex ↗</a><span></span></div>
-      <div class="rel"><span class="k">linkedin</span><a class="v" href="https://www.linkedin.com/in/konstantin-bauer-9a5952266/">in/konstantin-bauer ↗</a><span></span></div>
-      <div class="rel"><span class="k">based</span><span class="v">Vienna, Austria · EU citizen · driving licence B</span><span></span></div>
-    </div>
-  </section>
-
-  <footer>static html · raspberry pi · prints as a one-page CV · 0x6b62</footer>
+<a class="skip" href="#about">skip to content</a>
+<nav class="bar" aria-label="Byte map of this page">
+<a href="#top" style="width:40.1%"><span>.head    11,022 B</span></a><a href="#about" style="width:02.3%"><span>.about      642 B</span></a><a href="#edu" style="width:02.8%"><span>.edu        776 B</span></a><a href="#job" style="width:03.5%"><span>.job        969 B</span></a><a href="#work" style="width:11.8%"><span>.work     3,243 B</span></a><a href="#cert" style="width:02.3%"><span>.cert       628 B</span></a><a href="#skills" style="width:06.8%"><span>.skills   1,857 B</span></a><a href="#contact" style="width:02.7%"><span>.contact    747 B</span></a><a href="#pad" style="width:27.7%"><span>.pad      7,606 B</span></a>
+</nav>
+<div class="sheet">
+<header id="top" class="sec">
+<p class="map"><span>0x0000 – 0x2b0e</span><span>11,022 B</span></p>
+<div class="body">
+<h1 class="name">Konstantin<br> Bauer</h1>
+<p class="role">IT student at HTL&nbsp;TGM Wien, graduating in 2027, with a focus on IT security. I like Linux, networks, and finding out how systems work on the inside.</p>
+<p class="sig">0x6b = <b>k</b>, 0x62 = <b>b</b>: my initials in hex, and the exact size of this page, 27,490 bytes.</p>
+<p class="printonly">konstantin@wbauer.com · github.com/Qantrex · linkedin.com/in/konstantin-bauer-9a5952266 · Vienna,&nbsp;Austria · EU&nbsp;citizen · driving&nbsp;licence&nbsp;B</p>
+</div>
+</header>
+<main id="main">
+<section id="about" class="sec" aria-labelledby="h-about">
+<p class="map"><span>0x2b0e – 0x2d90</span><span>   642 B</span></p>
+<div class="body">
+<h2 id="h-about">.about</h2>
+<p class="lead">I build things that run on a server, harden one, or simulate one.</p>
+<p class="txt">I'm careful by default: least privilege, tests and backups. The homelab is where I learn the parts school hasn't reached yet.</p>
+<p class="txt">IT security is where I want to go, penetration testing most of all. After the Matura in 2027 comes military service, and I'm applying for the Austrian Armed Forces' cyber track. I live in Vienna.</p>
+</div>
+</section>
+<section id="edu" class="sec" aria-labelledby="h-edu">
+<p class="map"><span>0x2d90 – 0x3098</span><span>   776 B</span></p>
+<div class="body">
+<h2 id="h-edu">.edu</h2>
+<div class="item">
+<span class="ttl">HTL TGM Wien, Information Technology</span><span class="tag">2022 – 2027</span>
+<p class="desc">Systems engineering with a specialisation in IT security, class 5BHIT. I finish with the Matura and diploma in summer 2027. I passed year 2 with distinction (ausgezeichneter Erfolg) and years 3 and 4 with merit (guter Erfolg).</p>
+</div>
+<div class="item">
+<span class="ttl">GRG 23, Dual Language Program</span><span class="tag">2018 – 2022</span>
+<p class="desc">Lower secondary school, with subjects taught in English by native speakers.</p>
+</div>
+</div>
+</section>
+<section id="job" class="sec" aria-labelledby="h-job">
+<p class="map"><span>0x3098 – 0x3461</span><span>   969 B</span></p>
+<div class="body">
+<h2 id="h-job">.job</h2>
+<div class="item">
+<span class="ttl">Event staff at Sulzenbacher Eventmanagement</span><span class="tag">Vienna · Jul – Aug 2026</span>
+<p class="desc">A summer job with a Vienna event company. I worked in service, at the bar, in the kitchen and in logistics at events.</p>
+</div>
+<div class="item">
+<span class="ttl">IT intern at A1 Telekom Austria</span><span class="tag">Technology unit · Aug 2024</span>
+<p class="desc">A month in the Technology unit of Austria's largest telecom. I commissioned Cisco ACI leaf switches, took enterprise network and server hardware out of service (Catalyst&nbsp;6500, firewalls, storage), helped plan customer networks, ran fibre, RJ45 and DAC cabling, and fixed servers down to swapping disks, power supplies and battery packs.</p>
+</div>
+</div>
+</section>
+<section id="work" class="sec" aria-labelledby="h-work">
+<p class="map"><span>0x3461 – 0x410c</span><span> 3,243 B</span></p>
+<div class="body">
+<h2 id="h-work">.work</h2>
+<div class="item">
+<span class="ttl">Project River Zero</span><span class="tag">diploma thesis · unity · c#</span>
+<p class="desc">A psychological horror game about hacking, made by four of us with equal shares and planned for release in spring 2027. My part is revelOS, the operating system the whole game takes place in. It has a virtual file system with owners and permissions, command processing, and SSH into other simulated machines. My thesis asks how to build a system like that so it stays easy to extend. I also built the project site, a replica of the revelOS desktop in Vue and three.js. <a href="https://qantrex.github.io/prz-website/">project site ↗</a> · <a href="https://kbauer.itch.io/prz">itch.io ↗</a></p>
+</div>
+<div class="item">
+<span class="ttl">Homelab agent</span><span class="tag">bash · python · claude code</span>
+<p class="desc">An AI assistant for my homelab with ten scheduled jobs, from a morning briefing to a watchdog that checks the servers every five minutes and restarts failed services. I built it around one rule: scripts fetch the data and the model only reads it. Anything that changes a system waits for my approval on my phone, with signed buttons and rate limits, and more than 350 tests keep it that way.</p>
+</div>
+<div class="item">
+<span class="ttl">Homelab</span><span class="tag">debian · docker · tailscale</span>
+<p class="desc">Two Raspberry Pis and an old ThinkPad, running about 30 containers on a private tailnet: a media server, Pi-hole with Unbound, Home Assistant and Paperless. The one public exception is this site, which goes out through a Cloudflare Tunnel. Backups run every night, encrypted and off-site, on free tiers with hard caps. The media server has been in daily use for over a year.</p>
+</div>
+<div class="item">
+<span class="ttl">Security practice</span><span class="tag">ctf · web · forensics</span>
+<p class="desc">Hacker101 CTFs and school labs. I've done web testing with Burp Suite, ffuf and sqlmap, password attacks with Hydra and hashcat, and network forensics in Wireshark, where I traced a worm infection through a Windows domain from a packet capture. I write up every tool and attack flow in my own notes.</p>
+</div>
+<div class="item">
+<span class="ttl"><a href="https://github.com/Qantrex/Arch-Linux-Hardening">Arch-Linux-Hardening ↗</a></span><span class="tag">bash</span>
+<p class="desc">Scripts that harden SSH, users, permissions and services. A second script then checks the result instead of assuming it worked.</p>
+</div>
+<div class="item">
+<span class="ttl"><a href="https://github.com/Qantrex/ITSI-7.5">ITSI-7.5 ↗</a></span><span class="tag">docker compose</span>
+<p class="desc">A PHP and MariaDB web app behind Caddy and a ModSecurity WAF, all set up from a single compose file.</p>
+</div>
+<div class="item">
+<span class="ttl"><a href="https://wbauer.com">wbauer.com ↗</a></span><span class="tag">freelance · web</span>
+<p class="desc">My first client project: a business website that I designed, built and shipped myself.</p>
+</div>
+</div>
+</section>
+<section id="cert" class="sec" aria-labelledby="h-cert">
+<p class="map"><span>0x410c – 0x4380</span><span>   628 B</span></p>
+<div class="body">
+<h2 id="h-cert">.cert</h2>
+<div class="cert"><span class="n">CompTIA IT Fundamentals (ITF+)</span><span class="y">2023</span></div>
+<div class="cert"><span class="n">Cloudflight Coding Contest</span><span class="y">5× · 2023–2025</span><span class="d">CCC 37 through 41, each in both the classic and the school round.</span></div>
+<div class="cert"><span class="n">ECDL Standard</span><span class="y">2021</span><span class="d">All five modules.</span></div>
+</div>
+</section>
+<section id="skills" class="sec" aria-labelledby="h-skills">
+<p class="map"><span>0x4380 – 0x4ac1</span><span> 1,857 B</span></p>
+<div class="body">
+<h2 id="h-skills">.skills</h2>
+<div class="row"><span class="k">systems</span><span class="v"><span>Linux (Debian, Arch)</span>&nbsp;<i>·</i> <span>Docker</span>&nbsp;<i>·</i> <span>Bash</span>&nbsp;<i>·</i> <span>DNS</span>&nbsp;<i>·</i> <span>WireGuard</span>&nbsp;<i>·</i> <span>Tailscale</span>&nbsp;<i>·</i> <span>Cloudflare Tunnel</span>&nbsp;<i>·</i> <span>Home Assistant</span></span></div>
+<div class="row"><span class="k">security</span><span class="v"><span>Burp Suite</span>&nbsp;<i>·</i> <span>Wireshark</span>&nbsp;<i>·</i> <span>nmap</span>&nbsp;<i>·</i> <span>ffuf</span>&nbsp;<i>·</i> <span>sqlmap</span>&nbsp;<i>·</i> <span>Hydra</span>&nbsp;<i>·</i> <span>hashcat</span>&nbsp;<i>·</i> <span>ModSecurity</span></span></div>
+<div class="row"><span class="k">code</span><span class="v"><span>Python</span>&nbsp;<i>·</i> <span>C# / Unity</span>&nbsp;<i>·</i> <span>C / C++</span>&nbsp;<i>·</i> <span>Java</span>&nbsp;<i>·</i> <span>TypeScript / Vue</span>&nbsp;<i>·</i> <span>SQL</span></span></div>
+<div class="row"><span class="k">hardware</span><span class="v"><span>Raspberry Pi</span>&nbsp;<i>·</i> <span>ESP32 / Arduino</span>&nbsp;<i>·</i> <span>soldering</span>&nbsp;<i>·</i> <span>3D printing</span>&nbsp;<i>·</i> <span>DIY speakers</span></span></div>
+<div class="row noprint"><span class="k">interests</span><span class="v"><span>game development</span>&nbsp;<i>·</i> <span>Linux ricing (Arch + Hyprland)</span>&nbsp;<i>·</i> <span>building hardware</span></span></div>
+<div class="row"><span class="k">languages</span><span class="v"><span>German, native</span>&nbsp;<i>·</i> <span>English, fluent (C2 certificate)</span></span></div>
+</div>
+</section>
+<section id="contact" class="sec" aria-labelledby="h-contact">
+<p class="map"><span>0x4ac1 – 0x4dac</span><span>   747 B</span></p>
+<div class="body">
+<h2 id="h-contact">.contact</h2>
+<div class="row"><span class="k">email</span><a class="v" href="mailto:konstantin@wbauer.com">konstantin@wbauer.com</a></div>
+<div class="row"><span class="k">github</span><a class="v" href="https://github.com/Qantrex">github.com/Qantrex ↗</a></div>
+<div class="row"><span class="k">linkedin</span><a class="v" href="https://www.linkedin.com/in/konstantin-bauer-9a5952266/">in/konstantin-bauer ↗</a></div>
+<div class="row"><span class="k">based</span><span class="v">Vienna, Austria · EU citizen · driving licence B</span></div>
+</div>
+</section>
 </main>
-
-<script>
-(function () {
-  "use strict";
-  var root = document.documentElement; root.classList.add("js");
-  var reduce = false; try { reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
-
-  /* copy buttons */
-  document.querySelectorAll(".copy").forEach(function (b) {
-    b.addEventListener("click", function () {
-      var txt = b.getAttribute("data-copy") || "", ok = function () { b.textContent = "copied"; setTimeout(function () { b.textContent = "copy"; }, 1300); };
-      try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, function () { sel(txt); ok(); }); else { sel(txt); ok(); } }
-      catch (e) { sel(txt); }
-    });
-  });
-  function sel(t) { try { var a = document.createElement("textarea"); a.value = t; a.style.cssText = "position:fixed;opacity:0"; document.body.appendChild(a); a.select(); document.execCommand && document.execCommand("copy"); document.body.removeChild(a); } catch (e) {} }
-
-  /* fig.1: how this page got to you. Filled in from this very request when the data is there:
-     nginx stamps each response with the Pi's clock (Server-Timing "pi"), and a cached copy keeps
-     that stamp, so its age says whether the Pi or Cloudflare's cache served this visit. */
-  (function () {
-    var trace = document.getElementById("trace"); if (!trace) return;
-    var el = function (id) { return document.getElementById(id); };
-    var cities = { VIE: "Vienna", FRA: "Frankfurt", MUC: "Munich", DUS: "Düsseldorf", HAM: "Hamburg", BER: "Berlin", TXL: "Berlin",
-      ZRH: "Zurich", GVA: "Geneva", PRG: "Prague", BUD: "Budapest", BTS: "Bratislava", ZAG: "Zagreb", LJU: "Ljubljana", MXP: "Milan",
-      FCO: "Rome", WAW: "Warsaw", AMS: "Amsterdam", BRU: "Brussels", CDG: "Paris", LHR: "London", MAD: "Madrid", ARN: "Stockholm",
-      CPH: "Copenhagen", HEL: "Helsinki", OSL: "Oslo", DUB: "Dublin", IAD: "Ashburn", EWR: "Newark", ORD: "Chicago", SJC: "San Jose",
-      LAX: "Los Angeles", SIN: "Singapore", NRT: "Tokyo", SYD: "Sydney" };
-    function live(parent, before, value, after) {
-      parent.appendChild(document.createTextNode(before));
-      var b = document.createElement("b"); b.textContent = value; parent.appendChild(b);
-      parent.appendChild(document.createTextNode(after));
-    }
-    function ago(sec) {
-      var m = Math.round(sec / 60), h = Math.round(sec / 3600), d = Math.round(sec / 86400);
-      if (sec < 90) return Math.round(sec) + " seconds";
-      if (m < 90) return m + " minutes";
-      if (h < 48) return h + " hours";
-      return d + " days";
-    }
-
-    var nav = null; try { nav = performance.getEntriesByType("navigation")[0] || null; } catch (e) {}
-    var sent = null; try { (nav.serverTiming || []).forEach(function (t) { if (t.name === "pi") sent = parseFloat(t.description); }); } catch (e) {}
-    var fromBrowser = !!nav && nav.transferSize === 0 && nav.encodedBodySize > 0;
-    var age = sent ? Math.max(0, Date.now() / 1000 - sent) : null;
-    var served = sent === null ? null : fromBrowser ? "browser" : age > 15 ? "edge" : "pi";
-    var proto = nav && { h3: "HTTP/3", h2: "HTTP/2", "http/1.1": "HTTP/1.1" }[nav.nextHopProtocol];
-    var ttfb = nav ? Math.round(nav.responseStart - nav.requestStart) : 0;
-
-    if (nav && nav.encodedBodySize > 0) { var dn = el("d-nginx"); live(dn, " This page is ", (nav.encodedBodySize / 1024).toFixed(1) + " KB", " compressed."); }
-    var verdict = el("verdict");
-    if (served === "edge") {
-      verdict.textContent = ""; live(verdict, "This copy left my Pi ", ago(age) + " ago", ". Since then Cloudflare has handed it out on its own, so the Pi did no work for your visit.");
-      el("hop-pi").classList.add("idle"); el("hop-nginx").classList.add("idle");
-    } else if (served === "pi") {
-      verdict.textContent = "Your request went all the way home, and the Pi sent this copy just now. Thanks for waking it up.";
-    } else if (served === "browser") {
-      verdict.textContent = ""; live(verdict, "Your browser kept this copy from an earlier visit. It left my Pi ", ago(age) + " ago", ".");
-      el("hop-edge").classList.add("idle"); el("hop-pi").classList.add("idle"); el("hop-nginx").classList.add("idle");
-    }
-
-    function edge(colo) {
-      var d = el("d-edge"); d.textContent = "";
-      if (colo) live(d, "Cloudflare's edge in ", (cities[colo] ? cities[colo] + " " : "") + "(" + colo + ")", ".");
-      else d.textContent = "The nearest Cloudflare edge.";
-      if (served === "edge" && ttfb > 0) live(d, " It answered in ", ttfb + " ms", proto ? " over " + proto + "." : ".");
-      else if (proto && served !== "browser") d.appendChild(document.createTextNode(" You came in over " + proto + "."));
-      d.appendChild(document.createTextNode(" It keeps a copy of this page for up to an hour."));
-    }
-    if (/^https?:$/.test(location.protocol) && window.fetch) {
-      fetch(location.pathname, { method: "HEAD", cache: "no-store", credentials: "omit" })
-        .then(function (r) { var ray = r.headers.get("cf-ray") || ""; edge(ray.split("-")[1] || ""); }, function () {});
-    }
-
-    /* one small packet: down to whoever served this copy, and back up to you */
-    if (reduce || !trace.animate) return;
-    function y(hop) { var d = hop.querySelector(".dot"); return hop.offsetTop + d.offsetTop + 2; }
-    function send() {
-      var to = served === "pi" ? el("hop-nginx") : served === "browser" ? null : el("hop-edge");
-      if (!to) return;
-      var pk = document.createElement("span"); pk.className = "packet"; pk.setAttribute("aria-hidden", "true"); trace.appendChild(pk);
-      var a = "translateY(" + y(el("hop-you")) + "px)", b = "translateY(" + y(to) + "px)", ms = served === "pi" ? 3600 : 2200;
-      var anim = pk.animate([{ transform: a }, { transform: b, offset: 0.5 }, { transform: a }], { duration: ms, easing: "ease-in-out" });
-      anim.onfinish = function () { pk.remove(); };
-    }
-    try {
-      var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); setTimeout(send, 500); } }, { threshold: 0.6 });
-      io.observe(trace);
-    } catch (e) { send(); }
-  })();
-
-  /* fig.2: pocket revelOS. The same ideas as the real one in River Zero, in a few kilobytes:
-     a file system with an owner bit, a small command parser, and ssh that swaps the file system. */
-  (function () {
-    var out = document.getElementById("shellout"), form = document.getElementById("shellform"), input = document.getElementById("shellin"),
-        ps1 = document.getElementById("ps1"), scr = document.getElementById("scr"), title = document.getElementById("sh-title"), flagEl = document.getElementById("sh-flag");
-    if (!out || !form || !input) return;
-    function F(text, o) { o = o || {}; o.f = text; return o; }
-    function D(kids, o) { o = o || {}; o.d = kids; return o; }
-    var L = function () { return Array.prototype.join.call(arguments, "\n"); };
-
-    var hosts = {
-      "6b62": D({
-        home: D({ guest: D({
-          "welcome.txt": F(L(
-            "Hi, I'm Konstantin.", "",
-            "This is a pocket version of revelOS, the operating system I'm writing for my diploma thesis game, River Zero. Like the real one, it has a file system with owners and permissions, a command parser, and ssh between machines.", "",
-            "notes/ holds real things I broke and fixed in my homelab. projects/ has the longer story behind the work on this page.", "",
-            "There is also a flag in here. Not everything shows up in a plain ls.")),
-          "contact.txt": F(L("email     konstantin@wbauer.com", "github    github.com/Qantrex", "linkedin  linkedin.com/in/konstantin-bauer-9a5952266")),
-          ".bash_history": F(L("cat notes/power.txt", "ssh guest@pi-media", "ls -a /var/backups", "base64 -d /var/backups/.note.b64", "exit", "# note to self: clear this file")),
-          notes: D({
-            "dns.txt": F(L("2026-10-14  Pi-hole answered nobody", "",
-              "After setting up Pi-hole, its stats showed 99 queries. Ever. All of them came from the Pi itself.", "",
-              "Inside Docker, the listening mode LOCAL only trusts the Docker bridge network, so every query from the LAN and the tailnet was dropped, without an error anywhere.", "",
-              "Fix: listeningMode ALL.", "Lesson: test from the client, not from the server.")),
-            "tailnet.txt": F(L("2026-09-28  Two servers, gone since July", "",
-              "Both Pis had dropped off my tailnet in early July because their keys expired. Nobody noticed for almost three months.", "",
-              "Fix: the servers no longer have expiring keys, and a dead-man check on a different machine pings the others every five minutes and pushes to my phone if one goes quiet.",
-              "Lesson: whatever watches a server has to run somewhere else.")),
-            "memory-limits.txt": F(L("2026-10-14  Memory limits that did nothing", "",
-              "I gave Paperless a 1.5 GB memory limit so it could not starve the rest of a 4 GB Pi. Docker took the setting, but the Pi's kernel had the memory cgroup switched off, so nothing enforced it.", "",
-              "Fix: cgroup_enable=memory in cmdline.txt, then checking that the limit actually holds.", "Lesson: a setting you haven't seen enforced is only a wish.")),
-            "power.txt": F(L("2026-10-21  301 under-voltage warnings a day", "",
-              "pi-media kept logging under-voltage, worst in the afternoon. The peaks lined up with the SSD being busy. Its SATA board wants its own 5 V supply, but it was powered from the Pi, so Pi, SSD and fan shared one 3 A input.", "",
-              "Fix: the board goes back, and the SSD moves to the ThinkPad.", "Lesson: line the errors up against the load before blaming the power supply."))
-          }),
-          projects: D({
-            "river-zero.txt": F(L("River Zero  (diploma thesis, 2025 to 2027)", "",
-              "A psychological horror hacking game. You play a freelance operator who can barely pay rent, and the whole game takes place inside one computer.", "",
-              "My part is that computer: revelOS. It has a virtual file system with owners and permissions, command processing, and ssh into other machines, where every command quietly works on the remote file system instead.", "",
-              "My thesis asks how to build a simulated OS like that so it stays easy to extend.", "",
-              "project site: qantrex.github.io/prz-website")),
-            "homelab.txt": F(L("Homelab", "",
-              "Three machines at home: two Raspberry Pis and an old ThinkPad, running about 30 containers. A media server behind a VPN kill switch, Pi-hole with Unbound for DNS, Home Assistant, Paperless for documents, and this website.", "",
-              "Everything is reachable only over my tailnet. The one exception is this site, which goes out through a Cloudflare Tunnel, so there are no open ports at home.", "",
-              "Backups run every night, encrypted, and go off-site on free tiers. The caps are written into the scripts, so it can never cost money by accident.")),
-            "agent.txt": F(L("Homelab agent", "",
-              "An AI assistant for the homelab with ten scheduled jobs. Among them: a morning briefing with weather, timetable changes, calendar, mail and parcels, and a watchdog that checks the servers every five minutes and restarts what failed.", "",
-              "The rule I built it around: scripts fetch the data and the model only reads it. Anything that changes a system is a whitelisted action that waits for my approval on my phone, with signed buttons and rate limits. More than 350 tests keep it that way.")),
-            "hardening.txt": F(L("Arch-Linux-Hardening", "",
-              "Bash scripts that harden a fresh Arch install: SSH with keys only, no root login, file permissions, services. A second script checks the result instead of assuming it worked.", "",
-              "github.com/Qantrex/Arch-Linux-Hardening"))
-          })
-        }) }),
-        etc: D({ hostname: F("6b62") }),
-        root: D({}, { root: true })
-      }),
-      "pi-media": D({
-        home: D({ guest: D({
-          "todo.txt": F(L("- move the media SSD to the ThinkPad (waiting on a USB 3 enclosure)", "- send the SATA board back", "- update the ThinkPad's BIOS"))
-        }) }),
-        "var": D({ backups: D({
-          "pi-media-2026-10-22.tar.gz.gpg": F("", { bin: "This one is encrypted with AES256. Even I need the key for it." }),
-          ".note.b64": F("NmI2MntuMHRfM3Yzcnl0aDFuZ19zaDB3c18xbl9sc30=")
-        }) }),
-        etc: D({ hostname: F("pi-media") }),
-        root: D({}, { root: true })
-      })
-    };
-
-    var HOME = ["home", "guest"], host = "6b62", cwd = HOME.slice(), back = null, hist = [], hi = 0, found = false;
-
-    function where(parts) {
-      var p = "/" + parts.join("/");
-      return p === "/home/guest" ? "~" : p.indexOf("/home/guest/") === 0 ? "~" + p.slice(11) : p;
-    }
-    function prompt() { var t = "guest@" + host + ":" + where(cwd); ps1.textContent = t + "$"; title.textContent = t.replace(":", ": "); }
-    function resolve(p) {
-      if (!p) return cwd.slice();
-      var parts = p.charAt(0) === "/" ? [] : p.charAt(0) === "~" ? HOME.slice() : cwd.slice();
-      p.replace(/^~/, "").split("/").forEach(function (seg) { if (!seg || seg === ".") return; if (seg === "..") parts.pop(); else parts.push(seg); });
-      return parts;
-    }
-    function look(parts) {
-      var n = hosts[host];
-      for (var i = 0; i < parts.length; i++) {
-        if (n.root) return { denied: true };
-        if (!n.d || !Object.prototype.hasOwnProperty.call(n.d, parts[i])) return null;
-        n = n.d[parts[i]];
-      }
-      return n.root && n.d ? { node: n, denied: true } : { node: n };
-    }
-    function rel(parts) {
-      var c = "/" + cwd.join("/") + "/", p = "/" + parts.join("/");
-      return p.indexOf(c) === 0 && cwd.length ? p.slice(c.length) : where(parts);
-    }
-
-    function line(text, cls) { var d = document.createElement("div"); d.className = "ln" + (cls ? " " + cls : ""); d.textContent = text; out.appendChild(d); return d; }
-    function echo(cmd) { var d = line("", "cmd"); var p = document.createElement("span"); p.className = "pr"; p.textContent = ps1.textContent + " "; d.appendChild(p); d.appendChild(document.createTextNode(cmd)); }
-    function listing(dirParts, names) {
-      var d = line("", "ls");
-      names.forEach(function (name) {
-        var parts = dirParts.concat(name), n = look(parts).node, isDir = !!n.d, b = document.createElement("button");
-        b.type = "button"; b.className = isDir ? "dir" : ""; b.textContent = name + (isDir ? "/" : "");
-        b.addEventListener("click", function () {
-          var r = rel(parts);
-          if (isDir) { run("cd " + r); run("ls"); } else run("cat " + r);
-        });
-        d.appendChild(b); d.appendChild(document.createTextNode(" "));   // spaces for screen readers; flex layout ignores them
-      });
-    }
-
-    var cmds = {
-      help: function () {
-        line("ls [-a] [dir]   cd <dir>   cat <file>   pwd   whoami   hostname", "dim");
-        line("ssh <user>@<host>   exit   base64 -d <file>   history   clear", "dim");
-      },
-      ls: function (args) {
-        var all = false, target = null;
-        args.forEach(function (a) { if (/^-[la]+$/.test(a)) all = all || a.indexOf("a") > -1; else target = a; });
-        var parts = resolve(target), r = look(parts);
-        if (!r) return line("ls: cannot access '" + target + "': No such file or directory");
-        if (r.denied) return line("ls: cannot open directory '" + where(parts) + "': Permission denied");
-        if (!r.node.d) return line(target);
-        var names = Object.keys(r.node.d).filter(function (k) { return all || k.charAt(0) !== "."; }).sort(function (x, y) {
-          var dx = !!r.node.d[x].d, dy = !!r.node.d[y].d; return dx === dy ? x.localeCompare(y) : dx ? -1 : 1;
-        });
-        if (names.length) listing(parts, names);
-      },
-      cd: function (args) {
-        var parts = resolve(args[0] || "~"), r = look(parts);
-        if (!r) return line("cd: no such file or directory: " + args[0]);
-        if (r.denied) return line("cd: permission denied: " + where(parts));
-        if (!r.node.d) return line("cd: not a directory: " + args[0]);
-        cwd = parts; prompt();
-      },
-      cat: function (args) {
-        if (!args.length) return line("cat: which file? Try ls first.", "dim");
-        var parts = resolve(args[0]), r = look(parts);
-        if (!r) return line("cat: " + args[0] + ": No such file or directory");
-        if (r.denied) return line("cat: " + args[0] + ": Permission denied");
-        if (r.node.d) return line("cat: " + args[0] + ": Is a directory");
-        if (r.node.bin) return line(r.node.bin, "dim");
-        line(r.node.f);
-      },
-      pwd: function () { line("/" + cwd.join("/")); },
-      whoami: function () { line("guest"); },
-      hostname: function () { line(host); },
-      uname: function () { line("revelOS-lite 0.1, a pocket version of the OS in River Zero"); },
-      echo: function (args) { line(args.join(" ")); },
-      history: function () { hist.forEach(function (h, i) { line(("   " + (i + 1)).slice(-4) + "  " + h); }); },
-      clear: function () { out.textContent = ""; },
-      ssh: function (args) {
-        var t = (args[0] || "").split("@"), user = t.length > 1 ? t[0] : "guest", to = (t.length > 1 ? t[1] : t[0]).toLowerCase();
-        if (!to) return line("usage: ssh <user>@<host>", "dim");
-        if (to === host || to === "localhost") return line("You are already on " + host + ".", "dim");
-        if (to === "pi-two" || to === "mediabox") return line("ssh: connect to host " + to + " port 22: No route to host. It is only reachable over my tailnet.");
-        if (!hosts[to]) return line("ssh: Could not resolve hostname " + to + ": Name or service not known");
-        if (user === "root") return line(user + "@" + to + ": Permission denied (publickey). Root login is switched off on all my machines.");
-        if (user !== "guest") return line(user + "@" + to + ": Permission denied (publickey). Only guest has a key here.");
-        line("Authenticated to " + to + " with the guest key.", "dim");
-        back = { host: host, cwd: cwd }; host = to; cwd = HOME.slice(); prompt();
-      },
-      exit: function () {
-        if (!back) return line("This is as far out as it goes. You can just scroll on.", "dim");
-        line("Connection to " + host + " closed.", "dim");
-        host = back.host; cwd = back.cwd; back = null; prompt();
-      },
-      base64: function (args) {
-        var decode = args.some(function (a) { return a === "-d" || a === "--decode"; }), file = args.filter(function (a) { return a.charAt(0) !== "-"; })[0];
-        if (!file) return line("usage: base64 [-d] <file>", "dim");
-        var parts = resolve(file), r = look(parts);
-        if (!r) return line("base64: " + file + ": No such file or directory");
-        if (r.denied) return line("base64: " + file + ": Permission denied");
-        if (r.node.d) return line("base64: read error: Is a directory");
-        if (!decode) { try { return line(btoa(unescape(encodeURIComponent(r.node.f)))); } catch (e) { return line("base64: cannot encode this one"); } }
-        var txt; try { txt = atob(r.node.f.trim()); } catch (e) { return line("base64: invalid input"); }
-        line(txt);
-        if (/^6b62\{/.test(txt) && !found) {
-          found = true; flagEl.textContent = "flag: found"; flagEl.className = "got";
-          line("Nice. Send it to konstantin@wbauer.com and tell me how you got here.", "hi");
-        }
-      },
-      sudo: function () {
-        line("guest is not in the sudoers file. This incident will be reported.");
-        line("(It would land on my phone and wait for approval, like every change in the real homelab.)", "dim");
-      },
-      rm: function () { line("rm: read-only file system. The real backups run every night anyway.", "dim"); }
-    };
-    cmds.dir = cmds.ls; cmds.ll = function () { cmds.ls(["-a"]); }; cmds.logout = cmds.exit;
-
-    function run(raw) {
-      var c = raw.trim(); echo(c); if (!c) return;
-      hist.push(c); hi = hist.length;
-      if (c.indexOf("|") > -1) { line("Pipes are not part of the pocket version. The real one has them.", "dim"); return; }
-      var p = c.split(/\s+/), n = p[0];
-      (cmds[n] || function () { line("revelos: command not found: " + n + ". Try help.", "dim"); })(p.slice(1));
-      scr.scrollTop = scr.scrollHeight;
-    }
-
-    function complete() {
-      var v = input.value, m = v.match(/(\S*)$/), word = m[1], pre = v.slice(0, v.length - word.length);
-      var pool;
-      if (!pre.trim()) pool = Object.keys(cmds).map(function (k) { return { name: k, full: k + " " }; });
-      else {
-        var cut = word.lastIndexOf("/"), dirPart = cut > -1 ? word.slice(0, cut + 1) : "", base = word.slice(cut + 1), r = look(resolve(dirPart || "."));
-        if (!r || r.denied || !r.node.d) return;
-        pool = Object.keys(r.node.d).filter(function (k) { return base.charAt(0) === "." || k.charAt(0) !== "."; })
-          .map(function (k) { return { name: k, full: dirPart + k + (r.node.d[k].d ? "/" : " ") }; });
-        word = base;
-      }
-      var hits = pool.filter(function (x) { return x.name.indexOf(word) === 0; });
-      if (hits.length === 1) input.value = pre + hits[0].full;
-      else if (hits.length > 1) { echo(v); line(hits.map(function (x) { return x.name; }).join("   "), "dim"); scr.scrollTop = scr.scrollHeight; }
-    }
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var v = input.value, typing = !!timer;   // while the intro is typing, the input holds its text, not the visitor's
-      stopIntro(); if (!typing) run(v); input.value = "";
-    });
-    input.addEventListener("keydown", function (e) {
-      if (e.key === "Tab") { e.preventDefault(); complete(); }
-      else if (e.key === "ArrowUp") { if (hi > 0) { hi--; input.value = hist[hi] || ""; } e.preventDefault(); }
-      else if (e.key === "ArrowDown") { if (hi < hist.length) { hi++; input.value = hist[hi] || ""; } e.preventDefault(); }
-    });
-    input.addEventListener("focus", stopIntro);
-    scr.addEventListener("click", function (e) { if (e.target === scr || e.target === out || e.target.classList.contains("ln")) input.focus({ preventScroll: true }); });
-
-    /* the intro types itself the first time the shell scrolls into view */
-    var intro = ["cat welcome.txt", "ls"], timer = null;
-    function stopIntro() { if (!intro.length) return; if (timer) clearTimeout(timer); timer = null; input.value = ""; while (intro.length) run(intro.shift()); }
-    function typeNext() {
-      if (!intro.length) return;
-      var cmd = intro[0], i = 0;
-      (function tick() {
-        input.value = cmd.slice(0, ++i);
-        if (i < cmd.length) { timer = setTimeout(tick, 45); return; }
-        timer = setTimeout(function () { intro.shift(); input.value = ""; run(cmd); timer = setTimeout(typeNext, 700); }, 250);
-      })();
-    }
-    prompt();
-    if (reduce) stopIntro();
-    else try {
-      var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); timer = setTimeout(typeNext, 400); } }, { threshold: 0.5 });
-      io.observe(scr);
-    } catch (e) { stopIntro(); }
-  })();
-})();
-</script>
+<section id="pad" class="sec" aria-labelledby="h-pad">
+<p class="map"><span>0x4dac – 0x6b62</span><span> 7,606 B</span></p>
+<div class="body">
+<h2 id="h-pad">.pad</h2>
+<p class="txt">The rest of the budget, padded the way a linker pads an image: a short message, then zero bytes. Decode it with <code>xxd -r -p</code>.</p>
+<p class="hex">48692c20796f75206465636f646564207468652070616464696e672e204576657279206f6e65206f662074686573652032372c343930206279746573206973206163636f756e74656420666f722c20616e642074686520666c616720697320696e2074686520726573706f6e736520686561646572732e204b6f6e7374616e74696e0a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</p>
+<p class="total">total  27,490 B = 0x6b62</p>
+</div>
+</section>
+</div>
 </body>
 </html>

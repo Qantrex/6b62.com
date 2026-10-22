@@ -2,35 +2,31 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>404 · Konstantin Bauer</title>
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light dark">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-  :root { --paper:#edeeec; --ink:#16171a; --ink-2:#4e4f55; --faint:#77787d; --accent:#5a3ab0;
-    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    --sans:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color-scheme: light; }
-  @media (prefers-color-scheme: dark) { :root { --paper:#0b0c0e; --ink:#ecedee; --ink-2:#a7a8ae; --faint:#74757b; --accent:#c4a7e7; color-scheme: dark; } }
+  :root { --paper: #edeeec; --ink: #16171a; --ink-2: #4e4f55; --accent: #5a3ab0;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color-scheme: light; }
+  @media (prefers-color-scheme: dark) { :root { --paper: #0b0c0e; --ink: #ecedee; --ink-2: #a7a8ae; --accent: #c4a7e7; color-scheme: dark; } }
   * { box-sizing: border-box; }
   html, body { height: 100%; }
-  body { margin: 0; background: var(--paper); color: var(--ink);
-    font: 400 16px/1.6 var(--sans); display: grid; place-items: center;
-    padding: max(22px, env(safe-area-inset-top,0px)) max(22px, env(safe-area-inset-left,0px)); -webkit-font-smoothing: antialiased; }
+  body { margin: 0; display: grid; place-items: center; padding: 22px; background: var(--paper); color: var(--ink); font: 400 16px/1.6 var(--sans); }
   main { max-width: 420px; }
-  .addr { margin: 0 0 10px; font: 500 12px var(--mono); color: var(--accent); letter-spacing: .04em; }
-  h1 { margin: 0; font: 800 clamp(56px,16vw,104px)/0.9 var(--sans); letter-spacing: -0.04em; }
+  .addr { margin: 0 0 10px; font: 500 12px var(--mono); color: var(--accent); }
+  h1 { margin: 0; font: 800 clamp(56px, 16vw, 104px)/.9 var(--sans); letter-spacing: -.04em; }
   p { margin: 14px 0 0; color: var(--ink-2); font: 500 14px var(--mono); }
   a { color: var(--ink); border-bottom: 1px solid var(--accent); text-decoration: none; }
   a:hover { color: var(--accent); }
 </style>
 </head>
 <body>
-  <main>
-    <p class="addr">0x194</p>
-    <h1>404</h1>
-    <p>no such file — <a href="/">return to /</a></p>
-  </main>
+<main>
+<p class="addr">0x194</p>
+<h1>404</h1>
+<p>There is no such file here. <a href="/">Back to the start</a></p>
+</main>
 </body>
 </html>
