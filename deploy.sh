@@ -38,6 +38,10 @@ tar czf - --owner=0 --group=0 site nginx |
 
 origin=$(ssh -o BatchMode=yes "$HOST" "curl -s -H 'Accept-Encoding: identity' http://127.0.0.1:$PORT/ | wc -c")
 if [ "$origin" = "$SIZE" ]; then echo "origin: $origin B (ok)"; else echo "origin: $origin B, expected $SIZE" >&2; exit 1; fi
-public=$(curl -s -m 8 -H 'Accept-Encoding: identity' "https://$PUBHOST/" | wc -c || true)
-echo "public: $public B$( [ "$public" = "$SIZE" ] || echo " (Cloudflare still has the old copy, or it rewrites the body)")"
+# Every version is exactly $SIZE bytes, so compare content, not size.
+osum=$(ssh -o BatchMode=yes "$HOST" "curl -s -H 'Accept-Encoding: identity' http://127.0.0.1:$PORT/ | sha256sum" | cut -c1-16)
+psum=$(curl -s -m 8 -H 'Accept-Encoding: identity' "https://$PUBHOST/" | sha256sum | cut -c1-16)
+fsum=$(curl -s -m 8 -H 'Accept-Encoding: identity' "https://$PUBHOST/?deploy=$(date +%s%N)" | sha256sum | cut -c1-16)
+[ "$fsum" = "$osum" ] && echo "public (fresh): same bytes as the origin" || echo "public (fresh): DIFFERENT from the origin, so Cloudflare rewrites the body" >&2
+[ "$psum" = "$osum" ] && echo "public (bare URL): up to date" || echo "public (bare URL): still the previous copy from Cloudflare's cache"
 echo "Reminder: purge the Cloudflare cache after a deploy (Caching -> Configuration -> Purge Everything), or wait up to 1 h."
