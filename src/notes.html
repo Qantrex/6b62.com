@@ -45,7 +45,7 @@
 </div>
 <div class="item">
 <span class="ttl">One missing disk can stop a boot</span><span class="tag">2026-10-21</span>
-<p class="desc">My media server mounts its SSD from fstab without nofail. If the SSD is missing at boot, Debian drops into emergency mode and nothing starts. The fix is to comment out that line before the SSD leaves, and to add nofail to the new line on the ThinkPad.</p>
+<p class="desc">My media server mounts its SSD from fstab without nofail. If the SSD is missing at boot, Debian drops into emergency mode and nothing starts. The fix is nofail on the mount, so a missing disk can't block the boot.</p>
 <p class="desc lesson">Plan the failure of the thing you are about to unplug.</p>
 </div>
 </div>
