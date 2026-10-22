@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Konstantin Bauer</title>
-<meta name="description" content="Konstantin Bauer — IT student at HTL TGM Vienna: systems engineering and IT security, a self-hosted homelab, hardening scripts, a simulated OS.">
+<meta name="description" content="Konstantin Bauer — IT student at HTL TGM Vienna, IT security track, graduating 2027: a self-hosted homelab, a simulated OS for a game, hardening scripts.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://6b62.com/">
 <meta name="color-scheme" content="light dark">
@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://new.6b62.com/">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cstyle%3Erect%7Bfill:%2316171a%7Dtext%7Bfill:%23edeeec%7D@media(prefers-color-scheme:dark)%7Brect%7Bfill:%23edeeec%7Dtext%7Bfill:%230b0c0e%7D%7D%3C/style%3E%3Crect%20width='32'%20height='32'/%3E%3Ctext%20x='16'%20y='22'%20font-family='monospace'%20font-size='15'%20font-weight='700'%20text-anchor='middle'%3Ekb%3C/text%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Konstantin Bauer","url":"https://6b62.com/","email":"mailto:konstantin@wbauer.com","jobTitle":"IT student","alumniOf":"HTL TGM Wien","knowsAbout":["Linux","Networking","IT security","Docker","Home Assistant"],"sameAs":["https://github.com/Qantrex","https://www.linkedin.com/in/konstantin-bauer-9a5952266/"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Konstantin Bauer","url":"https://6b62.com/","email":"mailto:konstantin@wbauer.com","jobTitle":"IT student","alumniOf":"HTL TGM Wien","address":{"@type":"PostalAddress","addressLocality":"Vienna","addressCountry":"AT"},"knowsAbout":["Linux","Networking","IT security","Penetration testing","Docker","Python","C#","Unity"],"sameAs":["https://github.com/Qantrex","https://www.linkedin.com/in/konstantin-bauer-9a5952266/"]}</script>
 <style>
   /* Self-hosted Archivo + JetBrains Mono (latin + latin-ext, from Google Fonts via gwfh).
      No external requests: the whole page loads only from this origin. */
@@ -96,6 +96,7 @@
   .role { margin: 20px 0 0; font: 500 clamp(15px,2.6vw,18px)/1.5 var(--sans); color: var(--ink-2); max-width: 42ch; }
   .sig  { margin: 22px 0 0; font: 500 13px/1.7 var(--mono); color: var(--faint); }
   .sig b { color: var(--accent); font-weight: 500; }
+  .printonly { display: none; }
 
   /* the plot */
   .plot { position: relative; border: 1px solid var(--rule-2); background: var(--panel);
@@ -145,7 +146,11 @@
 
   /* stack */
   .syms { font: 500 13.5px/2.1 var(--mono); color: var(--ink-2); }
-  .syms span { white-space: nowrap; } .syms i { color: var(--faint); font-style: normal; margin: 0 9px; }
+  .syms span { white-space: nowrap; } .syms i { color: var(--faint); font-style: normal; margin: 0 3px; }
+  .symrow { display: grid; grid-template-columns: 5.5rem minmax(0,1fr); column-gap: 14px; padding-block: 8px; border-top: 1px solid var(--rule); align-items: baseline; }
+  .symrow:first-child { border-top: 0; padding-top: 0; }
+  .symrow .k { font: 500 12px var(--mono); color: var(--faint); }
+  @media (max-width: 560px) { .symrow { grid-template-columns: 1fr; row-gap: 2px; } }
 
   /* shell */
   .shell { border: 1px solid var(--rule-2); background: var(--panel); }
@@ -162,6 +167,7 @@
   .rel { display: grid; grid-template-columns: 5.5rem minmax(0,1fr) auto; column-gap: 14px; padding-block: 12px; border-top: 1px solid var(--rule); align-items: baseline; font: 500 14px var(--mono); }
   .rel:first-child { border-top: 0; padding-top: 0; }
   .rel .k { color: var(--faint); font-size: 12px; } .rel .v { color: var(--ink); word-break: break-all; }
+  .rel span.v { word-break: normal; }
   .rel a.v { border-bottom: 1px solid transparent; } .rel a.v:hover { color: var(--accent); border-color: var(--accent); }
   .copy { font: 500 12px var(--mono); color: var(--accent); background: none; border: 0; border-bottom: 1px solid var(--rule-2); cursor: pointer; padding: 0 0 1px; white-space: nowrap; }
   .copy:hover { border-color: var(--accent); }
@@ -174,18 +180,26 @@
   /* print: a clean one-page CV */
   @media print {
     :root { --paper:#fff; --panel:#fff; --ink:#000; --ink-2:#222; --faint:#555; --rule:#ccc; --rule-2:#aaa; --accent:#000; color-scheme: light; }
-    .skip, .plot, .noprint { display: none !important; }
-    body { font-size: 10.5pt; } .sheet { max-width: none; padding: 0; }
-    .block { grid-template-columns: 1fr; padding-block: 9px; border-top: 1px solid #ccc; break-inside: avoid; }
+    .skip, .plot, .noprint, .copy, footer, .lead { display: none !important; }
+    body { font-size: 9pt; line-height: 1.32; } .sheet { max-width: none; padding: 0; }
+    /* blocks may split across pages (a tall one would otherwise leave page 1 half empty); rows may not */
+    .block { grid-template-columns: 1fr; padding-block: 4px; border-top: 1px solid #ccc; }
     .addr { display: none; } .body { border-left: 0; padding-left: 0; }
-    .sr { position: static; width: auto; height: auto; clip: auto; margin: 0 0 4px; font: 700 8.5pt var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #555; }
-    .name { font-size: 23pt; } .role { font-size: 10pt; margin-top: 8px; } .sig { margin-top: 8px; font-size: 8.5pt; }
-    .caption { font-size: 8.5pt; margin-top: 0; }
-    .item, .cert { break-inside: avoid; } .desc, .cert .d { font-size: 9pt; }
-    .ttl a[href]::after, .rel a.v[href]::after, .desc a[href]::after { content: " (" attr(href) ")"; font: 8pt var(--mono); color: #555; }
-    .rel a.v[href^="mailto:"]::after { content: ""; }
-    a { color: #000; border: 0 !important; } @page { margin: 13mm 15mm; }
+    .sr { position: static; width: auto; height: auto; clip: auto; margin: 0 0 2px; font: 700 7.5pt var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #555; break-after: avoid; }
+    .name { font-size: 20pt; } .name br { display: none; } .role { font-size: 9pt; margin-top: 4px; max-width: none; } .sig { display: none; }
+    .printonly { display: block; margin: 3px 0 0; font: 500 7.5pt/1.5 var(--mono); color: #222; }
+    .txt { font-size: 8.5pt; margin-top: 0; max-width: none; } .txt + .txt { margin-top: 2px; }
+    .item, .symrow { break-inside: avoid; padding-block: 2px; row-gap: 0; }
+    .ttl { font-size: 9.5pt; } .tag { font-size: 7.5pt; } .desc { font-size: 8.3pt; max-width: none; }
+    /* certificates: one line */
+    .cert { display: inline; padding: 0; border: 0; } .cert .n { font-weight: 500; } .cert .d { display: none; }
+    .cert .y { font: 400 8.3pt var(--sans); color: var(--ink-2); } .cert .y::before { content: " ("; } .cert .y::after { content: ")"; }
+    .cert + .cert::before { content: " · "; color: #555; }
+    .syms { font-size: 8pt; line-height: 1.5; } .symrow .k { font-size: 7.5pt; }
+    .ttl a[href]::after, .desc a[href]::after { content: " (" attr(href) ")"; font: 7.5pt var(--mono); color: #555; }
+    a { color: #000; border: 0 !important; } @page { size: A4; margin: 10mm 13mm; }
   }
+
 </style>
 </head>
 <body>
@@ -196,13 +210,14 @@
   <section class="block" aria-label="Konstantin Bauer">
     <p class="addr" aria-hidden="true"><b>0x6b62</b></p>
     <div class="body">
-      <h1 class="name">Konstantin<br>Bauer</h1>
+      <h1 class="name">Konstantin<br> Bauer</h1>
       <p class="role">Systems engineering &amp; IT security. HTL&nbsp;TGM Wien, 2027. I like Linux, networks, and how systems work from the inside.</p>
       <p class="sig">0x6b = <b>k</b>&nbsp;&nbsp;&nbsp;0x62 = <b>b</b>&nbsp;&nbsp;·&nbsp;&nbsp;two bytes, my initials</p>
+      <p class="printonly">konstantin@wbauer.com · github.com/Qantrex · linkedin.com/in/konstantin-bauer-9a5952266 · Vienna,&nbsp;Austria · EU&nbsp;citizen · driving&nbsp;licence&nbsp;B</p>
     </div>
   </section>
 
-  <section class="block" aria-labelledby="h-net">
+  <section class="block noprint" aria-labelledby="h-net">
     <p class="addr" aria-hidden="true">.net</p>
     <div class="body">
       <h2 class="sr" id="h-net">Network</h2>
@@ -241,7 +256,7 @@
         <div class="nodelabel" data-node="4">mediabox</div>
         <figcaption><b>tailnet</b> — 4 nodes, one public edge</figcaption>
       </figure>
-      <p class="caption">tailnet-only <b>·</b> 0 inbound ports <b>·</b> media behind a VPN killswitch <b>·</b> nightly off-site backups</p>
+      <p class="caption">tailnet-only <b>·</b> 3 hosts, ~30 containers <b>·</b> 0 inbound ports <b>·</b> media behind a VPN kill switch <b>·</b> nightly off-site backups</p>
     </div>
   </section>
 
@@ -251,7 +266,22 @@
       <h2 class="sr" id="h-about">About</h2>
       <p class="lead">I build things that run on a server, harden one, or simulate one.</p>
       <p class="txt">Careful by default — least privilege, tests, backups. The homelab is where I keep learning the parts school hasn't reached yet.</p>
-      <p class="txt">Open to internships in systems engineering &amp; IT security.</p>
+      <p class="txt">IT security is where I want to go, penetration testing most of all. Next, after the Matura in 2027: military service, for which I'm applying to the Austrian Armed Forces' cyber track. Based in Vienna.</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-edu">
+    <p class="addr" aria-hidden="true">.edu</p>
+    <div class="body">
+      <h2 class="sr" id="h-edu">Education</h2>
+      <div class="item">
+        <span class="ttl">HTL TGM Wien — Information Technology</span><span class="tag">2022 – 2027</span>
+        <p class="desc">Systems engineering, specialising in IT security (class 5BHIT). Matura and diploma in summer 2027. Year 2 passed with distinction (ausgezeichneter Erfolg), years 3 and 4 with merit (guter Erfolg).</p>
+      </div>
+      <div class="item">
+        <span class="ttl">GRG 23 — Dual Language Program</span><span class="tag">2018 – 2022</span>
+        <p class="desc">Lower secondary school with subjects taught in English by native speakers.</p>
+      </div>
     </div>
   </section>
 
@@ -259,6 +289,10 @@
     <p class="addr" aria-hidden="true">.job</p>
     <div class="body">
       <h2 class="sr" id="h-exp">Experience</h2>
+      <div class="item">
+        <span class="ttl">Event staff — Sulzenbacher Eventmanagement</span><span class="tag">Vienna · Jul – Aug 2026</span>
+        <p class="desc">Summer job with a Vienna event company: service, bar, kitchen help and logistics at events.</p>
+      </div>
       <div class="item">
         <span class="ttl">IT Intern — A1 Telekom Austria</span><span class="tag">Technology unit · Aug 2024</span>
         <p class="desc">A month in the Technology unit of Austria's largest telecom. Commissioned Cisco ACI leaf switches, decommissioned enterprise network and server hardware (Catalyst&nbsp;6500, firewalls, storage), supported customer network planning, ran fibre / RJ45 / DAC cabling, and troubleshot servers down to swapping disks, PSUs and battery packs.</p>
@@ -271,16 +305,20 @@
     <div class="body">
       <h2 class="sr" id="h-work">Selected work</h2>
       <div class="item">
-        <span class="ttl">Project River Zero</span><span class="tag">diploma thesis · in progress</span>
-        <p class="desc">A hacking-simulation game, built by a team of four. I build the simulated operating system underneath — file system, command processing, network — so it behaves like the real thing. <a href="https://kbauer.itch.io/prz">itch.io ↗</a></p>
+        <span class="ttl">Project River Zero</span><span class="tag">diploma thesis · unity · c#</span>
+        <p class="desc">A hacking-simulation game by a team of four, with equal shares; release planned for spring 2027. My part is the OS architecture: revelOS, the operating system the whole game takes place in — a virtual file system with owners and permissions, command processing, and SSH into other simulated machines. My thesis asks how to build such a system so it stays extensible. I also built the project site, a replica of the revelOS desktop in Vue and three.js. <a href="https://qantrex.github.io/prz-website/">project site ↗</a> · <a href="https://kbauer.itch.io/prz">itch.io ↗</a></p>
       </div>
       <div class="item">
         <span class="ttl">Homelab agent</span><span class="tag">bash · python · claude code</span>
-        <p class="desc">An approval-gated AI assistant for the homelab: scripts fetch the data, the model only reads it, and anything that changes the system waits for my phone — signed buttons, rate limits, 300+ tests. It checks the servers every five minutes and restarts failed ones on its own.</p>
+        <p class="desc">An approval-gated AI assistant for the homelab: scripts fetch the data, the model only reads it, and anything that changes the system waits for my phone — signed buttons, rate limits, 350+ tests. Ten scheduled jobs, from a morning briefing to a five-minute watchdog that restarts failed services on its own.</p>
       </div>
       <div class="item">
-        <span class="ttl">Homelab</span><span class="tag">debian · docker</span>
-        <p class="desc">Two Raspberry Pis running ~20 Docker services on a private tailnet: media server, Pi-hole with Unbound, Home Assistant, Paperless. One public exception — this site, over a Cloudflare Tunnel.</p>
+        <span class="ttl">Homelab</span><span class="tag">debian · docker · tailscale</span>
+        <p class="desc">Three hosts — two Raspberry Pis and a ThinkPad — running ~30 containers on a private tailnet: media server, Pi-hole with Unbound, Home Assistant, Paperless. One public exception: this site, over a Cloudflare Tunnel. Encrypted nightly backups, off-site on free tiers with hard caps. The media stack has been in daily use for over a year.</p>
+      </div>
+      <div class="item">
+        <span class="ttl">Security practice</span><span class="tag">ctf · web · forensics</span>
+        <p class="desc">Hacker101 CTFs and school labs: web testing with Burp Suite, ffuf and sqlmap, password attacks with Hydra and hashcat, and network forensics in Wireshark — tracing a worm infection through a Windows domain from a packet capture. Every tool and attack flow documented in my own notes.</p>
       </div>
       <div class="item">
         <span class="ttl"><a href="https://github.com/Qantrex/Arch-Linux-Hardening">Arch-Linux-Hardening <span class="ar">↗</span></a></span><span class="tag">bash</span>
@@ -303,27 +341,32 @@
       <h2 class="sr" id="h-cert">Certificates</h2>
       <div class="cert"><span class="n">CompTIA IT Fundamentals (ITF+)</span><span class="y">2023</span></div>
       <div class="cert"><span class="n">Cloudflight Coding Contest</span><span class="y">5× · 2023–2025</span><span class="d">CCC 37 through 41, each in both the classic and the school round.</span></div>
-      <div class="cert"><span class="n">ECDL</span><span class="y">2021</span></div>
+      <div class="cert"><span class="n">ECDL Standard</span><span class="y">2021</span><span class="d">All five modules.</span></div>
     </div>
   </section>
 
   <section class="block" aria-labelledby="h-sym">
     <p class="addr" aria-hidden="true">.sym</p>
     <div class="body">
-      <h2 class="sr" id="h-sym">Stack</h2>
-      <div class="syms">
-        <span>Linux</span><i>·</i><span>Docker</span><i>·</i><span>Bash</span><i>·</i><span>Networking</span><i>·</i><span>Python</span><i>·</i><span>Java</span><i>·</i><span>C</span><i>·</i><span>TypeScript</span><i>·</i><span>SQL</span><i>·</i><span>Home&nbsp;Assistant</span><i>·</i><span>Tailscale</span><i>·</i><span>Cloudflare</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-lang">
-    <p class="addr" aria-hidden="true">.lang</p>
-    <div class="body">
-      <h2 class="sr" id="h-lang">Languages</h2>
-      <div class="syms">
-        <span>German&nbsp;— native</span><i>·</i><span>English&nbsp;— fluent</span>
-      </div>
+      <h2 class="sr" id="h-sym">Skills</h2>
+      <div class="symrow"><span class="k">systems</span><div class="syms">
+        <span>Linux (Debian, Arch)</span>&nbsp;<i>·</i> <span>Docker</span>&nbsp;<i>·</i> <span>Bash</span>&nbsp;<i>·</i> <span>DNS</span>&nbsp;<i>·</i> <span>WireGuard</span>&nbsp;<i>·</i> <span>Tailscale</span>&nbsp;<i>·</i> <span>Cloudflare&nbsp;Tunnel</span>&nbsp;<i>·</i> <span>Home&nbsp;Assistant</span>
+      </div></div>
+      <div class="symrow"><span class="k">security</span><div class="syms">
+        <span>Burp&nbsp;Suite</span>&nbsp;<i>·</i> <span>Wireshark</span>&nbsp;<i>·</i> <span>nmap</span>&nbsp;<i>·</i> <span>ffuf</span>&nbsp;<i>·</i> <span>sqlmap</span>&nbsp;<i>·</i> <span>Hydra</span>&nbsp;<i>·</i> <span>hashcat</span>&nbsp;<i>·</i> <span>ModSecurity</span>
+      </div></div>
+      <div class="symrow"><span class="k">code</span><div class="syms">
+        <span>Python</span>&nbsp;<i>·</i> <span>C#&nbsp;/ Unity</span>&nbsp;<i>·</i> <span>C / C++</span>&nbsp;<i>·</i> <span>Java</span>&nbsp;<i>·</i> <span>TypeScript&nbsp;/ Vue</span>&nbsp;<i>·</i> <span>SQL</span>
+      </div></div>
+      <div class="symrow"><span class="k">hardware</span><div class="syms">
+        <span>Raspberry&nbsp;Pi</span>&nbsp;<i>·</i> <span>ESP32&nbsp;/ Arduino</span>&nbsp;<i>·</i> <span>soldering</span>&nbsp;<i>·</i> <span>3D&nbsp;printing</span>&nbsp;<i>·</i> <span>DIY&nbsp;speakers</span>
+      </div></div>
+      <div class="symrow noprint"><span class="k">interests</span><div class="syms">
+        <span>game&nbsp;development</span>&nbsp;<i>·</i> <span>Linux ricing (Arch&nbsp;+&nbsp;Hyprland)</span>&nbsp;<i>·</i> <span>building&nbsp;hardware</span>
+      </div></div>
+      <div class="symrow"><span class="k">languages</span><div class="syms">
+        <span>German&nbsp;— native</span>&nbsp;<i>·</i> <span>English&nbsp;— fluent (C2 certificate)</span>
+      </div></div>
     </div>
   </section>
 
@@ -341,13 +384,14 @@
     </div>
   </section>
 
-  <section class="block" aria-labelledby="h-rel">
+  <section class="block noprint" aria-labelledby="h-rel">
     <p class="addr" aria-hidden="true">.rel</p>
     <div class="body">
       <h2 class="sr" id="h-rel">Contact</h2>
       <div class="rel"><span class="k">email</span><a class="v" href="mailto:konstantin@wbauer.com">konstantin@wbauer.com</a><button class="copy" type="button" data-copy="konstantin@wbauer.com">copy</button></div>
       <div class="rel"><span class="k">github</span><a class="v" href="https://github.com/Qantrex">github.com/Qantrex ↗</a><span></span></div>
       <div class="rel"><span class="k">linkedin</span><a class="v" href="https://www.linkedin.com/in/konstantin-bauer-9a5952266/">in/konstantin-bauer ↗</a><span></span></div>
+      <div class="rel"><span class="k">based</span><span class="v">Vienna, Austria · EU citizen · driving licence B</span><span></span></div>
     </div>
   </section>
 
@@ -374,21 +418,23 @@
   (function () {
     var form = document.getElementById("shellform"), input = document.getElementById("shellin"), out = document.getElementById("shellout");
     if (!form || !input || !out) return;
-    var projects = ["project-river-zero", "homelab-agent", "homelab", "arch-linux-hardening", "itsi-7.5", "wbauer.com"];
+    var projects = ["project-river-zero", "homelab-agent", "homelab", "security-practice", "arch-linux-hardening", "itsi-7.5", "wbauer.com"];
     var hist = [], hi = 0;
     function emit(t, c) { var d = document.createElement("div"); d.className = "ln" + (c ? " " + c : ""); d.textContent = t; out.appendChild(d); }
     function echo(c) { var d = document.createElement("div"); d.className = "ln cmd"; var p = document.createElement("span"); p.className = "pr"; p.textContent = "% "; d.appendChild(p); d.appendChild(document.createTextNode(c)); out.appendChild(d); }
     var cmds = {
-      help: function () { emit("whoami  ls  cat <project>  experience  net  stack  lang  hex  certs  contact  clear", "dim"); },
-      whoami: function () { emit("konstantin bauer — systems & security, htl tgm wien, 2027"); },
-      experience: function () { emit("A1 Telekom Austria — technology intern, aug 2024: cisco aci leaf switches, decommissioned enterprise net/server gear, cabling, server troubleshooting."); },
+      help: function () { emit("whoami  next  ls  cat <project>  edu  experience  net  stack  lang  hex  certs  contact  clear", "dim"); },
+      whoami: function () { emit("konstantin bauer — it security, htl tgm wien, 2027 · vienna"); },
+      next: function () { emit("matura 2027, then military service: applying for the armed forces' cyber track. after that: it security, pentesting most of all."); },
+      edu: function () { emit("htl tgm wien, 2022-2027: information technology, systems engineering, it security · grg 23 dual language program, 2018-2022"); },
+      experience: function () { emit("sulzenbacher eventmanagement — event staff, jul-aug 2026: service, bar, kitchen, logistics."); emit("a1 telekom austria — technology intern, aug 2024: cisco aci leaf switches, decommissioned enterprise net/server gear, cabling, server troubleshooting."); },
       work: function () { cmds.experience(); },
-      lang: function () { emit("german — native · english — fluent"); },
+      lang: function () { emit("german — native · english — fluent (c2 certificate)"); },
       ls: function () { emit(projects.join("  ")); },
-      net: function () { emit("2 pis on a tailnet · 0 inbound ports · media behind a vpn killswitch · nightly off-site backups"); },
-      stack: function () { emit("Linux Docker Bash Networking Python Java C TypeScript SQL Home-Assistant Tailscale Cloudflare"); },
+      net: function () { emit("2 pis + a thinkpad on a tailnet · ~30 containers · 0 inbound ports · media behind a vpn kill switch · nightly off-site backups"); },
+      stack: function () { emit("Linux Docker Bash DNS WireGuard Tailscale Cloudflare · Burp Wireshark nmap ffuf sqlmap hashcat · Python C# C++ Java TypeScript SQL"); },
       hex: function () { emit("0x6b='k' (107)   0x62='b' (98)   ->   kb   ->   6b62.com"); },
-      certs: function () { emit("CompTIA ITF+ (2023) · Cloudflight CCC 5x (2023-2025) · ECDL (2021)"); },
+      certs: function () { emit("CompTIA ITF+ (2023) · Cloudflight CCC 5x (2023-2025) · ECDL Standard (2021)"); },
       contact: function () { emit("konstantin@wbauer.com · github.com/Qantrex · in/konstantin-bauer"); },
       clear: function () { out.innerHTML = ""; },
       sudo: function () { emit("not here — least privilege.", "dim"); },
@@ -399,8 +445,9 @@
       var p = c.split(/\s+/), n = p[0].toLowerCase();
       if (n === "cat") {
         var t = (p[1] || "").toLowerCase();
-        if (/river/.test(t)) emit("simulated OS for a hacking game: filesystem, command processing, network.");
-        else if (/agent/.test(t)) emit("scripts fetch, the model only reads, changes wait for my phone. 300+ tests.");
+        if (/river/.test(t)) emit("revelOS, the simulated OS of a hacking game (unity, c#): file system with permissions, command processing, ssh between machines.");
+        else if (/agent/.test(t)) emit("scripts fetch, the model only reads, changes wait for my phone. 10 jobs, 350+ tests.");
+        else if (/sec/.test(t)) emit("hacker101 ctfs + school labs: burp, ffuf, sqlmap, hydra, hashcat; wireshark forensics of a worm infection.");
         else if (/hard/.test(t)) emit("hardens ssh/users/perms/services, then verifies it.");
         else if (/itsi/.test(t)) emit("web app behind caddy + modsecurity waf, php + mariadb.");
         else if (/wbauer/.test(t)) emit("my first client project — a business site, designed and shipped end to end.");
