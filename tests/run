@@ -62,6 +62,20 @@ lacks $P 'url\([[:space:]]*["'"'"']?https?:' "no external url() in CSS"
 lacks $P 'src="https?:'                     "no external src="
 contains $P 'rel="icon" href="data:'        "favicon is an inline data URI"
 
+echo "# --- email: entity-encoded, never plaintext (Cloudflare's obfuscation is off)"
+lacks $P '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}' "no plaintext email address"
+lacks $P 'mailto:'                          "no plaintext mailto:"
+lacks $P 'cfemail|email-protection'         "no Cloudflare email markup"
+if python3 - "$P" <<'PY'
+import html, re, sys
+b = open(sys.argv[1], encoding="utf-8").read()
+links = [html.unescape(h) for h in re.findall(r'<a class="v" href="([^"]+)">([^<]+)</a>', b) for h in [h[0]]]
+texts = [html.unescape(t) for _, t in re.findall(r'<a class="v" href="([^"]+)">([^<]+)</a>', b)]
+assert "mailto:konstantin@wbauer.com" in links, links
+assert "konstantin@wbauer.com" in texts, texts
+PY
+then ok "the encoded link decodes to mailto:konstantin@wbauer.com"; else bad "the encoded link decodes to mailto:konstantin@wbauer.com"; fi
+
 echo "# --- head metadata (identical on both hosts)"
 contains $P '<link rel="canonical" href="https://6b62.com/">' "canonical is https://6b62.com/"
 contains $P '<meta property="og:url" content="https://6b62.com/">' "og:url is https://6b62.com/"
