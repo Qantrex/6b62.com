@@ -18,7 +18,7 @@
 /* 6b62.com/websites: the offer for small businesses. One file, inline CSS and image, no JavaScript. */
 :root{
 --paper:#edeeec;--panel:#e4e5e2;
---ink:#16171a;--ink-2:#4e4f55;--faint:#77787d;
+--ink:#16171a;--ink-2:#4e4f55;--faint:#65666b;
 --rule:rgba(22,23,26,.15);--rule-2:rgba(22,23,26,.32);
 --accent:#5a3ab0;
 --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
@@ -48,14 +48,14 @@ p,ul,ol{margin:0;}
 .top{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--rule);}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;}
 .who{font-weight:650;letter-spacing:-.01em;text-decoration:none;}
-.who span{display:block;font:500 12px/1.3 var(--mono);color:var(--faint);letter-spacing:0;}
+.who span{display:block;font:500 13px/1.3 var(--mono);color:var(--faint);letter-spacing:0;white-space:nowrap;}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);font:600 16px/1 var(--sans);text-decoration:none;white-space:nowrap;}
 .btn.alt{background:transparent;color:var(--ink);}
 .btn:hover{background:var(--accent);border-color:var(--accent);color:var(--paper);}
 .btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
-.top .btn{min-height:40px;padding:0 14px;font-size:15px;}
+.top .btn{min-height:44px;padding:0 14px;font-size:15px;}
 .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
 
 /* sections */
@@ -79,7 +79,7 @@ h3{margin:0 0 8px;font:650 18px/1.3 var(--sans);}
 .part .ex.opt{border-top:1px dashed var(--rule-2);}
 .part .ex{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule);font-size:15px;line-height:1.5;color:var(--ink-2);}
 .part .p{display:block;font:750 28px/1.1 var(--sans);letter-spacing:-.02em;}
-.part .when{display:block;margin:4px 0 14px;font:500 13px/1.4 var(--mono);color:var(--faint);}
+.part .when{display:block;margin:4px 0 14px;font:500 14px/1.4 var(--mono);color:var(--faint);}
 .part ul{padding-left:18px;color:var(--ink-2);font-size:15.5px;}
 .part li + li{margin-top:5px;}
 @media (max-width:760px){.parts{grid-template-columns:1fr;}}
@@ -96,7 +96,7 @@ h3{margin:0 0 8px;font:650 18px/1.3 var(--sans);}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:8px 44px;}
 @media (max-width:700px){.cols{grid-template-columns:1fr;}}
 table{width:100%;border-collapse:collapse;font-size:15.5px;}
-caption{text-align:left;padding-bottom:8px;font:600 13px/1.4 var(--mono);color:var(--faint);}
+caption{text-align:left;padding-bottom:8px;font:600 14px/1.4 var(--mono);color:var(--faint);}
 td{padding:9px 0;border-top:1px solid var(--rule);vertical-align:top;}
 td.r{padding-left:14px;text-align:right;white-space:nowrap;font-weight:650;}
 .cols table + table{margin-top:24px;}
@@ -139,10 +139,16 @@ footer a:hover{color:var(--accent);border-color:var(--accent);}
 .intro{margin:-6px 0 22px;}
 .sub{margin:22px 0 4px;font-size:17px;}
 .trades-line a{color:inherit;text-decoration:underline;text-underline-offset:3px;}
-.trades .part{scroll-margin-top:72px;}
-.trades figure{margin:0 0 16px;}
-.trades img{display:block;width:100%;max-width:220px;height:auto;margin-inline:auto;border:1px solid var(--rule-2);}
-.trades figcaption{margin-top:6px;text-align:center;font:500 11.5px var(--mono);color:var(--faint);}
+section[id],.trades .part{scroll-margin-top:64px;}
+.trades-line{line-height:1.5;}
+.trades-line a{display:inline-block;padding:5px 0;}
+.contact .rows a,footer a{display:inline-block;padding:8px 0;}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+.bd th{padding:5px 0;text-align:left;font-weight:400;border-top:1px solid var(--rule);vertical-align:top;}
+.bd tr.sum th{border-top:2px solid var(--ink);font-weight:700;color:var(--ink);}
+.parts.base .part{background:transparent;}
+.part h3 .p{display:block;margin-top:2px;}
+.mid{margin-top:26px;}
 .bd{margin-top:14px;font-size:15px;}
 .bd td{padding:5px 0;}
 .bd tr.sum td{border-top:2px solid var(--ink);font-weight:700;color:var(--ink);}
@@ -156,14 +162,14 @@ summary:hover{border-color:var(--accent);color:var(--accent);}
 </style>
 </head>
 <body>
-<a class="skip" href="#beispiele">Zu den Beispielen</a>
+<a class="skip" href="#main">Zum Inhalt</a>
 
 <div class="top"><div class="wrap">
   <a class="who" href="#">Konstantin Bauer<span>Websites für kleine Betriebe</span></a>
-  <a class="btn" href="https://wa.me/436641854854?text=Hallo%2C%20ich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Entwurf%20f%C3%BCr%20meinen%20Betrieb%3A%20"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>WhatsApp</a>
+  <a class="btn" href="https://wa.me/436641854854?text=Hallo%2C%20ich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Entwurf%20f%C3%BCr%20meinen%20Betrieb%3A%20"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>Gratis-Entwurf</a>
 </div></div>
 
-<main class="wrap">
+<main class="wrap" id="main">
 
 <section class="hero" aria-labelledby="h-hero">
   <h1 id="h-hero">Websites für kleine Betriebe in Wien und Umgebung</h1>
@@ -173,10 +179,123 @@ summary:hover{border-color:var(--accent);color:var(--accent);}
   <p class="small">Im ersten Jahr 960 € (600 € + 12 × 30 €). Mindestlaufzeit 12 Monate, danach monatlich kündbar. Früher aufhören kostet höchstens 360 €. Keine Umsatzsteuer, keine Stundenabrechnung.</p>
   <p class="free"><b>Zuerst kommt ein kostenloser Entwurf für Ihren Betrieb, innerhalb einer Woche.</b> Gefällt er Ihnen nicht, zahlen Sie nichts. Online ist die Seite meist 2–3 Wochen, nachdem Texte und Fotos da sind.</p>
   <div class="btns">
-    <a class="btn" href="https://wa.me/436641854854?text=Hallo%2C%20ich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Entwurf%20f%C3%BCr%20meinen%20Betrieb%3A%20"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>WhatsApp</a>
+    <a class="btn" href="https://wa.me/436641854854?text=Hallo%2C%20ich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Entwurf%20f%C3%BCr%20meinen%20Betrieb%3A%20"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>Gratis-Entwurf per WhatsApp</a>
     <a class="btn alt" href="tel:+436641854854"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+43 664 1854854</a>
     <a class="btn alt" href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x77;&#x65;&#x62;&#x40;&#x36;&#x62;&#x36;&#x32;&#x2e;&#x63;&#x6f;&#x6d;"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>E-Mail</a>
   </div>
+</section>
+
+<section id="beispiele" aria-labelledby="h-beispiele">
+  <h2 id="h-beispiele">Was es für Ihren Betrieb kostet</h2>
+  <p class="txt intro">Jede Seite baue ich für Ihren Betrieb, aus keiner Vorlage. Drei typische Beispiele:</p>
+  <div class="parts trades">
+    <article class="part" id="friseur">
+      <h3>Friseur, Barber, Kosmetik, Nagelstudio</h3>
+      <ul>
+        <li>Kunden buchen selbst einen freien Termin, statt abends per Instagram oder WhatsApp nachzufragen. Die Buchung kommt bei Ihnen per E-Mail und im Handy-Kalender an</li>
+        <li>Preise, Öffnungszeiten und Ihr Instagram an einem Ort</li>
+        <li>Ihr Google-Eintrag zeigt wieder die richtigen Zeiten</li>
+      </ul>
+      <table class="bd"><caption class="sr">Preis für dieses Beispiel</caption>
+        <tr><th scope="row">Grundseite</th><td class="r">600 €</td></tr>
+        <tr><th scope="row">Online-Terminbuchung</th><td class="r">190 €</td></tr>
+        <tr><th scope="row">Google-Eintrag richtigstellen</th><td class="r">90 €</td></tr>
+        <tr class="sum"><th scope="row">Einmalig</th><td class="r">880 €</td></tr>
+        <tr><th scope="row">Dann im Monat</th><td class="r">30 €</td></tr>
+        <tr><th scope="row">dazu das Buchungsprogramm</th><td class="r">0–10 €</td></tr>
+        <tr class="sum"><th scope="row">Im ersten Jahr</th><td class="r">1.240–1.360 €</td></tr>
+      </table>
+      <p class="ex">Das Buchungsprogramm zahlen Sie direkt an den Anbieter: für eine Person oft gratis bis 50 Termine im Monat, sonst etwa 10 €.</p>
+      <p class="ex opt">Optional, nicht im Preis: ein Telefonassistent, der abhebt, während Sie schneiden. 290 € einmalig und ab 99 € im Monat beim Anbieter. Ich empfehle ihn nur, wenn Sie wirklich viele Anrufe verpassen.</p>
+    </article>
+    <article class="part" id="werkstatt">
+      <h3>Werkstatt</h3>
+      <ul>
+        <li>Kunden wählen Pickerl, Service oder Reifenwechsel und buchen einen freien Termin, statt anzurufen, während Sie unter dem Auto liegen</li>
+        <li>Eigene Seiten für Pickerl und Reifen, damit man Sie bei Google findet</li>
+        <li>Anruf-Knopf ganz oben, am Handy mit einem Tipp</li>
+      </ul>
+      <table class="bd"><caption class="sr">Preis für dieses Beispiel</caption>
+        <tr><th scope="row">Grundseite</th><td class="r">600 €</td></tr>
+        <tr><th scope="row">2 weitere Seiten</th><td class="r">240 €</td></tr>
+        <tr><th scope="row">Online-Terminbuchung</th><td class="r">190 €</td></tr>
+        <tr class="sum"><th scope="row">Einmalig</th><td class="r">1.030 €</td></tr>
+        <tr><th scope="row">Dann im Monat</th><td class="r">30 €</td></tr>
+        <tr><th scope="row">dazu das Buchungsprogramm</th><td class="r">ca. 10 €</td></tr>
+        <tr class="sum"><th scope="row">Im ersten Jahr</th><td class="r">ca. 1.510 €</td></tr>
+      </table>
+      <p class="ex">Das Buchungsprogramm (z. B. SimplyBook.me) zahlen Sie direkt an den Anbieter. Buchungen kommen per E-Mail und im Kalender an, Sie legen Zeiten und Dauer pro Leistung fest.</p>
+      <p class="ex opt">Optional, nicht im Preis: ein Telefonassistent, der abhebt, während Sie arbeiten. 390 € einmalig und ab 99 € im Monat beim Anbieter.</p>
+    </article>
+    <article class="part" id="handwerk">
+      <h3>Installateur und Handwerk</h3>
+      <ul>
+        <li>Die Notdienst-Nummer steht ganz oben, gut sichtbar</li>
+        <li>Einsatzgebiet, Leistungen und Fotos fertiger Arbeiten</li>
+        <li>Kunden schicken ein Foto vom Schaden über ein Formular, und Ihr Google-Eintrag stimmt</li>
+      </ul>
+      <table class="bd"><caption class="sr">Preis für dieses Beispiel</caption>
+        <tr><th scope="row">Grundseite</th><td class="r">600 €</td></tr>
+        <tr><th scope="row">Galerie mit Fotos</th><td class="r">150 €</td></tr>
+        <tr><th scope="row">Formular mit Foto-Upload</th><td class="r">150 €</td></tr>
+        <tr><th scope="row">Google-Eintrag richtigstellen</th><td class="r">90 €</td></tr>
+        <tr class="sum"><th scope="row">Einmalig</th><td class="r">990 €</td></tr>
+        <tr><th scope="row">Dann im Monat</th><td class="r">30 €</td></tr>
+        <tr class="sum"><th scope="row">Im ersten Jahr</th><td class="r">1.350 €</td></tr>
+      </table>
+      <p class="ex">Keine weiteren laufenden Kosten. Ihr Google-Eintrag zeigt die Notdienst-Nummer, Anrufer kommen mit einem Tipp durch. Ist Ihre alte Domain abgelaufen, prüfe ich gratis, ob sie noch zu haben ist.</p>
+    </article>
+  </div>
+  <p class="note">Sie zahlen nur, was Ihr Betrieb braucht. Den Gesamtpreis bekommen Sie mit dem Entwurf schriftlich, bevor irgendetwas fällig wird.</p>
+  <div class="btns mid"><a class="btn" href="https://wa.me/436641854854?text=Hallo%2C%20ich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Entwurf%20f%C3%BCr%20meinen%20Betrieb%3A%20"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>Gratis-Entwurf per WhatsApp</a></div>
+</section>
+
+<section id="angebot" aria-labelledby="h-angebot">
+  <h2 id="h-angebot">Was in der Grundseite drin ist</h2>
+  <div class="parts base">
+    <div class="part">
+      <h3>Website <span class="p">600 €</span></h3>
+      <span class="when">einmalig</span>
+      <ul>
+        <li>Eine Seite mit Leistungen, Öffnungszeiten und Karte (jede weitere Seite 120 €)</li>
+        <li>Knöpfe zum Anrufen und für WhatsApp</li>
+        <li>Impressum und Datenschutz nach WKO-Vorlagen</li>
+        <li>Fürs Handy gemacht, ohne lästiges Einwilligungs-Fenster (Cookie-Banner)</li>
+        <li>Zweimal ändern, bis es passt, ohne Aufpreis</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h3>Betreuung <span class="p">30 € / Monat</span></h3>
+      <span class="when">alles Laufende inklusive</span>
+      <ul>
+        <li>Ihre Seite ist online und verschlüsselt, ohne Warnung „nicht sicher“</li>
+        <li>Die .at-Domain auf Ihren Namen: die jährliche Verlängerung erledige und zahle ich</li>
+        <li>Sicherheitsupdates und eine Kopie Ihrer Seite, falls etwas kaputtgeht</li>
+        <li>Bis zu 3 kleine Änderungen im Monat: Zeiten, Preise, Texte, Fotos</li>
+        <li>Dringendes wie eine neue Notdienst-Nummer meist am selben oder nächsten Tag, andere Änderungen innerhalb von 3 Werktagen</li>
+      </ul>
+    </div>
+    <div class="part opt">
+      <h3>E-Mail <span class="p">+5 € / Monat</span></h3>
+      <span class="when">optional, pro Postfach</span>
+      <ul>
+        <li>Eigene Adresse wie office@ihrbetrieb.at</li>
+        <li>Eingerichtet auf Handy und PC</li>
+        <li>Weitere Adressen wie info@ im selben Postfach gratis</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-ablauf">
+  <h2 id="h-ablauf">So läuft es ab</h2>
+  <ol class="steps">
+    <li><b>Kurz schreiben</b>Schicken Sie mir per WhatsApp den Namen Ihres Betriebs und Ihr Instagram oder Ihre alte Seite. Gern komme ich auch vorbei.</li>
+    <li><b>Entwurf ansehen</b>Innerhalb einer Woche bekommen Sie einen Entwurf Ihrer Startseite und den Gesamtpreis schriftlich, kostenlos und unverbindlich.</li>
+    <li><b>Texte und Fotos</b>Sie schicken mir Ihre Preise und ein paar Fotos, den Rest mache ich. Zweimal ändern ist dabei.</li>
+    <li><b>Online gehen</b>Sagen Sie Ja zum Entwurf, unterschreiben Sie das Angebot und zahlen die Hälfte, den Rest bei Fertigstellung. Online meist 2–3 Wochen, nachdem Texte und Fotos da sind.</li>
+  </ol>
+  <div class="btns mid"><a class="btn" href="https://wa.me/436641854854?text=Hallo%2C%20ich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Entwurf%20f%C3%BCr%20meinen%20Betrieb%3A%20"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>Gratis-Entwurf per WhatsApp</a></div>
 </section>
 
 <section aria-labelledby="h-wer">
@@ -191,107 +310,6 @@ summary:hover{border-color:var(--accent);color:var(--accent);}
   </ul>
 </section>
 
-<section id="beispiele" aria-labelledby="h-beispiele">
-  <h2 id="h-beispiele">Was es für Ihren Betrieb kostet</h2>
-  <p class="txt intro">Jede Seite baue ich für Ihren Betrieb, aus keiner Vorlage. Drei typische Beispiele:</p>
-  <div class="parts trades">
-    <article class="part" id="friseur">
-      <h3>Friseur, Barber, Kosmetik, Nagelstudio</h3>
-      <ul>
-        <li>Kunden buchen selbst einen freien Termin, statt abends per Instagram oder WhatsApp nachzufragen. Die Buchung kommt bei Ihnen per E-Mail und im Handy-Kalender an</li>
-        <li>Preise, Öffnungszeiten und Ihr Instagram an einem Ort</li>
-        <li>Ihr Google-Eintrag zeigt wieder die richtigen Zeiten</li>
-      </ul>
-      <table class="bd">
-        <tr><td>Grundseite</td><td class="r">600 €</td></tr>
-        <tr><td>Online-Terminbuchung</td><td class="r">190 €</td></tr>
-        <tr><td>Google-Eintrag richtigstellen</td><td class="r">90 €</td></tr>
-        <tr class="sum"><td>Einmalig</td><td class="r">880 €</td></tr>
-        <tr><td>Dann im Monat</td><td class="r">30 €</td></tr>
-        <tr><td>dazu das Buchungsprogramm</td><td class="r">0–10 €</td></tr>
-        <tr class="sum"><td>Im ersten Jahr</td><td class="r">1.240–1.360 €</td></tr>
-      </table>
-      <p class="ex">Das Buchungsprogramm zahlen Sie direkt an den Anbieter: für eine Person oft gratis bis 50 Termine im Monat, sonst etwa 10 €.</p>
-      <p class="ex opt">Optional, nicht im Preis: ein Telefonassistent, der abhebt, während Sie schneiden. 290 € einmalig und ab 99 € im Monat beim Anbieter. Ich empfehle ihn nur, wenn Sie wirklich viele Anrufe verpassen.</p>
-    </article>
-    <article class="part" id="werkstatt">
-      <h3>Werkstatt</h3>
-      <ul>
-        <li>Kunden wählen Pickerl, Service oder Reifenwechsel und buchen einen freien Termin, statt anzurufen, während Sie unter dem Auto liegen</li>
-        <li>Eigene Seiten für Pickerl und Reifen, damit man Sie bei Google findet</li>
-        <li>Anruf-Knopf ganz oben, am Handy mit einem Tipp</li>
-      </ul>
-      <table class="bd">
-        <tr><td>Grundseite</td><td class="r">600 €</td></tr>
-        <tr><td>2 weitere Seiten</td><td class="r">240 €</td></tr>
-        <tr><td>Online-Terminbuchung</td><td class="r">190 €</td></tr>
-        <tr class="sum"><td>Einmalig</td><td class="r">1.030 €</td></tr>
-        <tr><td>Dann im Monat</td><td class="r">30 €</td></tr>
-        <tr><td>dazu das Buchungsprogramm</td><td class="r">ca. 10 €</td></tr>
-        <tr class="sum"><td>Im ersten Jahr</td><td class="r">ca. 1.510 €</td></tr>
-      </table>
-      <p class="ex">Das Buchungsprogramm (z. B. SimplyBook.me) zahlen Sie direkt an den Anbieter. Buchungen kommen per E-Mail und im Kalender an, Sie legen Zeiten und Dauer pro Leistung fest.</p>
-      <p class="ex opt">Optional, nicht im Preis: ein Telefonassistent, der abhebt, während Sie arbeiten. 390 € einmalig und ab 99 € im Monat beim Anbieter.</p>
-    </article>
-    <article class="part" id="handwerk">
-      <h3>Installateur und Handwerk</h3>
-      <ul>
-        <li>Die Notdienst-Nummer steht ganz oben, gut sichtbar</li>
-        <li>Einsatzgebiet, Leistungen und Fotos fertiger Arbeiten</li>
-        <li>Kunden schicken ein Foto vom Schaden über ein Formular, und Ihr Google-Eintrag stimmt</li>
-      </ul>
-      <table class="bd">
-        <tr><td>Grundseite</td><td class="r">600 €</td></tr>
-        <tr><td>Galerie mit Fotos</td><td class="r">150 €</td></tr>
-        <tr><td>Formular mit Foto-Upload</td><td class="r">150 €</td></tr>
-        <tr><td>Google-Eintrag richtigstellen</td><td class="r">90 €</td></tr>
-        <tr class="sum"><td>Einmalig</td><td class="r">990 €</td></tr>
-        <tr><td>Dann im Monat</td><td class="r">30 €</td></tr>
-        <tr class="sum"><td>Im ersten Jahr</td><td class="r">1.350 €</td></tr>
-      </table>
-      <p class="ex">Keine weiteren laufenden Kosten. Ihr Google-Eintrag zeigt die Notdienst-Nummer, Anrufer kommen mit einem Tipp durch. Ist Ihre alte Domain abgelaufen, prüfe ich gratis, ob sie noch zu haben ist.</p>
-    </article>
-  </div>
-  <p class="note">Sie zahlen nur, was Ihr Betrieb braucht. Den Gesamtpreis bekommen Sie mit dem Entwurf schriftlich, bevor irgendetwas fällig wird.</p>
-</section>
-
-<section id="angebot" aria-labelledby="h-angebot">
-  <h2 id="h-angebot">Was in der Grundseite drin ist</h2>
-  <div class="parts">
-    <div class="part">
-      <h3><span class="p">600 €</span></h3>
-      <span class="when">einmalig, für die Website</span>
-      <ul>
-        <li>Eine Seite mit Leistungen, Öffnungszeiten und Karte (jede weitere Seite 120 €)</li>
-        <li>Knöpfe zum Anrufen und für WhatsApp</li>
-        <li>Impressum und Datenschutz nach WKO-Vorlagen</li>
-        <li>Fürs Handy gemacht, ohne lästiges Einwilligungs-Fenster (Cookie-Banner)</li>
-        <li>Zweimal ändern, bis es passt, ohne Aufpreis</li>
-      </ul>
-    </div>
-    <div class="part">
-      <h3><span class="p">30 € / Monat</span></h3>
-      <span class="when">Betrieb und Betreuung</span>
-      <ul>
-        <li>Ihre Seite ist online und verschlüsselt, ohne Warnung „nicht sicher“</li>
-        <li>Die .at-Domain auf Ihren Namen: die jährliche Verlängerung erledige und zahle ich</li>
-        <li>Sicherheitsupdates und eine Kopie Ihrer Seite, falls etwas kaputtgeht</li>
-        <li>Bis zu 3 kleine Änderungen im Monat: Zeiten, Preise, Texte, Fotos</li>
-        <li>Dringendes wie eine neue Notdienst-Nummer meist am selben oder nächsten Tag, andere Änderungen innerhalb von 3 Werktagen</li>
-      </ul>
-    </div>
-    <div class="part opt">
-      <h3><span class="p">+5 € / Monat</span></h3>
-      <span class="when">optional, pro E-Mail-Postfach</span>
-      <ul>
-        <li>Eigene Adresse wie office@ihrbetrieb.at</li>
-        <li>Eingerichtet auf Handy und PC</li>
-        <li>Weitere Adressen wie info@ im selben Postfach gratis</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 <section aria-labelledby="h-vergleich">
   <h2 id="h-vergleich">Was andere verlangen</h2>
   <table class="cmp">
@@ -302,16 +320,6 @@ summary:hover{border-color:var(--accent);color:var(--accent);}
     <tr class="me"><td>Bei mir</td><td>600 € einmalig, dann 30 € im Monat inklusive Änderungen, nach 12 Monaten monatlich kündbar</td></tr>
   </table>
   <p class="note small">Marktpreise laut öffentlichen Preislisten und Ratgebern österreichischer Anbieter, Stand November 2026. Sie haben schon eine Seite bei Wix oder Jimdo? Den Umzug mache ich für 150–300 €, Ihre Adresse bleibt.</p>
-</section>
-
-<section aria-labelledby="h-ablauf">
-  <h2 id="h-ablauf">So läuft es ab</h2>
-  <ol class="steps">
-    <li><b>Kurz schreiben</b>Schicken Sie mir per WhatsApp den Namen Ihres Betriebs und Ihr Instagram oder Ihre alte Seite. Gern komme ich auch vorbei.</li>
-    <li><b>Entwurf ansehen</b>Innerhalb einer Woche bekommen Sie einen Entwurf Ihrer Startseite und den Gesamtpreis schriftlich, kostenlos und unverbindlich.</li>
-    <li><b>Texte und Fotos</b>Sie schicken mir Ihre Preise und ein paar Fotos, den Rest mache ich. Zweimal ändern ist dabei.</li>
-    <li><b>Online gehen</b>Meist 2–3 Wochen, nachdem Texte und Fotos da sind. Die Hälfte zahlen Sie erst, wenn Sie den Entwurf freigegeben haben, den Rest bei Fertigstellung.</li>
-  </ol>
 </section>
 
 <section aria-labelledby="h-extras">
@@ -359,9 +367,9 @@ summary:hover{border-color:var(--accent);color:var(--accent);}
     <li><b>Im ersten Jahr 960 €</b> für die Grundseite. Die 30 € im Monat beginnen, wenn Ihre Seite online ist, und laufen, solange Sie möchten.</li>
     <li><b>Mindestens 12 Monate,</b> danach jederzeit zum Monatsende kündbar, per E-Mail oder WhatsApp. Hören Sie im ersten Jahr früher auf, zahlen Sie die restlichen Monate dieses Jahres, höchstens 360 €.</li>
     <li><b>Endet die Betreuung, egal von wem,</b> gehören Website, Adresse und Postfächer Ihnen und werden kostenlos übergeben.</li>
-    <li><b>Zahlen</b> per Dauerauftrag oder 360 € im Jahr im Voraus. Nicht verbrauchte Monate bekommen Sie zurück.</li>
+    <li><b>Zahlen</b> per Dauerauftrag oder einmal im Jahr 360 € im Voraus. Kündigen Sie nach dem ersten Jahr, bekommen Sie bezahlte, aber nicht genutzte Monate zurück.</li>
   </ul>
-  <p class="note">Sie bekommen ein schriftliches Angebot mit allen Preisen und die Vereinbarung zum Datenschutz zum Lesen, zusammen mit dem Entwurf. Nichts ist fällig, bevor Sie den Entwurf freigegeben haben.</p>
+  <p class="note">Sie bekommen ein schriftliches Angebot mit allen Preisen und die Vereinbarung zum Datenschutz zum Lesen, zusammen mit dem Entwurf. Bezahlt wird erst, wenn Sie Ja zum Entwurf sagen und das Angebot unterschreiben.</p>
 </section>
 
 <section aria-labelledby="h-ref">
