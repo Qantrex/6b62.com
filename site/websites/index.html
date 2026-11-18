@@ -99,6 +99,11 @@ caption{text-align:left;padding-bottom:8px;font:600 13px/1.4 var(--mono);color:v
 td{padding:9px 0;border-top:1px solid var(--rule);vertical-align:top;}
 td.r{padding-left:14px;text-align:right;white-space:nowrap;font-weight:650;}
 .cols table + table{margin-top:24px;}
+.cmp{margin-top:24px;max-width:760px;}
+.cmp td:first-child{width:9.5rem;padding-right:16px;font-weight:650;}
+.cmp tr.me td{color:var(--ink);font-weight:650;border-top:2px solid var(--accent);}
+.cmp td{color:var(--ink-2);}
+@media (max-width:520px){.cmp td{display:block;width:auto;border-top:0;padding:2px 0;} .cmp tr{display:block;padding:10px 0;border-top:1px solid var(--rule);} .cmp tr.me{border-top:2px solid var(--accent);} .cmp tr.me td{border-top:0;}}
 .note{margin-top:20px;max-width:62ch;color:var(--ink-2);}
 
 /* terms */
@@ -217,6 +222,19 @@ footer a:hover{color:var(--accent);border-color:var(--accent);}
       </ul>
     </div>
   </div>
+</section>
+
+<section aria-labelledby="h-vergleich">
+  <h2 id="h-vergleich">Warum so günstig?</h2>
+  <p class="txt">Ich bin IT-Schüler, keine Agentur. Ich habe kein Büro, keine Angestellten und keinen Stundensatz, den ich hereinholen muss. Dafür mache ich nur wenige Seiten und jede davon selbst. Sie bekommen keine Firma mit zehn Leuten, sondern eine Person, die Ihre Seite kennt und erreichbar ist.</p>
+  <table class="cmp">
+    <caption>Was eine kleine Website in Österreich üblicherweise kostet</caption>
+    <tr><td>Agentur</td><td>meist 1.500–3.000 € einmalig, Änderungen nach Stunden (oft 80–150 € pro Stunde)</td></tr>
+    <tr><td>Website im Abo</td><td>meist 40–130 € im Monat, oft mit 2 oder 3 Jahren Bindung</td></tr>
+    <tr><td>Baukasten</td><td>ab etwa 10 € im Monat, aber Texte, Fotos, Impressum und Google machen Sie selbst</td></tr>
+    <tr class="me"><td>Bei mir</td><td>600 € einmalig, dann 30 € im Monat inklusive Änderungen, nach 12 Monaten monatlich kündbar</td></tr>
+  </table>
+  <p class="note small">Marktpreise laut öffentlichen Preislisten und Ratgebern österreichischer Anbieter, Stand November 2026. Ihr genauer Preis steht vorher schriftlich im Angebot.</p>
 </section>
 
 <section aria-labelledby="h-ablauf">
