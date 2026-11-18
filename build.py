@@ -24,7 +24,7 @@ MESSAGE = ("Hi, you decoded the padding. Every one of these 27,490 bytes is acco
            "Since you are the kind of person who decodes padding: this page is one HTML file, built by a "
            "Python script that counts every byte, and served by nginx on a Raspberry Pi 4B, "
            "through a Cloudflare Tunnel, with no open ports. No JavaScript, no trackers, no fonts to download. "
-           "If you want to talk about any of it, write to konstantin@wbauer.com.\n\nKonstantin\n")
+           "If you want to talk about any of it, write to hi@6b62.com.\n\nKonstantin\n")
 MIN_PAD_HEX = 2 * len(MESSAGE)
 FIELD = re.compile(r"\{\{(\w+)\.(start|end|size|pct|hex)\}\}")
 
