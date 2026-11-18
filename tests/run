@@ -73,10 +73,10 @@ import html, re, sys
 b = open(sys.argv[1], encoding="utf-8").read()
 links = [html.unescape(h) for h in re.findall(r'<a class="v" href="([^"]+)">([^<]+)</a>', b) for h in [h[0]]]
 texts = [html.unescape(t) for _, t in re.findall(r'<a class="v" href="([^"]+)">([^<]+)</a>', b)]
-assert "mailto:konstantin@wbauer.com" in links, links
-assert "konstantin@wbauer.com" in texts, texts
+assert "mailto:hi@6b62.com" in links, links
+assert "hi@6b62.com" in texts, texts
 PY
-then ok "the encoded link decodes to mailto:konstantin@wbauer.com"; else bad "the encoded link decodes to mailto:konstantin@wbauer.com"; fi
+then ok "the encoded link decodes to mailto:hi@6b62.com"; else bad "the encoded link decodes to mailto:hi@6b62.com"; fi
 
 echo "# --- screen readers"
 n_bar=$(grep -oE '<a href="#[a-z]+"[^>]* style="width:' $P | wc -l)
