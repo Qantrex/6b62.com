@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Websites für kleine Betriebe · Konstantin Bauer</title>
+<meta name="description" content="Websites für kleine Betriebe in Wien: 600 € einmalig, 30 € im Monat für Hosting, Domain und Änderungen. Fixpreise, keine Abrechnung nach Stunden.">
+<link rel="canonical" href="https://6b62.com/websites/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#edeeec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Websites für kleine Betriebe">
+<meta property="og:description" content="600 € einmalig, 30 € im Monat für Hosting, Domain und Änderungen. Von Konstantin Bauer, Wien.">
+<meta property="og:url" content="https://6b62.com/websites/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cstyle%3Erect%7Bfill:%2316171a%7Dtext%7Bfill:%23edeeec%7D@media(prefers-color-scheme:dark)%7Brect%7Bfill:%23edeeec%7Dtext%7Bfill:%230b0c0e%7D%7D%3C/style%3E%3Crect%20width='32'%20height='32'/%3E%3Ctext%20x='16'%20y='22'%20font-family='monospace'%20font-size='15'%20font-weight='700'%20text-anchor='middle'%3Ekb%3C/text%3E%3C/svg%3E">
+<style>
+/* 6b62.com/websites: the offer for small businesses. One file, inline CSS and image, no JavaScript. */
+:root{
+--paper:#edeeec;--panel:#e4e5e2;
+--ink:#16171a;--ink-2:#4e4f55;--faint:#77787d;
+--rule:rgba(22,23,26,.15);--rule-2:rgba(22,23,26,.32);
+--accent:#5a3ab0;
+--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+--sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+:root{
+--paper:#0b0c0e;--panel:#131418;
+--ink:#ecedee;--ink-2:#a7a8ae;--faint:#808187;
+--rule:rgba(236,237,238,.15);--rule-2:rgba(236,237,238,.30);
+--accent:#c4a7e7;color-scheme:dark;
+}
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--sans);}
+::selection{background:var(--accent);color:var(--paper);}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+a{color:inherit;}
+p,ul,ol{margin:0;}
+.skip{position:absolute;left:10px;top:-48px;z-index:10;padding:9px 13px;background:var(--ink);color:var(--paper);font:500 14px var(--sans);}
+.skip:focus{top:12px;}
+.wrap{max-width:960px;margin-inline:auto;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));}
+
+/* top line */
+.top{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--rule);}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;}
+.who{font-weight:650;letter-spacing:-.01em;text-decoration:none;}
+.who span{display:block;font:500 12px/1.3 var(--mono);color:var(--faint);letter-spacing:0;}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);font:600 16px/1 var(--sans);text-decoration:none;white-space:nowrap;}
+.btn.alt{background:transparent;color:var(--ink);}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--paper);}
+.btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+.top .btn{min-height:40px;padding:0 14px;font-size:15px;}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+
+/* sections */
+section{padding-block:clamp(40px,7vw,72px);border-top:1px solid var(--rule);}
+section.hero{border-top:0;padding-top:clamp(36px,7vw,80px);}
+h1{margin:0;max-width:16ch;font:800 clamp(38px,8vw,68px)/1.02 var(--sans);letter-spacing:-.035em;}
+h2{margin:0 0 22px;font:700 clamp(24px,4vw,32px)/1.15 var(--sans);letter-spacing:-.02em;}
+h3{margin:0 0 8px;font:650 18px/1.3 var(--sans);}
+.lead{margin-top:20px;max-width:44ch;color:var(--ink-2);font-size:clamp(18px,2.6vw,21px);line-height:1.5;}
+.price{margin-top:26px;font:700 clamp(22px,3.6vw,28px)/1.25 var(--sans);letter-spacing:-.01em;}
+.price b{color:var(--accent);font-weight:700;}
+.small{color:var(--faint);font-size:14.5px;}
+.txt{max-width:62ch;color:var(--ink-2);}
+.txt + .txt{margin-top:12px;}
+
+/* the three parts of the package */
+.parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.part{padding:20px;border:1px solid var(--rule-2);background:var(--panel);}
+.part.opt{background:transparent;border-style:dashed;}
+.part .p{display:block;font:750 28px/1.1 var(--sans);letter-spacing:-.02em;}
+.part .when{display:block;margin:4px 0 14px;font:500 13px/1.4 var(--mono);color:var(--faint);}
+.part ul{padding-left:18px;color:var(--ink-2);font-size:15.5px;}
+.part li + li{margin-top:5px;}
+@media (max-width:760px){.parts{grid-template-columns:1fr;}}
+
+/* steps */
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:s;}
+.steps li{counter-increment:s;padding-top:14px;border-top:2px solid var(--ink);color:var(--ink-2);font-size:15.5px;}
+.steps li::before{content:counter(s);display:block;margin-bottom:6px;font:700 15px var(--mono);color:var(--accent);}
+.steps b{display:block;margin-bottom:4px;color:var(--ink);font-size:17px;}
+@media (max-width:760px){.steps{grid-template-columns:1fr 1fr;}}
+@media (max-width:440px){.steps{grid-template-columns:1fr;}}
+
+/* extras table */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:8px 44px;}
+@media (max-width:700px){.cols{grid-template-columns:1fr;}}
+table{width:100%;border-collapse:collapse;font-size:15.5px;}
+caption{text-align:left;padding-bottom:8px;font:600 13px/1.4 var(--mono);color:var(--faint);}
+td{padding:9px 0;border-top:1px solid var(--rule);vertical-align:top;}
+td.r{padding-left:14px;text-align:right;white-space:nowrap;font-weight:650;}
+.cols table + table{margin-top:24px;}
+.note{margin-top:20px;max-width:62ch;color:var(--ink-2);}
+
+/* terms */
+.terms{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 44px;}
+.terms li{padding:12px 0;border-top:1px solid var(--rule);color:var(--ink-2);}
+.terms b{color:var(--ink);font-weight:650;}
+@media (max-width:700px){.terms{grid-template-columns:1fr;}}
+
+/* reference */
+.ref{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:start;}
+.ref img{display:block;width:100%;height:auto;border:1px solid var(--rule-2);}
+.ref a.link{font-weight:650;}
+.link{text-decoration:none;border-bottom:1px solid var(--rule-2);}
+.link:hover{color:var(--accent);border-color:var(--accent);}
+@media (max-width:560px){.ref{grid-template-columns:1fr;} .ref img{max-width:220px;}}
+
+/* contact and footer */
+.contact .rows{margin-top:6px;font:500 15px/2 var(--mono);color:var(--ink-2);}
+.contact .rows a{text-decoration:none;border-bottom:1px solid var(--rule-2);color:var(--ink);}
+.contact .rows a:hover{color:var(--accent);border-color:var(--accent);}
+footer{padding-block:28px 40px;border-top:1px solid var(--rule);color:var(--faint);font-size:14px;}
+footer p + p{margin-top:8px;}
+footer a{text-decoration:none;border-bottom:1px solid var(--rule-2);}
+footer a:hover{color:var(--accent);border-color:var(--accent);}
+@media print{.top,.btns,.skip{display:none;} section{padding-block:18px;} body{font-size:12pt;}}
+</style>
+</head>
+<body>
+<a class="skip" href="#angebot">Zum Angebot</a>
+
+<div class="top"><div class="wrap">
+  <a class="who" href="#">Konstantin Bauer<span>Websites für kleine Betriebe</span></a>
+  <a class="btn" href="tel:+436641854854"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Anrufen</a>
+</div></div>
+
+<main class="wrap">
+
+<section class="hero" aria-labelledby="h-hero">
+  <h1 id="h-hero">Websites für kleine Betriebe in Wien</h1>
+  <p class="lead">Öffnungszeiten, Leistungen und ein Knopf zum Anrufen, am Handy in Sekunden gefunden. Ich baue die Seite, kümmere mich um Adresse, Hosting und Änderungen, und Sie wissen vorher genau, was es kostet.</p>
+  <p class="price"><b>600 €</b> einmalig, dann <b>30 €</b> im Monat</p>
+  <p class="small">Endpreise, keine Umsatzsteuer (Kleinunternehmer). Keine Abrechnung nach Stunden.</p>
+  <div class="btns">
+    <a class="btn" href="tel:+436641854854"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+43 664 1854854</a>
+    <a class="btn alt" href="https://wa.me/436641854854"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>WhatsApp</a>
+    <a class="btn alt" href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6b;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x69;&#x6e;&#x40;&#x77;&#x62;&#x61;&#x75;&#x65;&#x72;&#x2e;&#x63;&#x6f;&#x6d;"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>E-Mail</a>
+  </div>
+</section>
+
+<section id="angebot" aria-labelledby="h-angebot">
+  <h2 id="h-angebot">Was drin ist</h2>
+  <div class="parts">
+    <div class="part">
+      <h3><span class="p">600 €</span></h3>
+      <span class="when">einmalig, für die Website</span>
+      <ul>
+        <li>Eine Seite mit Leistungen, Öffnungszeiten und Karte</li>
+        <li>Knöpfe zum Anrufen und für WhatsApp</li>
+        <li>Impressum und Datenschutz nach WKO-Vorlagen</li>
+        <li>Fürs Handy gemacht, ohne Tracker und daher ohne Cookie-Banner</li>
+        <li>2 Korrekturrunden</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h3><span class="p">30 € / Monat</span></h3>
+      <span class="when">Betrieb und Betreuung</span>
+      <ul>
+        <li>Hosting und sichere Verbindung (HTTPS)</li>
+        <li>Ihre eigene .at-Adresse: ich kaufe und bezahle sie, Inhaber sind Sie</li>
+        <li>Sicherheitsupdates und Backups</li>
+        <li>Bis zu 3 kleine Änderungen im Monat: Zeiten, Preise, Texte, Fotos</li>
+        <li>Antwort innerhalb von 3 Werktagen</li>
+      </ul>
+    </div>
+    <div class="part opt">
+      <h3><span class="p">+5 € / Monat</span></h3>
+      <span class="when">optional, pro E-Mail-Postfach</span>
+      <ul>
+        <li>Eigene Adresse wie office@ihrbetrieb.at</li>
+        <li>Eingerichtet auf Handy und PC</li>
+        <li>Weitere Adressen wie info@ im selben Postfach gratis</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-ablauf">
+  <h2 id="h-ablauf">So läuft es ab</h2>
+  <ol class="steps">
+    <li><b>Kurz reden</b>Ich komme vorbei oder wir telefonieren, etwa 15 Minuten. Sie erzählen, was Ihre Kunden wissen müssen.</li>
+    <li><b>Entwurf ansehen</b>Sie bekommen einen Entwurf Ihrer Startseite, kostenlos und unverbindlich.</li>
+    <li><b>Texte und Fotos</b>Sie schicken mir Ihre Preise und ein paar Fotos, den Rest mache ich. Zwei Korrekturrunden sind dabei.</li>
+    <li><b>Online gehen</b>300 € Anzahlung, 300 € bei Fertigstellung. Nach voller Zahlung ist die Seite unter Ihrer Adresse online.</li>
+  </ol>
+</section>
+
+<section aria-labelledby="h-extras">
+  <h2 id="h-extras">Extras zum Fixpreis</h2>
+  <div class="cols">
+    <div>
+      <table>
+        <caption>Mehr Website</caption>
+        <tr><td>Zusätzliche Unterseite</td><td class="r">120 €</td></tr>
+        <tr><td>Galerie oder Portfolio mit Kategorien</td><td class="r">150 €</td></tr>
+        <tr><td>Formular mit Foto-Upload, z. B. für Schäden oder Motive</td><td class="r">150 €</td></tr>
+        <tr><td>Speisekarte, leicht zu aktualisieren</td><td class="r">120 €</td></tr>
+        <tr><td>Zweite Sprache (Übersetzung von Ihnen)</td><td class="r">190 €</td></tr>
+        <tr><td>Texte schreibe ich, Sie geben frei</td><td class="r">50 € / Seite</td></tr>
+        <tr><td>Texte selbst bearbeiten (CMS)</td><td class="r">390 €</td></tr>
+        <tr><td>Alte Website ersetzen, mit Weiterleitungen</td><td class="r">150–300 €</td></tr>
+      </table>
+    </div>
+    <div>
+      <table>
+        <caption>Gefunden werden und buchen</caption>
+        <tr><td>Google-Unternehmensprofil einrichten</td><td class="r">90 €</td></tr>
+        <tr><td>Terminanfrage per Formular</td><td class="r">120 €</td></tr>
+        <tr><td>Online-Terminbuchung</td><td class="r">190 €</td></tr>
+        <tr><td>Tischreservierung (OpenTable, TheFork, Zenchef)</td><td class="r">190 €</td></tr>
+      </table>
+      <table>
+        <caption>Verkaufen und Telefon</caption>
+        <tr><td>Gutscheine oder bis zu 10 Produkte zum Kaufen</td><td class="r">290 €</td></tr>
+        <tr><td>Kleiner Online-Shop, bis 30 Produkte</td><td class="r">1.490 €</td></tr>
+        <tr><td>KI-Telefonassistent, der abhebt, wenn Sie gerade arbeiten</td><td class="r">290–390 €</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="note">Bestehendes ändern ist im Monatsbetrag inklusive, etwas Neues dazu ist ein Extra. Für alles, was hier nicht steht, bekommen Sie vorher einen Fixpreis, schriftlich. Kosten von Anbietern wie Buchungstools, Shopify oder dem Telefonassistenten zahlen Sie direkt an den Anbieter.</p>
+</section>
+
+<section aria-labelledby="h-fair">
+  <h2 id="h-fair">Was fix geregelt ist</h2>
+  <ul class="terms">
+    <li><b>Mindestlaufzeit 12 Monate,</b> danach monatlich kündbar.</li>
+    <li><b>Die Adresse gehört Ihnen.</b> Ihre .at-Domain läuft auf Ihren Namen, von Anfang an.</li>
+    <li><b>Bei Kündigung</b> bekommen Sie Website und Postfächer kostenlos übergeben. Wenn Sie vor Ablauf der 12 Monate aufhören, sind die restlichen Monate fällig.</li>
+    <li><b>Beende ich die Betreuung,</b> übergebe ich Ihnen alles kostenlos, und es fallen keine weiteren Monate an.</li>
+    <li><b>Monatsbetrag</b> jährlich im Voraus oder per Dauerauftrag.</li>
+    <li><b>Schriftlich:</b> Sie bekommen ein Angebot und eine Vereinbarung zur Datenverarbeitung.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="h-ref">
+  <h2 id="h-ref">Eine Seite, die ich gebaut habe</h2>
+  <div class="ref">
+    <img src="data:image/webp;base64,UklGRu47AABXRUJQVlA4IOI7AACwLwGdASpoAdACPp1Mn0ylpCarI7SpyWATiWk6y/zah9OXoNtDkc5BrEUzpoz2Q4En1t/ifUF5F/dfyv9BfyH6b/DfsZ/p/8P7UejvsJ/wfRX+S/bz8v/b/3e/wvzS/pv+P/k/In4q/4/+D9gj8k/l3+Y/v/7pej7vAdO/0v/R/0HsC+tHzj/f/4T97P9v6Rf9x/g/Vb9G/un/D/w/4vfYB/Iv6t/sP75+UPzP/vvDt/Df7X9kvgD/mP9m/8X+B917+m/9H+h/2X7x+279D/z3/z/0/+q+Qj+bf2X/xf4328PY1++Ps2fvSM3rc75Djag8HcwNXcyIVcw8a56oDXEdvAENFA0eT8fIzzPwXuuVLE2Vaq9WT0NQmZkgY4vgcmxm7RipefvsMrXRVdQ62AZigY+XDoxiyd5epGMfmNcQwPyi9FuwxSEvy/MZ6BNYaBo5RRoyLgt9Tq4VmUpYsEGimLO/5WT3LzKQvDLee6F41svxuyfVBr4O5aF3Flbxg6Qc07KJnCz+nTDGTB6RVQ196E0STBG9d6aRSV7Fik6KGayb2b3OkS4SxgDAAa2LOqMNYO4CJPxuff874LTIDbktCijZ1/Hjry5MSfEyV9luWNFHSOkVvla6qqYqicUjInS46Op8joYdbQxMIGTYJ0gM1Pib5INhuWTIgNsSxSjnXfXb/Xl/miyZgb2/8xWLlD7aI8fJq/td1cYMlAi4pKaxoG0OOVoJ/mKvmBcBDMGBX8P4b0oeX4ZfP6l2auIm0nDy0C1qHoiP7sBKBnDZ3eVEDB1d3d/X4STQxSvroHo3y8WpXicZPs7/y+Y9cPQNYrs2r53hpTN2tnAL8QLFj/jcsVkQwfwTNMM8ZnWpAx0cWwEfZ90RMEy7GM26kSOwxwKaA1Z/2chiqc9PlWnF5strjPLdrlRqSS9c0u1SLjGPen7+eneLJVTAzo5CVeVilmvQpNE0lSOgU6B3hdEQqMOuak2/01dSd2NLl4tNz7TiS9nelNcMFIE396j4f2yHhu7+XavawNmV9Stc+RrEC2GjhwCN0/qTWB2W2FoEPvvFeQpTaBxTjrSG0ABwhYI+pvQZARt586I5v6kI0lFCjuQdXEQilpPcOH7PtBMuvZ0LE6Xm4P79yw4MCL35ZJaHYeqApSMY278lc87OH4jVYJln3K6T4svTL6WpKAZgqq2OcGjwlPjyws7lPCOGaOWoAhLRNma+k0T8Qbwu5neATBVQDXdgKJ6xKhDoro1H6bl/T6UFyjJmGrBGSZpliRuDqdpypIQVSo0RxM3vuJpCAnBmCFThMmQkMF/wR73evDDRG4zLmQxktbuLe/b6wBexp5cJencBGvwdu6oUFK3GHt4FzzLUPk+y6oyf58hxuvbZ/X9owacQQ6sYi8xg3j2/Guq1NkxysDJ4dhl7CIUSvmCJMFxO1xDknTqECUemwemV8czP5kObijL9WN1dxku0MfxP+5cOuAVl3kK/bCaQBCBRP4y7a0ETfes/vt06iTthKYFI2t5q4mbOwDn/ne89vtEzG/E+cppELF2SQS7QRYWOOfgHVv6ZIMFTpZ6p/7v5uKEITkikHLVs6V2JAhBnkDvHidb0BrBXNeUud0uZnMujqibwh/gv5dpnGuZ/xtEZEnlXz+6TNPTu9lGlV2YhOC0H5AwnYv6tiCTjCqufz8ZpGXO0BXC5VGFPHvAYt4MY268WX3ozimuo2OsHym2iXK7t2rEH2rLu3ZE4f+sL2Jqq/uwv3ubkArdn5XnYAYz1ZdW/r6XCeoWlDZZlElnrjRKaN2Wh20YFHhSpUnb6oZaMHguXCqJdV13YfVa/hMLsxN6JJxQBgpcPhAU9IXU6xYBpattV9TGItYG9oscUN+oQTKPVF5tKSekP2m1gDeBwaxak0eNQGR6hj5CG0cxqiURU/S7LYAB+yUrV3TGMe0/ejAr83cSQ/aNfcQpXwgQE3iHs+tNqfmPNUfUJj04AyPf+ktzctb7APSCphlM2I5Oa7efYl0MILpR+IAGx6+aBNadjiG9PirhQ1j6sji8PIYBQ7AeIq675c7s5KNVzvB/kEjZzfdQUfJr+u8oDO0sQ6CXNJD5bcA3RFsg+cGYk/n/4JAMk2YSMy+y87Pvb7jWpQX+xtxotJpm/pBPeMeQk3SUBvpHQqTN0It1k3kDz07L+RwxCVXyyBg15fvAdOD/3H0IQiRdLvSt1iolfcLK87bICocaGr21RKXS2jyRqzo9AgzmOqwk9YJEMtS9nXNqloavt7yKdLuQWGZbf1OUy7Jjo9TRnw2F2qRJ1WwwMtlbBk0NktjPQ2zRA2rb343b93R5snWZYfgQNFr4NjasF9Y2phq602C3JAlOimMGJnabQMiadNlI0RQCluU9axeeoG8p7Pyno0+1P7qiuHLuEOUBqJiG9MVu2wl2tkgLoPxuLzx5QUD39hZg/UKuM7z8o2m8WrGqXRlsh88tkPne3KXxSQwfvxWCf06NH/crxVtP/4v1WdSyl9mHjqJt59MMNF7XdWM6gY+aGIF70DoG33iHoveKXuF9RR6yD7bNJCnt2y6H97ZJ7qC11yHTUw8eLVg3SYCma2SVHH/CAG+K6gqnjBVylY/9HCTlkfDQnNz3sRxK1KTJVkMXizS+5TGJ5AVwg6PhxwSv93kByI2G3hsdRp9OjHZbbQKdpvAdrYX96ddVg4bbHP5sv1R7fA5GsXq3ToeE3zuAz0a0kAdS0X8bNR3+RZCfanHWrb5AaZcY5mbaY5M/vXvxC6k5qhTiDu3oeeUpF+azt2oYDTOsW6iCl02KiqNdOHShqBMfsNNMJ75Rxo2ErMOOa8vbne5yO//U3wSj7XEaaJy/cPl77ukm3upHjKieXCGZefH2+gR5FtuJC76UO2OYiAJlPGxgap6dGjSqlK+9o8R6AvEllYLCYpTigxfMbq4dmp4+iVhqkXVDHodnei70Xa2S5//PWdbkT8we5P5n8p24BP5VgZfac5QJja9crnoutIho21Fwh1qjBbg44YwoOfhm7Omcm7k3Q8Nq8L1r21b1XQ/VyChvxSPQDQB+8dr4Roxhy/KapBusvC2YsugVDFgX2GHg3bcnlSbGZlzRc5wMC6w6jkwVnOLK43iq1qPVTFp+KXXeeu8maFKBbWxIYatGQs+dDWnUi9c3WNYVQjVjrVHYDi86/FmQKLiqcsSPeJzGgJ+c6TABynAc1UPabiij4QTnNizo4i1BRr43PgoSbCtotetPTTB8KMAD+7DttVYX55yAYNqy1goba+JQYUcQaSdUVlwatwX5giEVPljAw1S9LY7I383qDtaukVuo5GBlQpZvImUinTxovwzfMVr//gRb3XzSKPUuWCG0HcrqDH0ZcFKw55UPTribsH+YomgACmnxq7yyyUvAOBb1XJVyOaC5P2zXx6qsjOKqKpVYjkDnLqwPWHYW9An+kLCZ99O09c6FkBC4EsecavI0DXhZ04/TdoEL+n2bLP7yDhhOkGHIsw6xLy/uoAHmMODmLJQwFYtMHwbojsX7ZXd8MfmLdQwQZELpRE3l6Q1YK2vjw0GCaqDt3oW5JNyB3bZ6nqCOD51fElnZWgzLJQ9Z1ucGt/sADPut9D/QC9RPMYfNNeI0zCLu4ERPahbwC5yT9akQG9Xc0EKa6E1amcVi463RX7eySj/y6h4+MOi9OX7NCWKOco0I6MjBlM08aZr9R8+I9IquzMsNoIJzzxvQuFK8L8zCnAyp8xTx6kwobCX2+MYdudAFFU+HKsRFvVI55kpxA8yo30fccQ6KueQtNg1ZDuszKOtS2uqyFjcwpWxKJ57VAhyPSABcUhYg4yZNfUagffNd4Mfhh14kWkjASRARyflQyaE9bouyuu3c82q5bK2gX8P/N4Wkd+yZ3iVzmErxdeFb52s6kaotJiKHQIzLCd5+AqeGJztHc4FBB/3vDAa3inEf2VFiOLY5ZbkbZOZtsDlx3CLJxulM/oYaG3+s1NINJXOv3rXwWWbz0Ok3asQYh2OUS+drWwOw8cx8TUez7vGxqnKB0aFSWKseSPXA3wE+sm0P62NsFXoi0lpO9m9gKYEALEhHWQTmZKBwvHae0Kwg9p7yKn+QQlpjG0/kZpociYnmZYB03n5C1qN8FRDd+shxHGlbjHP3dKB2m0Idy0dca29sv6FXPQPUfQS8jB55wpqBvw811RqHA9+NcPLBUTqT/kXLT9mDuiWrJxiN5ATD12rilSEKDDqsXGA4PeSaVkafoD77zYnRR2XuI3zq+nD3ujs0q9bY7teooGMIIspluTA8TzI7wYB0OU6z46thepuKSAJW5/Som5eP2NfYsk2wFz+LtroSON3sRScqNDGDqn5JnowaLJtjw6XNTgBzgmxsBrHnLhqqjwQXPZcGoH50aIUyyljGwGPLIBbuhgWQVxaBMSW6ckPbYUJSyRSTxD+Bjqru7mBLngBkXWDybZ7d0QpWI0ycvY//15BZIJU4GxF5fE7tqvLqelPEkpf4H3rVdlNCpAtcAlhvI5mMueY6/B+EppuqzVsKIL2Rd6AMUfWzN9ohSUfqyRj8okSatIEdMhKa8hvALTf17cvoaZUSvb35OpXpPj8fALwehXpgJMb2Zrff6+ftv/l2JMsdfItRIS6FoO3SuR3iyQAaeQr8+ITL7rY9leTdE/lXnFxHtUPwUzcB91oCaIZPF7zt27QSp0hAykjjvwCy1NRWCG5x3fR/RiJHTDIKKcbhbRkB8evq/zDwajGPrC4JTFNrrg6uVtP1Y2FhC77O7MeAWYEe661TMAEpPGtcPldvSolbCPnG6bxtWLJzkm9+qJDa03tEcex/yZ9hEDERJ6ih+hSB00suNx5tBIzRqF/zRAWRYb+KqHd6yia9xLd3R7kZkZnEsFm7EQ26Y9Ul28c8jiLreiOhbkCMcVHwaAcT3qn8LC+bO4An0U4lwCnGhgV7vzpf+MncolDAhQjbFs6yrdYf7rkgCQAG0TtZtELHM0/mQHo1o4JqErMdwdAkGan91AW0HZp0GCFisUqLY50lp/p/zA1kZOzkziTIHMtH16Hu+pehfhktvUwEFS/X6W6J8ZH+kmjO3KkBNUent7dlmmida2SM2EsPWPnmyeA/sH/2OqFYzcnTtegqnENqYZIwiGKNnOKrKqKzPzHpxZXh0tFmutJSB/t68f0NoRg4T8KjzrgWGrEseP3k+3HY3qn1H1FkNysRdPqPswM/6VBd4iPnmHJJe5B6kzUScpntm4pLffD3aiiTGTlEULY1G7EtT5v09U6qVpTCrvEf0aOntItHyf9LQrfEUtUTzKxOCKUAm9G4pEoqtvLKooOI92Gf96vUvCMt/HLwX20d/Dg5IjhE2Q7uJ2AEkZyd7xm8jM93B7Lq846eNL8t8AaO9olKNu1+hAa2hDVCX40K3huVNjD0V4YEFJNAmgeQYsI0Aj8eL3nLP8zFDErvvyI5QF3kr8xLUoYekbFpuSdw6DmN6jp7q3NN6u40M5omuDb2tgjyTJ9GcJG2qUr3iEBpNGYi0zgXoQayBL2N7uCkNX5fwgnW+aWqu0VlTD7aFeVB969mjySKx2Xdg25+BIR/W1FT8c+CKBCeUOmH91odqJtsHCN1MNvvcpIWm4awo+FPtSrceW4w5YO5q/9f/PITrjy2bCTsMq+sm5Qdj6Q/AB4j249xD6rlAVu9av8sbkhMtjjIOc+d2xm42c+6lk5S/c1mRhaQ5Ktu2TA2rR+1QmBphvRCj09myYIuKUSl2MaR9VUvHLL03/KCteIsd1oNhLvMvuewPZa9ZrxhuaQK1BZUAS5HrB+vt/KIfnKQEUqtgco6kRAUUjiZRTLpiE/LjOKpCe0blWjIY0f6/n58NpPy4e2uxrMHeIeHuveqzL6R42f61L06TEnWEDHcRSZkz8K+KFxcgWT6WTU9q6TMsVBCyXeQov8FDyLlNsx1drmUDnfe0SzgoZHb8DGUiTtz61YVIxgqI8KLgYJ5TTHfwjbgndXjHc605dgeGP8bxHH2XxVadZPP3tTgTajTgCEaic+aCi8di+cgBx+QrOFBZJF0ksPs+RzgC47eOrNy2tZkkLhkG4KVblOfRZskOzIqJQsNsX8BBFYAAu91MFrfywgAAAAAAACC3o5g0PyeNvp3EkNH+hwZdOUC1470iwDG2EkLJw4LQfR8N2pidSWteDSn7ZDav6MWPnrftvQKW/5jxYkI9OKD+rJklU9k0FoJ5SGoVptr1eVKU0qj9NyICge24VXbd3Jgp81M8CIh9SjRw6biHNzQRJaVGhAomJhyA4y5jz/JwxDDP/5N/EGmvT1dg0YBQ4zSixaLEjAIbI3z8vvWbHSPYUU1hmh2SyXL4WkVCbQ8PUa1D5/DkTYRjQKM44AChi2YjacUY1pW5tv8QJK+GQNhTUjMUWUTlfrqjG3WGMSojEWvFKtbinL/iOzyw/UScQMw+5FdkCpvcSlGmrAuU7HuunF1URsnhnIvN3XUoYdPOMXfmJG4xNlSH3A80nbl7ds615kaCsCusTuCPn5ZWAZ6oH3bX3nmpk9zSeV+SGpfWbf5dTp1NE7cMh8eUQgNhAWBjymrq6f8AFghCUhcPJrOMAtxNCh0AAXoFjiD6QAs4iD5FLZCvC/MHmUskiMiHZxGHcRA3G3yswyoMIXdOU8wH1rTOrvf5K8Yv8YMsUOb3DVUIBJUaz/Jd0nSyZ1DXOSLDcaR6iKCOyHFQFgHFDeVl8+C8mjD+x5LhAXKujEK0f736LF0lSnl9G/mrNVO7hNU1QpyIuQTit0eRKWwtAkgFWGiqaU4XZipw2YBkug/jh2Kf03QPhevGrPPf+rYRWCyBWK5hak1fF0aidJAh8uXsKNaZBUHdqSp1Y+IJ60ViWyw0nIL54Rb38UQft0w8xPQvgM6R/iuw2hHlsX0oGyAv5Qn5MdynwNVl4znB9pAKtjFLzlaUvGXVvx+uTg7vROoaByW4GpB2hYvf27L5hmMXm3l+mFqsed5lWiIo7CgSrpvODocEBI0iq4+Hm5lmk+5HX3/XPjAz5tqXy2eBaSaV5BD7N2EtZHr5ca63cQtMWUGuT6orYVBSMzJFpJwzuOPk7HrPfctUUqC4lNYmFMoiW4Lpx2qhZ4vVyEe1NJIumacg05jrJcSEZdXmA6396hsc5Y0vzHJrA81Cp7r5+zVwu7MM+1TtG4XZpcraRRExgh+RukhK94NUMe6quT/AJ42V3tCwFEIVjh8ZBLWRmqDNq/ZahZpLANmE0wdX8LXB3Yargq7ztEidecAf2IA+KjTXfyZH2s4y4/MKgCh+gU1AVGBXeOl+Xn7dvYs42vbpfUmVvSL+5N6+dXjCgHdT1JCNtE+1HRVcHojF63zi9PsKr53Onrt39FUsM267ik488s1gzjMxolSLjbfl3VqKdkCmDCEvx0hHkiA8cezMgrLpwK1jQRFGoJy16kI6pI/nBFxUUXzyv3/tuMFhjY/5WsCbaG6chIC9084438/j74QmS0HbozmcGvUUwyUX7sryIPCwzkRXUrQh3izJYvcp7HBi+GRyYOJYLt2Xsr5Dq24d0K3ar3k2qGJM9aPuU77CKm4+U1sUPyenVPOatDlJWmg21xtFjnc75z/WsaDmev4aWILKwGoljPdgJo1XkZGf7Gn8AlwVO7lUJnInY4DIX2VvddvCMXB8WuZ67fWPDuiq0NrErcP/g/S7BuQuET5zlEE/iLNpml7OSqOznhXyzv5UgnFI3heswpG5FNvzP1pqJCbwh9ubdYmovv3e+gzOcSi4hwNcDgV8a+nQURADU3zjQh07ts76XLkoteipyyAag/ThjCO/Ygv1Dt3RvDgF0hBtEWg9VMWauj/lQ8zQ8rxys6uZefQysVgKYnrYwJ6zeCxRbxRFtkf5+TI8MRqNTKCGwhQ9O0yn694366watoXaej6OiLd1AUuVTgy3bdjjkIB3vuA2qNheeBFNWGm8DrznPyyz9mlKdvDALUe24RqQnJhDVY+8eYERxzIKXKT+2rlnoYPd+bUWA5A0YzP1azrjIw3UPUQeDBtvb7DFQwxQ6f7ulYYqrk3URWjf49ddkdJ4qDTy6HG6bUlGdIkbOYWWe7wt9DQnKbhNpP68O0GOugM0dSukLiLIuwxG6ehqvC3Tw/YpnCqAi2LMFYYPnMSO5PdH67MiG1fIJTLECawCEBIVod3kh7wSGXd9fknWOAUQxld2e0h4ngeC0qxcNp3xTSd8m4ulrhVDQsTuwqIQb/akQyoQay7eCQCpO2yEFZxaI5KCSO5XkrAbH4O8OO7B8tPsRCqcIFmT+sMNVIaM6G5XZsbT0BoLsN3SAGgQ6oNJ7ajjOmmk4GeqCpzEiUWiOmzh2NZ0rO99irQV7I2gzWmHVc0TzhIYU1NXMypWLsSwnVyIdz4rPIwaqPLyFNMuk59O7GkKKAKxCYnXa96xjv4LPIksaveyLTdiA+iHHPsTkcb7YtT2J1446EDtiUWkCQwIUw/eM9yre/W6bnWjBB6mU/muWr5Bvn2AhVtJ9ARSFYKZbr3omO9OC/mJB/hSuFjYmiQ5RoG4Nr3Fn8/V30Fm5pAHXr0H5yDcJ8CQHdO5cEhkik48eIGBZjc9tdEXrwtLJ0EoPZzWcykphd48w7xY2ffEAKmOzS3UP/zETFmkcTmPdXAnVVXXGpEIgZqlo43i6buJlq7MBZ2LZKsgm3PwIWQhxIYVkydMuUktxMFl/gjntrjIzkmZC43XgdGz18szf5vnfrlrShkl3B+01Rek/A28PwVT1s+W9GzZ159wob9QdXxcLItbzp1hTzRI4GEPl+Rok0x5l6p31CU39x/h7seYcPmbuz4QgyrnlpZ4/uE6gEm9yNvrg/0+G0PlDTA2J0jVwK2BnPmuQbNNpyE0m23OxHLPLuW/lHDeb+ANUemXTTtJi1PHBg2NrdTzFAgyRLuPaDliqz0PuCTGyCiUcniJRROwLVoLlSY05EbCeEaWBSu5RkQKdw6woYKHmn//LfMWlu5g89+pu9EV7xCiNAftHD5bYR9k80eXb4VYx6+W709EWKd91BVI8VYQoR2DeT5bkup5ySP6ZJGV0PK/u+oaFQkTk2RdCo4t+U9Cy/e7kckCyi+gOcCzNMmk3qe8nfXHhzxatpSgge4KBOzlULdGUE60PW3DqcFOnvZHJ/YLwWqQh1rPWr2H/RyM5Npl2Fjal5waa5/7V17mMOScKceT3QND0JFGczwsfT825Rk3+oS0h2wctJiVJVy2N9Oknjxk29uVELbYucbw/Y3wrWXfwDxzow+Lr/kIR6OJEIs88Tjg+ABPArhLSp9cJERy23cO0vbLP31h3p1abpyTEcQSQs2T0zEziKa1tHrRsf+9gChqiGzRfjcrCKCKs9WQ9jTfA4Q0irrnL9vUvFGhUdRkXQUp9fIHgMannlghSejJISlqYPxG3pjLjtC+SnBNxcDPMXppraAsk82iQF4xMgDN7zVYN66SrAMjgN5wpdBqgcr9shrW9tu8BAKpFaclq3jlUpt+p1aYgrbKSmqw1Gj4exTLZE4HWPTqkOWJFtX6MYpu0AUhMB7OTNrp46NfQreS5+/6z7XtvRoFrD+MmRU5Ah4IpkYc4JX3dW3Ar90EDd/BTjcAdSZTNLqmh6EtwaX5Dz5M+gV4yXV6cyCWYRkIdDq7y3ks3tp5hNW51kcxkMOmaOgSCaZKcDHfDELgfjOD74ODv9IC7ap+EVY51AVdJb3okV13UCfg+W2F90OCpyu6eVlJwuZEO0ieqw4T7FIIB0l3N4eXIl03r292wncith43r2uUyJSYocQI7jJEaY4jcCo53l3jkN2YnMPymLUsGY5LvemPw5omywNP9k9Ln+StdI1rtNXYGQiacj921z400DmhAjBh7pibiRMuTRAQQtJec3DPC4PLROhHfHeCVlGfDdKM19sFX7jMNl2DxZfMQGL+sCScIF0544CCwCgMVAtBGXRMp4FTft8JuZfrkwmPKcS8gbQ7FNgY/P+aM9DN2/o+XZxN99A3jw+kbk9NoOMXusmLyfugIA64CR9uPHhKASy2MKiz3fYOikgzayplJS3Wc/qUqrrTT7IYiu3HS7Vt2hnJ0qTTeTtemeZ+0B172zrYRh/UmhQ8YZmz0mSABLfdzjlPFhLaOzYYpJiZiY8UJF+AIINbSiabZrqnHWbx5FhalBQzYKUgZov/Q40WMzY1veXxTH8UKFEFFX1Jtq0fF9ER/wGp8185ZhaPB0wTQxS5lh3yyj96BawFwdzoWN0sTfr/FUBBBUh9dWdnqzLMbyqjImP5heI47MciQmMZK/cc+1TAOOVB+79FEpyjL41oc0SHrYlYBXVf9oqeFfoeUOV+lXgYa/n2W7jvUU+xsV5UZppYgtHJW6NryQNi6VKOCTPHXYIplteHvkYH3XqBotbzTBqD8V8li5C7Kz6LmNJI8h6a/l6rFuFZBy/8jdyjQdRViIyak7iUW4my9T7YebgToKo6ht5HxUjJpFscmXq+1/6Tc80phvhsQk2LMpp9LKykTpojw2iIE7fc1hptHzhaEQZg0I3a5oCDRhm1yJ+wTHzXQTy0xW77aR/xqtzrL32Y2HridC4aHmd01jO43of6a9f2l0SU4InDzRz9+cvHRnK/2ZHkZK81xT7mx7E2AOCdncJzpZ0+EKXMOrXQsky5kbFnYZtkJ3a/LaEfLBRJBXTyviaz2dsgHnVRDRaXSi/wIYvZAgQ+6M0xcx432BoqkTEM5lF+4fw+R87K3n73XNddNjfesLj4GPv4FhMRqBw7tt0Pq/PV14K4A+kUQEECorQpoACXm+HiUYK3UsIUJoIQjMgV/OpyW7bN1h0TjvX0aivBARBF2T2WO+euDPXT1JDDIbEqBlFCAOWKdWkzUFKu3uTZF/QTO0IwPKvrkfw/msjv7NsXnSLnf5l+CXJ5iOGjF0txQM46/6UhHBGt92OeLxxRFHKSj2cBULG6+TBJYBjx+CW4hY/tTxWo+3Q4tdM9m4DfRx4W29z2xn0nS/OtoczvuAnHUfCsC6W0dLDAkisq4R3KbLS1ncLbu2/afYLQ4L+uALfVSokpve49UvHQ/8TJ3wjlqk0ccCzF/tCVFv9J4YNbjIKLT54vsorcjQAYKJPZj9nKoOenBs5Bjz7Jh9vSzUAa55EOjuIjeLCKMJBq1y3qgOWFGNgLpTBEJsE+iAPHXCf6DB1bQOsezhvRtcny4HS13qZu+Wqq6cbLDVO42MZAj3qJkJnes95bx1Vatz681MQYCysvy2bsKpufJV6rifP7x7SCgv4YQSlmM+utcQAjIPvuhLPctSyEF0aObqQlldEt8G/tmZm8Kbh43xpvFOGdIGYnziXJnGPm/VXXKNaWEkRIchF9yL086L+lSNJiENneLXyiUjIN9NBgGZitiETKDFIz7wI/fpg7KMMFxyF3/e6rIKggvyUrl1zRXeZIuU0gmF/uUVxsFyE1/YUZ6zFnoOeLyAqbvwRAnY42soj7E5ptzGnK73+yo8YFFs0N0A0GA8yO/AS/BSSyzG9veO91jSpSP5ZSF2KbXuZv4OwV9+f1OgeTfwNYBW876HqdMDVyLw+yPLab7E+DEptsI/JoXkOaMcBnnV3cb2krzWCyr8FhthGe8aoRfZNAsXaOH7g2XYih+0BEf3VqGM5Yg+bVjBgXNkGcy0HFrmsE9CeWfSqXN0NsfdPD25S/AHPtAczvRqTv4biF3u/iQNdI0JQ1y3l48eN1l4/XQtN1Tqasrm3CXgREPUOzWnmzkdZS0Wo4oGVtFkDfVLScAr3vDV67JRkodSLhbp7zKnwHFzucMxXdxpV4mH9j+bXnCg8hUoRBdMoB981Ui71P/4Q/iRBUMe/0r/VfFqTNG/43/t8xYFzI5fnYeYA/0eiVUS3aaxMFexAc5MCnobZjWKLdzQb4t3w1yKB+qKRCblfPCfwfSkJ6VqkH0JzN/lIUPZiRlGhHAj/gbCufkbv/dHYVkpnI+sEv0EYXyO/qD5QNmCBla63V9V9vNeawDMC72EHrKPgvxryN9ThfKxmLNgTLkCqJTv+6KmocvVCPzBTY8EZHJboarGi3/pDGoAntxwIp7OfMgNL47awuvYssnIkzJEhLp/WBgpWhGEHg46+JqxWtBrZrfzUUG/z6xk7ZgxcR9GCIIorVBf9NZNtHaHue9s1KAvB204Ty9YT160nqkn/YfeaP69FNJFJz+25EED39b125f+RxAo9UgKVCsIdD0QU/upYaxbixid2I15GmB1mvzdU13bGsNxrXXc/ROPb9DH/bbf3B+wcK3BSPXtpotJ6SDmeTf5XEicc+UMIlxndJBYQLpuGw0VFSsb9jkkgqSrn3Q3VEF+HvHALtWt/RDA0y5rGVr60xgJgD2Tcs600qfWDWp5Lrlx17r/e+DsPu3LVmrWjB1v/G9vZeKL+Sh6c/Gt/O+CUIy/et1K1NRwTf+T1ponjkP83ZV9tE+VUJUKGsYOyzEsTSsKYLO0MjMaiQxnapTtZdrO5DZRj99CHEhwwxxCNE8kgrjNbQkJ93mclyWwReKxYh6QMpwg00NFl+9DeaatHkUXPDZVCVWWPq5R7UbMZRJMkYMxGKNc8BJbjv2WA7eWuj5AZadqxhfFPYY5MvHS7jEE4QPFLQRhjQceZtmOXN8vz+GlxXUxpGH1AFFJ+uGHJgS7dUV4aepqqs0Rg6aVgGurNzA9fnuhSOuHAkrzSHSHju6dT2kivJ9FHRaXQ0uPJkgIcv7mSk9gRZwN0/8PGISHuTOjuyi/IZyKfCEfZYPqZLm+zMhjmETD1T/1451k30XpWja0fXTq3baGeXO9YRdr/QYpU5LkZlOwdcz3uZpPa4O8fyAYNeyd/PbtzTe7Tryl6sqCRBCmsYpeoE1OhLluQ9L2aiMUylPHh3bywzuIYfs6NQVBPHqr/EQ9vcCcSEA/cLbsCrhhTVBt5oI48mftNlK9gsDY7XAM0rvpYbSbiS1Bw95Dysvmn4VfV/qjjpk4qVrdYPdQx76te/k4D2hOO+JRiwpPw1hyuExibxv5Bjib0ZDgCu/uopgLPTmSlhZBI2z2AV6ClPMiJK8RVkZTSeOaQ29qHieI4Dx8AFCXbFO+fpmsPnvFDPUxL7nV31PTbzNY6RrzavPeJ5rvwlk5AqFc4QYyha5PwyIiuTDMOyfzspn2fvnYE1+246onPMHU3D7doEbfWZLSnF8fqmeySnxIU/Zb94yEd8zlux+rm9+DzX6eL32EFYAaSvUCam8rYG6baA6HNZioKpStDH+PKJiHh4hqPj3kpcJ0/Zfcge5ZMpY9ylqchTwTRxtqP6ss/JLbG1jeOq2aFtQAdTBMOkVa9AvVQN9xI7r+v8GI7U/MadVijFXJfPlFfRDKbMxZXebvqKxj6tH25K8y0raX0UxhgEtuSO6X8x7/CDHKbJGYvXVv85wo3FZ9oikw7WSEAgp91QbfHoVPYWFo8GQ8fkGKh+OWobm5NLGZaWn1r/SCNyWPnwVQFxc6puneS5l5w1ya5p/lZlv/EnBV19yJLDn5Q8Ggo2WIaNgZQZd/2/aZHmJDTw3pm/6Z9gWJHcW1XKGdcYm8paY8aBdzCg9j0CFefFa9PsEDp1YYVDcpIOOwDIc4X+4pdil8E0CO1oz3Zm6owOs+Wwd9si4j9eTAR9hMN5VBAyryW1klvzmRnVFO0nY3NkIULkLxxJ0LbvZHtzY0/nDBLdYuyXUAlP8VxETLeYwwLGI5Zm6DwtHa1qfFe3X+LsumSnn8AgqzQ7TKLp+rz0l9seYl7o/F0xKBmUQ856+LcKuWAhzxLi7ko6NFyanYl9sW1IYiwDbYhHd5kgw4ev2s1gfDqYjt3wAiRIpVEBcVFgItwsqDe4tbFsCpYBdy72P1CexwrYk/j7n60cX/+pweaRhKzPXR9ujx7nu5BH439QHUqSAyV/VRkEw2jikii0vAJUCaYLMugFFd8GkX5dseeYsy41MLdFiz0fSGJb7PTXd4F7cP4K8LJvfR7ivNkHauWN3nqlU84Snx99Er8mO6icT1F/FB6xBc4NitP4tB1mWnFROQxc0ygewoZgBqluylHDc/scmx6ribwfEUIP+jXzjRfekFFR3BxI2mAkBjYI0nKAmp6JopoU6quHvuYXuH/RGmNBFJvQPad2j3hd76m+1beD54w45gfj/gLnPS4FdrrtzjlLqNMPJGlbuJEfMAnXUg7XTLFy2Z0vdNJjrGXebdbG7WMGI5Xmi466wDwReSm2DVakvTOlrYn1sYfN/ChKKWduYy3FF4qdr7gDXR9qoz/IgiK+1dzSGUQcFkLWGDjyB2YN1vI2DNq0Dy42GITfPcqNWcommlDbeMg0ixBl4nFLDLwGCq0VYX5CI5yKV9fZx9EKPbX83Wh5cP+KNy+d1zatApKOsVHWq2BlO/nzYVPzi9qDX8heK1FYsBEFwAe5idhN+MztbMZHWNkTPBeIciGJJvmFObF5cSg5rrUJ5bAaLgG+7J98OUG2J8VKWlO8Gm5DwsPt4JLhodhYUgA+/61TFdgEMPjkX5GD/eGssmuXR3jRsk/sY3BKh0n5b4j/YURNi6+2dPSPBMW2Ter7TMTywFNAaTL1OsPixlbZjJ+B6oT1gEI2222lVZia225UD03Y7zyswAjZgJ5ku4Cvj7F8cYDrR/2C0ATEgvoGL9vCW4hb1JsKxjDQAHGzvreHZ9Wt5WV1wZP36p9R1T1bofALTlIYXbrbrEd986cAxsLCM1R7UxGxN2nKB5+yKXZ9sGGMt9Nuz6EJ5ZgO/Dl3nJzh5GjF2Vl6gK9PaMN4/EvH4iZNwOFo835x8ezPluQtvworlaFHKcwks9Bsk+a3nZ0dmniRqWUGHHf5ggooUlYQiml3WvLNp/Qcpa3Cld5bX912J70ppTZunGRZZE7TBPplTFbE3MtjBqeJrZxVB07gtYy7EQUJKgtGCXRQRvtUcwuw+swOSWhzzYf8IndxUOSCMNBF6yCVzxFBMMMbGnj1s1uWg22tEea4MQTEbfIGb4nXrdPLmvGH5+HzP4PVe5ivOONnQc+7nETiLsXksccZoZzJ1CMKnDg3ZvINPHuPfLcrZBRCMivDSd/HvXQreE9G/BW1zbuKwqp0OJ5X2Vcm/eIQN1cd9JvMEZ3IPJ60G3jvyt40m8LD5qZoOb6eG5vrVq9/vYBrJFJwSjsT4d7bJYVTTUmnCXESpaiOaNTEQKlL7Kw9EJG0k6takP4jefgTwk+t55VRnjb57gJP2wVCAs5LlM55GvHWassLdNTP9uYTjRlEGgqLTRj/PN8+6JVnaoA0cylpRHvdJmVj4mUSFfRilFG1gxQqzr8tmf5Q7zaoIsc7aFlx/dzz3vtWujwCGwx4WpSA+z/qmZXtsBlvZBkHCaErbR1oyfU1yMKiH0M7hEQKBTMXyIJnY5dUH0YlE9Oj/nNU3jth/LQg7izScAjSjDB2zCG3gMSyXJYoHHwSgiN4c2luqyZJ67kOBhpbuINcYCg2AQPmAZyfVtIWXT9IHg9lYj/e4rv8915hhOWjFB8MChyrpMfKBiyghnur+6er3kGjtPmrlmTHHi/oJ340k5tUKJ0zcdxPAdtSvzwYf98pks8/6Cc73qxKOpzqEsR5hHmnPA55aYQC6vGTHGCTZnOl+LUSx5V/99jlwlLCK3x7uEtij1NLbnctcgktlaP6KzjQOQfZvCiDi/Ghrrfkd/Xg6MuvY9J/aTuUKrN2UWLZ78L+ME619YfE4nWbzmromY4tj6AGAxzLyVMV9qOB9pjPgiA5XJ48MNGTQjZGtJT0UFDnWfVl79lH+v1xT/GiNGFtcxjF0CES3g35yc1oKMLFgaBYx/vSHaW42Dx0zZ53pWgKx+9PACROq+57F7VafBG7Yh+XTAyFnTH1r9rObPaK/UlPRQUPFXMj15t8oPKym9FCW3vtGJ+6zkpsztUX4ZdijrQg9dGJTvmQ9GogukT6E/vLE28nuWYPM6Zv1UTFIMCKUzriIMUXnE45NzUfd3muuZ4x7b1NKRsNpTztHW83xSAqaX4RFez5vm1hZ0wY71lakxJuxMgHQ+xTy5STWUbBZwt0LV95YDT12SUAdEgBYxDiCe18AYDAEMR4GV04I7ZwOc3lZz99zsIs5vKOPLxuWl2SaGF2wQKsVJA1NdrJ9QniG8JezBs2yzcozpG3y/lpa0SgSKsHTyOc+ajh/CaTNZRzQ+5T45qWvqYfiQS7Jh7rshPPhF0q9V6BoK+7f1atuymTeT76DqsQq+h2PxFaPkvDNPC27YFx8yQfdgnNnXekvdJ232Ef0QIVJjJAGIOYILimUtnfhlEk73dHjk2eF/dN5r5tboAQBiXEVIlJFQIMU4MmbSYXeeEzFex7jGsF6WoAdpWfuQHOTHwSmzg8gBnFzTCYfTwZFncwRw35Wkop8xu8wjvd4vbEAL3LgsAQPJSVnCEIayo18b1+8GEC1OXhZcRSz/FWoFi40yzq+gz2P4TTcdfQGbUBCgDlfwgQi6EKvs6WEwtQNrLMgDxa7s6ZhqruF+qdURLq+Mvx+hOxMBCGWVQjJZxxb+DFK1Vmj5680Do5JjJmBqJC/JjtHn1jRE6frp3JlZnjevmNe6VD4J7CkysMzNEH/+GLxMZ9FsaatpSez0tYyz9Pchxt8mkB8e18TE7HvgAvHCjoPPAY28Zik19GoaCaNNpy0xXngCj8e736pDttcAl4oaMKNoVYlTnIpbRt4g0/BiUU5Ql3/ujdyKvryHsq5VGpitaHn52qYaHy85xrYCcKQI7VfUqY3PiU4dBOHCx7ZWQnEQCdyVCCcD5s7YVJvXBPfT7IH3JWKdwNrmwwcjq2x369+Aj0OixW7+pGm7f2mLDWPhU87A32T4D/WR+8JaBujiKohMpQZwoUgQqx8MuE0m3n8fk2a/NBgZ8LjSldUKsbrWEOq6QwVwANMrT6/o1ZtewmVdp/7XA3fNnyyGXIERGCMhSpKGbGfpm6lcs2+HAZ9USkxu0iOdsrV+lOMvDV+x1Lp+O5lg8i9amQLPhBb79Nlh39+GpmJnjA1498L7DlwGnzcjhRB1OxwMfOwUFo/+lZumfrME7pw42rX1m0EAvKWiiu/x6Bms/0cbsws9V0tW3uMhj6ynO8Mv1UznDUUT4U8y3G5Qsy+Mmi+do8/u4PXKrIdCGic6UOrJUERC2QRCE63/J4IpE9IwJ8c8E0sDpcvKKj9SpPlm4GM1s7Y6xKTgplfRyMWQngswRR5RjknInyslvWVqfjPCPxHVUvtmTlsGtkISDZpKVnw+ttpv3PrrjTDOAKn6KDP9gHxlWt9F01wkInduph0+T6IlTy7+MduDqRws2Niz+gBdcCst818TPbFITB58Z4G5LZqO9+i+U/qhDJKEkPEDRiE1oHjqyi0VtawzTYFAfkVz/QDtWZidywGFP1/gdtHajKh8YTh2XfthMyzCeZZgQPpE2qDtKr5z9cmTg1oXecWlRr7EDgd4soAvcbsUz4N28I49sO8ZoB+CRYm2iI+XwmqIzoLfPD4BQ4o00RZRAECDXK8OWNfa9eZWrh/BXCCYCFhd4DvEnwD5O7MYxOwa+0/XWS5T7oHoSe9snsIoyoTZYKsLZyPiOrNWhFTwXp/eXM9BEBEsRFFjvfBB+Y24FuoiJwhfpSwrn3MZSWbIiSHhswhg9oMoSKdXdRosXvKu7jqJzuYGpCE+SY4h0ZqgpK47C2bSRXZG6xulkjrI4/s7yFJ82Yj+uiNqk8bckBtZqAjpET+hStKxa1c4sTBrDtS8tmi6aVdSDwP9TVHAN/id9A9vGWX8wYClNTiKwLj2HT0bIW4Aq/cFLfcLOHBopd5fnC1qGAaou8Sh6SyI58wxWUlLHTG02nD3Hkadvxazv9J/NTDp7Ih/A5OvAau+J6RZHzwLXdhcaKJGECjSqbVCvdlK0GvUvTbVEpocatnD7RUYkWIOJcAsvTEyWVEeO+InCXNKMzZ0NAZFEGQk0eScNbkXOh8rUAqVlOAQbYW2DU6qSa9/iXuJBLoAlVmmjbHL5YGXd3t1QMC93vb07Fn80a9aUTCEmdENRxB2CSDjbfN08jEA8FeArmPgZwsqjJ6H6FoEEeDDqkO7Hoddt/obCjYn+5ao0s1/G7wFu/o8ie/BGLzxgB43D8dn/rSiyNy99SOlwHsapxBzJGeIom/f9dNWI41TQ1k3AUkv8ih9awnArh1/0voHyDyS3F0DdtK1rnIQHrYzxwLMBWLfvbf7MaZgImIxQSMCcSQXq4c8ddDKCpvf49S0Nrydeh2IHkoI9Umk+/ZVeE6bb6/9C4rbhmtlbJxm+IsmXMWAg/X6G5LUqxfi1+dZ+a6WKx6EAUch9qFvCQ3kQC5NOqzI9ema1vrEjJV6mkEgLxrsCnvbh7qSuOqqTuz3oMRGxGgImVoK6lqR6q9SKH/IRF4/bfm/nMJM1FvRM0Th6Yvk993cf+EFnwd9ApHOyjubKXX62MtzJpEL2L86rC88+FlYVtLv8RGUGbY0rnBPmHoUIxXEjN+DHM0Jl4YjYcdwVi4lIJBLr5QDE4ImdhaOXiYbszQl5yT2K5HeRwhkrWifi+UpDcoB3vOUOdf8Fjwnz9o2YMMWuD6Xvk9CDqAOotWP5j3tUikznMYOXeZJSQ9U7Lt/3BAsVgwF+dQRE6OmDAACWs9XxosIHxEAxzdOd1SQ26LzjT9fwD8tmVmKkfi/B1FtTh+gL0VYWZytZSMSrm5zpmfDHuywYBGv3gzVIA0P8MnuiUIjfzAkxorZNyOpRFxvjvpoJ+i0URna5T2ewbouSQRi7IJAXkmY1Thf9Pfq7KpJ5rshHFXQ2++9y2ZNwt/KAaMazFSSJsSsmkmpsmcIozHpyDjwvAAsy1jLLKmpap5vdVeAFnkBdKPbLbHv/yRxQ+fQQYOZa8BeQKb8qLG47i80828kal+HQpo7QDs8IEA9U1oN+/FwD2gWlnd08cBmkcajgE2bsINdRDiysWZp2Mbkyg1qnDYqjnRU4+qyJCOVTHezOhD8OcX4wHfRXRysw3ciC0BaXBHusNjYpptDL1VHKu/xXrWZHCyjpFiTWY7DOzAX7tJP3yUtvFa5glKh5M18rL+nk7Q15cbJS6yA6TSJUpLbWks2JeTtC4f9Ly2dbeljoLTuYVgbuGFSPlKL5E4vORHgCm+aqkcUwqrZwtbnFCFp4m6V/MzfxBD3SD59jo9GBtVX2jBzWB5W0UIkapqUb56+7nrM12nTd0zlp5NYdU3D/4ZfGSOrClKrtweM4xxMSTT6VllFwcvob2XfW84lZDp7P0zaezRBq0pchvk0woZG17MWbF8/vetphWM7QdwVkZtbSH1A/FcP1yDJN2acc5mZFxACrF5bZXUQ350JVFKnlTmkRANpFb2MLOFJzgv9kJnQ069Qvr49iDeCZeFYHMBI5QZYuQJBCTy7dJGiMxX6SBP+CTFt2k1as2EQuKn+z8mGyuIzrYhtTcCD6gg3MKECSyPI5Ri49lxR2hTAcA2yLgTVBK6RV28/kkAAYCX3fU5/svjjDvtuPmWEtb59iZ8caORsV9IGurMGeNAEgc4P8XLcbG7w50Smk9lkgHawLZ+SD6J/1AVVBDGvXwMHN8OGxm/TkVusw4ZFo6lS6jiM4tOE2GfNXh67p6DsMDzt6CCcImJ5COhRotdCjE8YJuQkyUj74K5l5xbs9tr6OSC0/1zFuYQupQjc5RLnQ7kCfhMo+dOuYcy8FbDd8Igvc2P+htgovYmlnEyomfiUXqtAkuPB7zdWLFSDNcRX6vN7EmMrEy9wl9M3x0evWdABhseX5c9f2z9LbCs05MXMVsdGvJ2Lfvc5fmUjWVjrKdIRiL3XfTONTnTbWoDvbIfPXM8FJ+x0bqSGElX5FeiINo0IEAhx6j7RWOSQogHkKirnu0NIvrEgEE5YUOpzAVWi/zDJLrO+FKBXT7rNiI7ALL4LJmtKjPwcKWmD8GUbt+C1XITjBIgCWa4inYFXGigsmkc4EZtwH54DLdH14LWHMQAR/yv3XrYjQnRzaWitkUMktF2UyCB7PgDPYEW5K19w7ZZHtPXUL+U0D7lJkHYx5tWkLWvGmaAtgM1qFxBnc5rk0Y4sOHkIXgkYoIdc0kyKFEwp3Wj/MD/G7YHz2g9UdjNF0YV8gdJcC9b9qKpX2hebIwkg+dzLvugEATTh4DWw7igk/jYVsjKAxYOe6ge/QwoeyALIxMp7Zmz/1NEcbYbzEMPCfw6OcNoaEo4Nt7BIHeO9PY1XG8cNYZyx2sfC6aHbd6oajp7QEAE/TbcQ4AFJAXKoWd40o0v0EqweacbVa8AfLmot9y7NWfOptVAeycsL/y9N/Z9f+vbieIrDWn9NuRL6sT7jZ1vRnBv6HipFXnMvgLHi8SbCRpvwVfmwKgJN2uyt2mjkTvqu4Te0R7HzDZRXRdTonyNFj17ZSAAAA=" width="360" height="720" alt="Die Startseite von wbauer.com am Handy: Schulfotografie, mit Knöpfen für Portfolio und Kontakt.">
+    <div>
+      <p class="txt"><a class="link" href="https://wbauer.com">wbauer.com</a> ist die Website eines Wiener Fotografiebetriebs für Schul- und Porträtfotos. Ich habe sie gebaut und betreue sie laufend: Inhalte, Hosting, Domain.</p>
+      <p class="txt">Ich verwende keine Baukästen. Jede Seite ist von Hand geschrieben, lädt schnell und lässt sich jederzeit zu einem anderen Anbieter mitnehmen.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-wer">
+  <h2 id="h-wer">Wer das macht</h2>
+  <p class="txt">Ich bin Konstantin Bauer und gehe an die HTL TGM in Wien, Abteilung Informationstechnik, Matura 2027. Zu Hause betreibe ich meine eigenen Server, auf denen auch die Seite läuft, die Sie gerade lesen. Bei mir haben Sie eine Ansprechperson, die Ihre Seite selbst gebaut hat und weiß, wo was ist.</p>
+  <p class="txt">Was ich nicht anbiete: Garantien für Google-Platzierungen, Social-Media-Betreuung und Logo-Design von Grund auf. Ein einfaches Schriftzug-Logo mache ich gerne, für 90 €.</p>
+  <p class="txt">Lebenslauf und Projekte: <a class="link" href="https://6b62.com/">6b62.com</a></p>
+</section>
+
+<section class="contact" aria-labelledby="h-kontakt">
+  <h2 id="h-kontakt">Reden wir kurz</h2>
+  <p class="txt">Rufen Sie an oder schreiben Sie mir. Wenn Sie möchten, bringe ich beim ersten Treffen gleich einen Entwurf für Ihren Betrieb mit.</p>
+  <div class="btns">
+    <a class="btn" href="tel:+436641854854"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Anrufen</a>
+    <a class="btn alt" href="https://wa.me/436641854854"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>WhatsApp</a>
+  </div>
+  <p class="rows">Telefon <a href="tel:+436641854854">+43 664 1854854</a><br>E-Mail <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6b;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x69;&#x6e;&#x40;&#x77;&#x62;&#x61;&#x75;&#x65;&#x72;&#x2e;&#x63;&#x6f;&#x6d;">&#x6b;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x69;&#x6e;&#x40;&#x77;&#x62;&#x61;&#x75;&#x65;&#x72;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+  <p>Konstantin Bauer, Wien · &#x6b;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x69;&#x6e;&#x40;&#x77;&#x62;&#x61;&#x75;&#x65;&#x72;&#x2e;&#x63;&#x6f;&#x6d; · +43 664 1854854</p>
+  <p>Diese Seite setzt keine Cookies und lädt nichts von anderen Servern. <a href="/websites/datenschutz/">Datenschutz</a> · <a href="https://6b62.com/">6b62.com</a></p>
+</div></footer>
+</body>
+</html>
