@@ -35,6 +35,11 @@ Edit the text in `src/` (one file per block, in order: `head`, `about`, `edu`, `
 field (`0x0412`, `   910`, `07.3%`), so filling in the real values never changes the length. If the text
 grows past the budget, the build fails and says by how much.
 
+The offer page `/websites/` is hand-written in `site/websites/index.html`. Its trade pages (`/websites/friseur/`,
+`/websites/werkstatt/`, `/websites/handwerk/`) are built from it by `websites.py`: each opens with its own trade
+text (in `websites.py`) and takes the CSS, prices, example table and shared sections from `index.html`, so they
+can't drift. Run `./websites.py` after every change to `site/websites/index.html`.
+
 ## Two environments, one branch each
 
 | Branch | Host | Container | Port | nginx config | Visibility |
@@ -54,12 +59,14 @@ staging settings into production. **Promote** with `git checkout main && git mer
 | `src/*.html` | The page, one file per block. |
 | `build.py` | Assembles `site/index.html` at exactly 27,490 bytes. |
 | `site/index.html` | The built page (committed, checked by CI). |
+| `site/websites/` | The offer page for small businesses, its Impressum and privacy page. |
+| `websites.py` | Builds the trade pages in `site/websites/<trade>/` from `site/websites/index.html`. |
 | `site/404.html` | Matching 404. |
 | `site/.well-known/security.txt` | Security contact (served on `main` only). |
 | `nginx/main.conf`, `nginx/staging.conf` | Server block per environment: CSP, headers, flag header. |
 | `nginx/nginx.conf` | Main config: 1 worker, no access log, `gzip_static`. |
 | `deploy.sh` | Builds, then publishes to the Pi; the branch picks the environment. |
-| `tests/run` | Size, linker-map ranges, no scripts or external requests, metadata, nginx, HTML validation. |
+| `tests/run` | Size, linker-map ranges, no scripts or external requests, metadata, trade pages match `/websites/`, nginx, HTML validation. |
 | `.github/workflows/ci.yml` | Runs `tests/run` on every push and PR. |
 
 ## Deploy

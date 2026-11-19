@@ -19,6 +19,7 @@ esac
 echo "Deploying branch '$BRANCH' -> container '$CONTAINER'  (https://$PUBHOST)"
 
 ./build.py >/dev/null || { echo "deploy.sh: build failed, nothing deployed" >&2; exit 1; }
+./websites.py --check || { echo "deploy.sh: trade pages out of date (run ./websites.py), nothing deployed" >&2; exit 1; }
 
 tar czf - --owner=0 --group=0 site nginx |
   ssh -o BatchMode=yes "$HOST" "W='$W' CONTAINER='$CONTAINER' CONF='$BRANCH.conf'; "'set -e

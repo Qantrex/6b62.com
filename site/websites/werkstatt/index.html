@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Websites für Kfz-Werkstätten und Reifenhändler · Konstantin Bauer</title>
+<meta name="description" content="Kunden buchen Pickerl, Service oder Reifenwechsel selbst online. Beispiel für eine Werkstatt: 1.030 € einmalig, dann 30 € im Monat. Von Konstantin Bauer, Wien.">
+<link rel="canonical" href="https://6b62.com/websites/werkstatt/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#edeeec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Websites für Kfz-Werkstätten und Reifenhändler">
+<meta property="og:description" content="Kunden buchen Pickerl, Service oder Reifenwechsel selbst online. Beispiel für eine Werkstatt: 1.030 € einmalig, dann 30 € im Monat. Von Konstantin Bauer, Wien.">
+<meta property="og:url" content="https://6b62.com/websites/werkstatt/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cstyle%3Erect%7Bfill:%2316171a%7Dtext%7Bfill:%23edeeec%7D@media(prefers-color-scheme:dark)%7Brect%7Bfill:%23edeeec%7Dtext%7Bfill:%230b0c0e%7D%7D%3C/style%3E%3Crect%20width='32'%20height='32'/%3E%3Ctext%20x='16'%20y='22'%20font-family='monospace'%20font-size='15'%20font-weight='700'%20text-anchor='middle'%3Ekb%3C/text%3E%3C/svg%3E">
+<style>
+/* 6b62.com/websites: the offer for small businesses. One file, inline CSS and image, no JavaScript. */
+:root{
+--paper:#edeeec;--panel:#e4e5e2;
+--ink:#16171a;--ink-2:#4e4f55;--faint:#65666b;
+--rule:rgba(22,23,26,.15);--rule-2:rgba(22,23,26,.32);
+--accent:#5a3ab0;
+--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+--sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+:root{
+--paper:#0b0c0e;--panel:#131418;
+--ink:#ecedee;--ink-2:#a7a8ae;--faint:#808187;
+--rule:rgba(236,237,238,.15);--rule-2:rgba(236,237,238,.30);
+--accent:#c4a7e7;color-scheme:dark;
+}
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--sans);}
+::selection{background:var(--accent);color:var(--paper);}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+a{color:inherit;}
+p,ul,ol{margin:0;}
+.skip{position:absolute;left:10px;top:-48px;z-index:10;padding:9px 13px;background:var(--ink);color:var(--paper);font:500 14px var(--sans);}
+.skip:focus{top:12px;}
+.wrap{max-width:960px;margin-inline:auto;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));}
+
+/* top line */
+.top{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--rule);}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;}
+.who{font-weight:650;letter-spacing:-.01em;text-decoration:none;}
+.who span{display:block;font:500 13px/1.3 var(--mono);color:var(--faint);letter-spacing:0;}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);font:600 16px/1 var(--sans);text-decoration:none;white-space:nowrap;}
+.btn.alt{background:transparent;color:var(--ink);}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--paper);}
+.btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+.top .btn{min-height:44px;padding:0 14px;font-size:15px;flex:none;}
+.who{min-width:0;}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+
+/* sections */
+section{padding-block:clamp(40px,7vw,72px);border-top:1px solid var(--rule);}
+section.hero{border-top:0;padding-top:clamp(28px,5vw,52px);}
+h1{margin:0;max-width:22ch;font:800 clamp(36px,6.4vw,54px)/1.05 var(--sans);letter-spacing:-.03em;}
+h2{margin:0 0 22px;font:700 clamp(24px,4vw,32px)/1.15 var(--sans);letter-spacing:-.02em;}
+h3{margin:0 0 8px;font:650 18px/1.3 var(--sans);}
+.lead{margin-top:20px;max-width:44ch;color:var(--ink-2);font-size:clamp(18px,2.6vw,21px);line-height:1.5;}
+.price{margin-top:26px;font:700 clamp(22px,3.6vw,28px)/1.25 var(--sans);letter-spacing:-.01em;}
+.price b{color:var(--accent);font-weight:700;}
+.small{margin-top:6px;max-width:60ch;color:var(--ink-2);font-size:15px;}
+.txt{max-width:62ch;color:var(--ink-2);}
+.txt + .txt{margin-top:12px;}
+
+/* the three parts of the package */
+.parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.part{padding:20px;border:1px solid var(--rule-2);background:var(--panel);}
+.part.opt{background:transparent;border-style:dashed;}
+.trades h3{font-size:19px;margin-bottom:12px;}
+.part .ex.opt{border-top:1px dashed var(--rule-2);}
+.part .ex{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule);font-size:15px;line-height:1.5;color:var(--ink-2);}
+.part .p{display:block;font:750 28px/1.1 var(--sans);letter-spacing:-.02em;}
+.part .when{display:block;margin:4px 0 14px;font:500 14px/1.4 var(--mono);color:var(--faint);}
+.part ul{padding-left:18px;color:var(--ink-2);font-size:15.5px;}
+.part li + li{margin-top:5px;}
+@media (max-width:760px){.parts{grid-template-columns:1fr;}}
+
+/* steps */
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:s;}
+.steps li{counter-increment:s;padding-top:14px;border-top:2px solid var(--ink);color:var(--ink-2);font-size:15.5px;}
+.steps li::before{content:counter(s);display:block;margin-bottom:6px;font:700 15px var(--mono);color:var(--accent);}
+.steps b{display:block;margin-bottom:4px;color:var(--ink);font-size:17px;}
+@media (max-width:760px){.steps{grid-template-columns:1fr 1fr;}}
+@media (max-width:440px){.steps{grid-template-columns:1fr;}}
+
+/* extras table */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:8px 44px;}
+@media (max-width:700px){.cols{grid-template-columns:1fr;}}
+table{width:100%;border-collapse:collapse;font-size:15.5px;}
+caption{text-align:left;padding-bottom:8px;font:600 14px/1.4 var(--mono);color:var(--faint);}
+td{padding:9px 0;border-top:1px solid var(--rule);vertical-align:top;}
+td.r{padding-left:14px;text-align:right;white-space:nowrap;font-weight:650;}
+.cols table + table{margin-top:24px;}
+.cmp{margin-top:24px;max-width:760px;}
+.cmp td:first-child{width:9.5rem;padding-right:16px;font-weight:650;}
+.cmp tr.me td{color:var(--ink);font-weight:650;border-top:2px solid var(--accent);}
+.cmp td{color:var(--ink-2);}
+@media (max-width:520px){.cmp td{display:block;width:auto;border-top:0;padding:2px 0;} .cmp tr{display:block;padding:10px 0;border-top:1px solid var(--rule);} .cmp tr.me{border-top:2px solid var(--accent);} .cmp tr.me td{border-top:0;}}
+.note{margin-top:20px;max-width:62ch;color:var(--ink-2);}
+
+/* terms */
+.terms{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 44px;}
+.terms li{padding:12px 0;border-top:1px solid var(--rule);color:var(--ink-2);}
+.terms b{color:var(--ink);font-weight:650;}
+@media (max-width:700px){.terms{grid-template-columns:1fr;}}
+
+/* reference */
+.ref{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:start;}
+.ref img{display:block;width:100%;height:auto;border:1px solid var(--rule-2);}
+.ref a.link{font-weight:650;}
+.link{text-decoration:none;border-bottom:1px solid var(--rule-2);}
+.link:hover{color:var(--accent);border-color:var(--accent);}
+@media (max-width:560px){.ref{grid-template-columns:1fr;} .ref img{max-width:220px;}}
+
+/* contact and footer */
+.contact .rows{margin-top:6px;font:500 15px/2 var(--mono);color:var(--ink-2);}
+.contact .rows a{text-decoration:none;border-bottom:1px solid var(--rule-2);color:var(--ink);}
+.contact .rows a:hover{color:var(--accent);border-color:var(--accent);}
+footer{padding-block:28px 40px;border-top:1px solid var(--rule);color:var(--faint);font-size:14px;}
+footer p + p{margin-top:8px;}
+footer a{text-decoration:none;border-bottom:1px solid var(--rule-2);}
+footer a:hover{color:var(--accent);border-color:var(--accent);}
+@media print{.top,.btns,.skip{display:none;} section{padding-block:18px;} body{font-size:12pt;}}
+.trades-line{margin-top:14px;font:500 14px/1.5 var(--mono);color:var(--accent);}
+.free{margin-top:20px;max-width:60ch;padding:12px 16px;border-left:3px solid var(--accent);background:var(--panel);font-size:17px;}
+.free b{font-weight:650;}
+.facts{margin-top:16px;padding-left:20px;max-width:62ch;color:var(--ink-2);}
+.facts li + li{margin-top:6px;}
+.trades .part{display:flex;flex-direction:column;}
+.intro{margin:-6px 0 22px;}
+.sub{margin:22px 0 4px;font-size:17px;}
+.trades-line a{color:inherit;text-decoration:underline;text-underline-offset:3px;}
+section[id],.trades .part{scroll-margin-top:64px;}
+.trades-line{line-height:1.5;}
+.trades-line a{display:inline-block;padding:5px 0;}
+.contact .rows a,footer a{display:inline-block;padding:8px 0;}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+.bd th{padding:5px 0;text-align:left;font-weight:400;border-top:1px solid var(--rule);vertical-align:top;}
+.bd tr.sum th{border-top:2px solid var(--ink);font-weight:700;color:var(--ink);}
+.parts.base .part{background:transparent;}
+.part h3 .p{display:block;margin-top:2px;}
+.mid{margin-top:26px;}
+.bd{margin-top:14px;font-size:15px;}
+.bd td{padding:5px 0;}
+.bd tr.sum td{border-top:2px solid var(--ink);font-weight:700;color:var(--ink);}
+details{margin-top:4px;}
+summary{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1.5px solid var(--ink);cursor:pointer;font-weight:600;list-style:none;}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:"+";margin-left:10px;font:700 16px var(--mono);}
+details[open] summary::after{content:"–";}
+details[open] summary{margin-bottom:22px;}
+summary:hover{border-color:var(--accent);color:var(--accent);}
+
+/* trade pages (websites.py) */
+.excase{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px;}
+.excase .bd{margin-top:0;}
+@media (max-width:760px){.excase{grid-template-columns:1fr;}}
+.trades-line .here{color:var(--ink-2);}
+</style>
+</head>
+<body>
+<!-- Built by websites.py from /websites/index.html. Edit there or in websites.py, not here. -->
+<a class="skip" href="#main">Zum Inhalt</a>
+
+<div class="top"><div class="wrap">
+  <a class="who" href="/websites/">Konstantin Bauer<span>Websites für Werkstätten</span></a>
+  <a class="btn" href="https://wa.me/436641854854?text=Hallo%2C%20ich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Entwurf%20f%C3%BCr%20meine%20Werkstatt%3A%20"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>Gratis-Entwurf</a>
+</div></div>
+
+<main class="wrap" id="main">
+
+<section class="hero" aria-labelledby="h-hero">
+  <p class="trades-line"><span class="here">Für Kfz-Werkstätten und Reifenhändler</span> ·&nbsp;<a href="/websites/">andere Branche</a></p>
+  <h1 id="h-hero">Pickerl und Reifenwechsel online buchen, statt anzurufen</h1>
+  <p class="lead">Das Telefon läutet, während Sie unter dem Auto liegen, und zum Reifenwechsel im Frühjahr und Herbst rufen alle gleichzeitig an. Auf Ihrer Seite wählen Kunden Pickerl, Service oder Reifenwechsel und buchen einen freien Termin selbst. Wer lieber anruft, erreicht Sie am Handy mit einem Tipp.</p>
+  <p class="price">Für eine Werkstatt wie im Beispiel: <b>1.030 €</b> einmalig, dann <b>30 €</b> im Monat</p>
+  <p class="small">Im ersten Jahr ca. 1.510&nbsp;€ mit dem Buchungsprogramm. Die Grundseite allein kostet 600&nbsp;€ einmalig und 30&nbsp;€ im Monat, 960&nbsp;€ im ersten Jahr. Mindestlaufzeit 12 Monate, danach monatlich kündbar. Früher aufhören kostet höchstens 360&nbsp;€. Keine Umsatzsteuer, keine Stundenabrechnung.</p>
+  <p class="free"><b>Zuerst kommt ein kostenloser Entwurf für Ihren Betrieb, innerhalb einer Woche.</b> Gefällt er Ihnen nicht, zahlen Sie nichts. Online ist die Seite meist 2–3 Wochen, nachdem Texte und Fotos da sind.</p>
+  <div class="btns">
+    <a class="btn" href="https://wa.me/436641854854?text=Hallo%2C%20ich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Entwurf%20f%C3%BCr%20meine%20Werkstatt%3A%20"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>Gratis-Entwurf per WhatsApp</a>
+    <a class="btn alt" href="tel:+436641854854"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+43 664 1854854</a>
+    <a class="btn alt" href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x77;&#x65;&#x62;&#x40;&#x36;&#x62;&#x36;&#x32;&#x2e;&#x63;&#x6f;&#x6d;"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>E-Mail</a>
+  </div>
+</section>
+
+<section id="beispiel" aria-labelledby="h-beispiel">
+  <h2 id="h-beispiel">Was es für eine Werkstatt kostet</h2>
+  <p class="txt intro">Jede Seite baue ich für Ihren Betrieb, aus keiner Vorlage. So sieht ein typisches Beispiel aus:</p>
+  <div class="excase">
+    <div class="part">
+      <h3>Was die Seite für Sie tut</h3>
+      <ul>
+        <li>Kunden wählen Pickerl, Service oder Reifenwechsel und buchen einen freien Termin, statt anzurufen, während Sie unter dem Auto liegen</li>
+        <li>Eigene Seiten für Pickerl und Reifen, damit man Sie bei Google findet</li>
+        <li>Anruf-Knopf ganz oben, am Handy mit einem Tipp</li>
+      </ul>
+      <p class="ex">Das Buchungsprogramm (z. B. SimplyBook.me) zahlen Sie direkt an den Anbieter. Buchungen kommen per E-Mail und im Kalender an, Sie legen Zeiten und Dauer pro Leistung fest.</p>
+      <p class="ex opt">Optional, nicht im Preis: ein Telefonassistent, der abhebt, während Sie arbeiten. 390 € einmalig und ab 99 € im Monat beim Anbieter.</p>
+    </div>
+    <div class="part">
+      <h3>Was es kostet</h3>
+      <table class="bd"><caption class="sr">Preis für dieses Beispiel</caption>
+        <tr><th scope="row">Grundseite</th><td class="r">600 €</td></tr>
+        <tr><th scope="row">2 weitere Seiten</th><td class="r">240 €</td></tr>
+        <tr><th scope="row">Online-Terminbuchung</th><td class="r">190 €</td></tr>
+        <tr class="sum"><th scope="row">Einmalig</th><td class="r">1.030 €</td></tr>
+        <tr><th scope="row">Dann im Monat</th><td class="r">30 €</td></tr>
+        <tr><th scope="row">dazu das Buchungsprogramm</th><td class="r">ca. 10 €</td></tr>
+        <tr class="sum"><th scope="row">Im ersten Jahr</th><td class="r">ca. 1.510 €</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="note">Sie zahlen nur, was Ihr Betrieb braucht. Den Gesamtpreis bekommen Sie mit dem Entwurf schriftlich, bevor irgendetwas fällig wird.</p>
+  <div class="btns mid"><a class="btn" href="https://wa.me/436641854854?text=Hallo%2C%20ich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Entwurf%20f%C3%BCr%20meine%20Werkstatt%3A%20"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>Gratis-Entwurf per WhatsApp</a></div>
+</section>
+
+<section aria-labelledby="h-faq">
+  <h2 id="h-faq">Gut zu wissen für Werkstätten</h2>
+  <ul class="terms">
+    <li><b>Warum eigene Seiten für Pickerl und Reifen?</b> Wer in Ihrer Gegend nach Pickerl oder Reifenwechsel sucht, soll eine Seite finden, die genau davon handelt. Eine bestimmte Platzierung bei Google garantiere ich nicht, das kann niemand seriös.</li>
+    <li><b>Bestimme ich, wann gebucht werden kann?</b> Ja. Sie legen Zeiten und Dauer pro Leistung fest. Buchungen kommen per E-Mail und im Kalender an, und das Buchungsprogramm zahlen Sie direkt an den Anbieter, etwa 10&nbsp;€ im Monat.</li>
+    <li><b>Unsere alte Seite ist am Handy kaum lesbar.</b> Ich ersetze sie, und Links, die Google schon kennt, führen weiter auf die richtige Seite. Das kostet einmalig 150–300&nbsp;€, dazu kommt der Preis der neuen Seite.</li>
+    <li><b>Und wer hebt ab, wenn ich arbeite?</b> Optional ein Telefonassistent: 390&nbsp;€ einmalig und ab 99&nbsp;€ im Monat beim Anbieter. Er ist nicht im Preis oben.</li>
+  </ul>
+</section>
+
+<section id="angebot" aria-labelledby="h-angebot">
+  <h2 id="h-angebot">Was in der Grundseite drin ist</h2>
+  <div class="parts base">
+    <div class="part">
+      <h3>Website <span class="p">600 €</span></h3>
+      <span class="when">einmalig</span>
+      <ul>
+        <li>Eine Seite mit Leistungen, Öffnungszeiten und Karte (jede weitere Seite 120 €)</li>
+        <li>Knöpfe zum Anrufen und für WhatsApp</li>
+        <li>Impressum und Datenschutz nach WKO-Vorlagen</li>
+        <li>Fürs Handy gemacht, ohne lästiges Einwilligungs-Fenster (Cookie-Banner)</li>
+        <li>Zweimal ändern, bis es passt, ohne Aufpreis</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h3>Betreuung <span class="p">30 € / Monat</span></h3>
+      <span class="when">alles Laufende inklusive</span>
+      <ul>
+        <li>Ihre Seite ist online und verschlüsselt, ohne Warnung „nicht sicher“</li>
+        <li>Die .at-Domain auf Ihren Namen: die jährliche Verlängerung erledige und zahle ich</li>
+        <li>Sicherheitsupdates und eine Kopie Ihrer Seite, falls etwas kaputtgeht</li>
+        <li>Bis zu 3 kleine Änderungen im Monat: Zeiten, Preise, Texte, Fotos</li>
+        <li>Dringendes wie eine neue Notdienst-Nummer meist am selben oder nächsten Tag, andere Änderungen innerhalb von 3 Werktagen</li>
+      </ul>
+    </div>
+    <div class="part opt">
+      <h3>E-Mail <span class="p">+5 € / Monat</span></h3>
+      <span class="when">optional, pro Postfach</span>
+      <ul>
+        <li>Eigene Adresse wie office@ihrbetrieb.at</li>
+        <li>Eingerichtet auf Handy und PC</li>
+        <li>Weitere Adressen wie info@ im selben Postfach gratis</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-ablauf">
+  <h2 id="h-ablauf">So läuft es ab</h2>
+  <ol class="steps">
+    <li><b>Kurz schreiben</b>Schicken Sie mir per WhatsApp den Namen Ihres Betriebs und Ihr Instagram oder Ihre alte Seite. Gern komme ich auch vorbei.</li>
+    <li><b>Entwurf ansehen</b>Innerhalb einer Woche bekommen Sie einen Entwurf Ihrer Startseite und den Gesamtpreis schriftlich, kostenlos und unverbindlich.</li>
+    <li><b>Texte und Fotos</b>Sie schicken mir Ihre Preise und ein paar Fotos, den Rest mache ich. Zweimal ändern ist dabei.</li>
+    <li><b>Online gehen</b>Sagen Sie Ja zum Entwurf, unterschreiben Sie das Angebot und zahlen die Hälfte, den Rest bei Fertigstellung. Online meist 2–3 Wochen, nachdem Texte und Fotos da sind.</li>
+  </ol>
+  <div class="btns mid"><a class="btn" href="https://wa.me/436641854854?text=Hallo%2C%20ich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Entwurf%20f%C3%BCr%20meine%20Werkstatt%3A%20"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>Gratis-Entwurf per WhatsApp</a></div>
+</section>
+
+<section aria-labelledby="h-wer">
+  <h2 id="h-wer">Wer das macht</h2>
+  <p class="txt">Ich bin Konstantin Bauer aus Liesing und baue jede Seite selbst. Ich gehe an die HTL TGM (Informationstechnik) und mache Websites für kleine Betriebe. Ohne Büro und Agentur-Aufschlag sind meine Preise niedriger als üblich. Sie riskieren nichts: Der Entwurf ist gratis, und Sie zahlen erst, wenn er Ihnen gefällt.</p>
+  <h3 class="sub">Und wenn ich einmal nicht kann?</h3>
+  <ul class="facts">
+    <li>Dringendes wie eine neue Notdienst-Nummer ändere ich meist am selben oder nächsten Tag, auch während der Schulzeit.</li>
+    <li>Ihre Seite läuft bei einem großen, bewährten Anbieter rund um die Uhr, auch wenn ich krank oder auf Urlaub bin.</li>
+    <li>Die Adresse Ihrer Seite (.at-Domain) läuft von Anfang an auf Ihren Namen.</li>
+    <li>Höre ich auf, bekommen Sie alle Dateien und Zugänge kostenlos. Jeder andere Anbieter kann die Seite weiterführen, Sie hängen nie an mir.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="h-vergleich">
+  <h2 id="h-vergleich">Was andere verlangen</h2>
+  <table class="cmp">
+    <caption>Übliche Preise für eine kleine Website in Österreich</caption>
+    <tr><td>Agentur</td><td>meist 1.500–3.000 € einmalig, Änderungen nach Stunden (oft 80–150 € pro Stunde)</td></tr>
+    <tr><td>Website im Abo</td><td>meist 40–130 € im Monat, oft mit 2 oder 3 Jahren Bindung</td></tr>
+    <tr><td>Baukasten</td><td>ab etwa 10–20 € im Monat (120–240 € im Jahr), aber Texte, Fotos, Impressum, Google und jede Änderung machen Sie selbst</td></tr>
+    <tr class="me"><td>Bei mir</td><td>600 € einmalig, dann 30 € im Monat inklusive Änderungen, nach 12 Monaten monatlich kündbar</td></tr>
+  </table>
+  <p class="note small">Marktpreise laut öffentlichen Preislisten und Ratgebern österreichischer Anbieter, Stand November 2026. Sie haben schon eine Seite bei Wix oder Jimdo? Den Umzug mache ich für 150–300 €, Ihre Adresse bleibt.</p>
+</section>
+
+<section aria-labelledby="h-extras">
+  <h2 id="h-extras">Alle Extras mit Preis</h2>
+  <details>
+    <summary>Alle Preise anzeigen, z. B. weitere Seite 120 €, Umzug von Wix oder Jimdo 150–300 €</summary>
+    <div class="cols">
+      <div>
+        <table>
+          <caption>Termine und gefunden werden</caption>
+          <tr><td>Google-Unternehmensprofil einrichten oder richtigstellen</td><td class="r">90 €</td></tr>
+          <tr><td>Terminanfrage per Formular (ohne Buchungstool)</td><td class="r">120 €</td></tr>
+          <tr><td>Online-Terminbuchung</td><td class="r">190 €</td></tr>
+          <tr><td>Telefonassistent, der abhebt, wenn Sie gerade arbeiten (dazu ab 99 € im Monat beim Anbieter)</td><td class="r">290–390 €</td></tr>
+        </table>
+        <table>
+          <caption>Gastronomie und Verkauf</caption>
+          <tr><td>Speisekarte, leicht zu aktualisieren</td><td class="r">120 €</td></tr>
+          <tr><td>Tischreservierung (OpenTable, TheFork, Zenchef)</td><td class="r">190 €</td></tr>
+          <tr><td>Gutscheine oder bis zu 10 Produkte zum Kaufen</td><td class="r">290 €</td></tr>
+          <tr><td>Kleiner Online-Shop, bis 30 Produkte</td><td class="r">1.490 €</td></tr>
+        </table>
+      </div>
+      <div>
+        <table>
+          <caption>Mehr Website</caption>
+          <tr><td>Weitere Seite</td><td class="r">120 €</td></tr>
+          <tr><td>Galerie mit Fotos Ihrer Arbeiten</td><td class="r">150 €</td></tr>
+          <tr><td>Formular mit Foto-Upload, z. B. für Schäden oder Motive</td><td class="r">150 €</td></tr>
+          <tr><td>Zweite Sprache (Übersetzung von Ihnen)</td><td class="r">190 €</td></tr>
+          <tr><td>Texte schreibe ich, Sie geben frei</td><td class="r">50 € / Seite</td></tr>
+          <tr><td>Texte selbst ändern, ohne mich zu fragen</td><td class="r">390 €</td></tr>
+          <tr><td>Alte Website ersetzen, Google-Links bleiben gültig</td><td class="r">150–300 €</td></tr>
+          <tr><td>Einfaches Schriftzug-Logo</td><td class="r">90 €</td></tr>
+        </table>
+      </div>
+    </div>
+    <p class="note">Bestehendes ändern ist im Monatsbetrag inklusive, etwas Neues dazu ist ein Extra. Für alles, was hier nicht steht, bekommen Sie vorher einen Fixpreis, schriftlich.</p>
+  </details>
+</section>
+
+<section aria-labelledby="h-fair">
+  <h2 id="h-fair">Was fix geregelt ist</h2>
+  <ul class="terms">
+    <li><b>Im ersten Jahr 960 €</b> für die Grundseite. Die 30 € im Monat beginnen, wenn Ihre Seite online ist, und laufen, solange Sie möchten.</li>
+    <li><b>Mindestens 12 Monate,</b> danach jederzeit zum Monatsende kündbar, per E-Mail oder WhatsApp. Hören Sie im ersten Jahr früher auf, zahlen Sie die restlichen Monate dieses Jahres, höchstens 360 €.</li>
+    <li><b>Endet die Betreuung, egal von wem,</b> gehören Website, Adresse und Postfächer Ihnen und werden kostenlos übergeben.</li>
+    <li><b>Zahlen</b> per Dauerauftrag oder einmal im Jahr 360 € im Voraus. Kündigen Sie nach dem ersten Jahr, bekommen Sie bezahlte, aber nicht genutzte Monate zurück.</li>
+  </ul>
+  <p class="note">Sie bekommen ein schriftliches Angebot mit allen Preisen und die Vereinbarung zum Datenschutz zum Lesen, zusammen mit dem Entwurf. Bezahlt wird erst, wenn Sie Ja zum Entwurf sagen und das Angebot unterschreiben.</p>
+</section>
+
+<section aria-labelledby="h-ref">
+  <h2 id="h-ref">Ein Projekt im Detail: wbauer.com</h2>
+  <div class="ref">
+    <img src="data:image/webp;base64,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" width="360" height="397" alt="Die Seite Kundenstimmen von wbauer.com am Handy, dunkles Design mit einem Kundenzitat.">
+    <div>
+      <p class="txt">Die Website eines Wiener Fotografen für Schul- und Porträtfotos, geplant, gebaut und laufend betreut von mir. <a class="link" href="https://wbauer.com">wbauer.com ansehen</a></p>
+      <ul class="facts">
+        <li>Galerien nach Kategorien: Schule, Porträts, Geschwister, Klassen</li>
+        <li>Kontaktformular, die Anfragen kommen direkt per E-Mail an</li>
+        <li>Eine Seite mit Kundenstimmen</li>
+        <li>Ein eigener Verwaltungsbereich: Der Inhaber lädt Fotos hoch, ordnet sie den Galerien zu, wählt das Titelbild und pflegt Kundenstimmen und Impressum selbst</li>
+        <li>Fotos werden automatisch in der passenden Größe ausgeliefert, damit die Seite auch am Handy schnell lädt</li>
+      </ul>
+      <p class="txt">Was ich nicht anbiete: Garantien für Google-Platzierungen, Social-Media-Betreuung und Logo-Design von Grund auf.</p>
+      <p class="txt">Lebenslauf und Projekte: <a class="link" href="https://6b62.com/">6b62.com</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" aria-labelledby="h-kontakt">
+  <h2 id="h-kontakt">Reden wir kurz</h2>
+  <p class="txt">Schreiben Sie mir auf WhatsApp oder rufen Sie an. Wenn Sie möchten, bringe ich beim ersten Treffen gleich einen Entwurf für Ihren Betrieb mit.</p>
+  <div class="btns">
+    <a class="btn" href="https://wa.me/436641854854?text=Hallo%2C%20ich%20h%C3%A4tte%20gern%20einen%20kostenlosen%20Entwurf%20f%C3%BCr%20meine%20Werkstatt%3A%20"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/></svg>WhatsApp</a>
+    <a class="btn alt" href="tel:+436641854854"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Anrufen</a>
+  </div>
+  <p class="rows">Telefon <a href="tel:+436641854854">+43 664 1854854</a><br>E-Mail <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x77;&#x65;&#x62;&#x40;&#x36;&#x62;&#x36;&#x32;&#x2e;&#x63;&#x6f;&#x6d;">&#x77;&#x65;&#x62;&#x40;&#x36;&#x62;&#x36;&#x32;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+  <p>Konstantin Bauer, Bobiesgasse 19, 1230 Wien · &#x77;&#x65;&#x62;&#x40;&#x36;&#x62;&#x36;&#x32;&#x2e;&#x63;&#x6f;&#x6d; · +43 664 1854854</p>
+  <p>Diese Seite setzt keine Cookies und hat keine Tracker. <a href="/websites/impressum/">Impressum</a> · <a href="/websites/datenschutz/">Datenschutz</a> · <a href="https://6b62.com/">6b62.com</a></p>
+  <p>Andere Branchen: <a href="/websites/friseur/">Friseur, Barber, Kosmetik und Nagelstudio</a> · <a href="/websites/handwerk/">Installateure, Elektriker und andere Handwerksbetriebe</a> · <a href="/websites/">alle Branchen</a></p>
+</div></footer>
+</body>
+</html>

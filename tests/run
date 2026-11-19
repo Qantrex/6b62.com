@@ -98,6 +98,67 @@ echo "# --- security.txt"
 contains site/.well-known/security.txt '^Contact:'   "security.txt has Contact"
 contains site/.well-known/security.txt '^Canonical: https://6b62\.com/' "security.txt Canonical is 6b62.com"
 
+echo "# --- /websites/: the offer page, its trade pages, Impressum and privacy page"
+W=site/websites
+TRADES="friseur werkstatt handwerk"
+for f in $W/index.html $W/impressum/index.html $W/datenschutz/index.html; do exists "$f"; done
+for t in $TRADES; do exists "$W/$t/index.html"; done
+python3 websites.py --check >/dev/null && ok "websites.py --check: the trade pages are what index.html builds" \
+  || bad "websites.py --check: run ./websites.py"
+for f in $(find $W -name index.html | sort); do
+  lacks $f '<script'                          "$f: no <script>"
+  lacks $f '<link[^>]*stylesheet|@font-face'  "$f: no external stylesheet or web font"
+  lacks $f 'src="https?:|url\([[:space:]]*["'"'"']?https?:' "$f: no external images or url()"
+  # the base package shows the made-up example office@ihrbetrieb.at; any other address must be entity-encoded
+  if grep -oE '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}' "$f" | grep -qv '^office@ihrbetrieb\.at$'; then
+    bad "$f: no plaintext email address"; else ok "$f: no plaintext email address"; fi
+  lacks $f 'new\.6b62\.com'                   "$f: never links to new.6b62.com"
+  lacks $f '—'                                "$f: no em-dash"
+  contains $f '<html lang="de">'              "$f: lang de"
+done
+for t in $TRADES; do
+  contains $W/$t/index.html "<link rel=\"canonical\" href=\"https://6b62.com/websites/$t/\">" "$t: canonical https://6b62.com/websites/$t/"
+  contains $W/$t/index.html "<meta property=\"og:url\" content=\"https://6b62.com/websites/$t/\">" "$t: og:url"
+  contains $W/index.html "href=\"/websites/$t/\"" "/websites/ links to /websites/$t/"
+done
+if python3 - "$W" $TRADES <<'PY'
+import html, re, sys
+from pathlib import Path
+W = Path(sys.argv[1]); trades = sys.argv[2:]
+index = (W / "index.html").read_text(encoding="utf-8")
+WA = re.compile(r"f%C3%BCr%20meine[n]?%20\w+%3A%20")
+def sections(s):
+    return {k: v for v, k in re.findall(r'(<section[^>]*aria-labelledby="h-(\w+)">.*?</section>)', s, re.S)}
+shared = ["angebot", "ablauf", "wer", "vergleich", "extras", "fair", "ref", "kontakt"]
+isec = sections(index)
+for t in trades:
+    s = (W / t / "index.html").read_text(encoding="utf-8")
+    sec = sections(s)
+    for k in shared:  # identical to /websites/, except the WhatsApp greeting names the trade
+        assert WA.sub("", sec[k]) == WA.sub("", isec[k]), f"{t}: section {k} differs from /websites/"
+    assert re.findall(r"<style>.*?</style>", index, re.S)[0][:-8] in s, f"{t}: CSS differs from /websites/"
+    # the price in the hero is the example's price, and the example is the one on /websites/
+    art = re.search(rf'<article class="part" id="{t}">(.*?)</article>', index, re.S).group(1)
+    table = re.search(r'<table class="bd">.*?</table>', art, re.S).group(0)
+    assert table in s, f"{t}: example table differs from /websites/#{t}"
+    row = lambda name: re.search(rf'<th scope="row">{name}</th><td class="r">([^<]+)</td>', table).group(1)
+    hero = re.search(r'<section class="hero".*?</section>', s, re.S).group(0).replace("&nbsp;", " ")
+    assert f"<b>{row('Einmalig')}</b> einmalig, dann <b>{row('Dann im Monat')}</b> im Monat" in hero, f"{t}: hero price"
+    assert f"Im ersten Jahr {row('Im ersten Jahr')}" in hero, f"{t}: hero first-year total"
+    for fact in ("600 € einmalig und 30 € im Monat, 960 € im ersten Jahr", "Mindestlaufzeit 12 Monate",
+                 "höchstens 360 €", "Keine Umsatzsteuer"):
+        assert fact in hero, f"{t}: hero lacks '{fact}'"
+    for o in trades + [""]:
+        assert f'href="/websites/{o + "/" if o else ""}"' in s or o == t, f"{t}: no link to /websites/{o}"
+# every site-internal link points to a file that exists
+for f in W.rglob("index.html"):
+    for h in re.findall(r'href="(/[^"#?]*)', f.read_text(encoding="utf-8")):
+        p = Path("site") / h.lstrip("/")
+        assert (p / "index.html" if h.endswith("/") else p).exists(), f"{f}: broken link {h}"
+PY
+then ok "trade pages: shared sections, CSS and example table equal /websites/, hero prices match, links resolve"
+else bad "trade pages: consistency with /websites/ and internal links"; fi
+
 echo "# --- nginx configs"
 for c in nginx/main.conf nginx/staging.conf; do
   contains $c "default-src 'none'"        "$c: CSP default-src 'none'"
