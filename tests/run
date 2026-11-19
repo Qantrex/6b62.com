@@ -137,16 +137,17 @@ for t in trades:
     for k in shared:  # identical to /websites/, except the WhatsApp greeting names the trade
         assert WA.sub("", sec[k]) == WA.sub("", isec[k]), f"{t}: section {k} differs from /websites/"
     assert re.findall(r"<style>.*?</style>", index, re.S)[0][:-8] in s, f"{t}: CSS differs from /websites/"
-    # the price in the hero is the example's price, and the example is the one on /websites/
+    # the hero leads with the base price of /websites/, then names the example's totals from its table
     art = re.search(rf'<article class="part" id="{t}">(.*?)</article>', index, re.S).group(1)
     table = re.search(r'<table class="bd">.*?</table>', art, re.S).group(0)
     assert table in s, f"{t}: example table differs from /websites/#{t}"
     row = lambda name: re.search(rf'<th scope="row">{name}</th><td class="r">([^<]+)</td>', table).group(1)
     hero = re.search(r'<section class="hero".*?</section>', s, re.S).group(0).replace("&nbsp;", " ")
-    assert f"<b>{row('Einmalig')}</b> einmalig, dann <b>{row('Dann im Monat')}</b> im Monat" in hero, f"{t}: hero price"
-    assert f"Im ersten Jahr {row('Im ersten Jahr')}" in hero, f"{t}: hero first-year total"
-    for fact in ("600 € einmalig und 30 € im Monat, 960 € im ersten Jahr", "Mindestlaufzeit 12 Monate",
-                 "höchstens 360 €", "Keine Umsatzsteuer"):
+    ihero = re.search(r'<section class="hero".*?</section>', index, re.S).group(0)
+    base_price = re.search(r'<p class="price">Grundseite:.*?</p>', ihero).group(0)
+    assert base_price in hero, f"{t}: hero base price differs from /websites/"
+    assert f"{row('Einmalig')} einmalig und {row('Im ersten Jahr')} im ersten Jahr" in hero, f"{t}: hero example totals"
+    for fact in ("Im ersten Jahr 960 €", "Mindestlaufzeit 12 Monate", "höchstens 360 €", "Keine Umsatzsteuer"):
         assert fact in hero, f"{t}: hero lacks '{fact}'"
     for o in trades + [""]:
         assert f'href="/websites/{o + "/" if o else ""}"' in s or o == t, f"{t}: no link to /websites/{o}"

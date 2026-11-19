@@ -27,11 +27,11 @@ TRADES = [
         "label": "Websites für Salons",
         "title": "Websites für Friseur, Barber, Kosmetik und Nagelstudio · Konstantin Bauer",
         "og_title": "Websites für Friseur, Kosmetik und Nagelstudio",
-        "desc": "Eine Website, über die Ihre Kunden selbst einen Termin buchen. Beispiel für einen Salon: {once} einmalig, dann {month} im Monat. Von Konstantin Bauer, Wien.",
+        "desc": "Eine Website, über die Ihre Kunden selbst einen Termin buchen. Ab {base_once} einmalig und {base_month} im Monat, mit Online-Buchung wie im Beispiel {once} einmalig. Von Konstantin Bauer, Wien.",
         "eyebrow": "Für Friseur, Barber, Kosmetik und Nagelstudio",
         "h1": "Ihre Kunden buchen selbst, während Sie schneiden",
         "lead": "Das Telefon läutet mitten im Haarschnitt, und abends beantworten Sie Terminfragen auf Instagram und WhatsApp. Auf Ihrer eigenen Seite sehen Kunden Preise und Öffnungszeiten und buchen einen freien Termin selbst, auch abends und am Sonntag.",
-        "price_intro": "Für einen Salon wie im Beispiel",
+        "ex_with": "mit Online-Terminbuchung und Google-Eintrag",
         "year_extra": ", je nach Buchungsprogramm",
         "wa": "f%C3%BCr%20meinen%20Salon%3A%20",
         "ex_h2": "Was es für einen Salon kostet",
@@ -48,11 +48,11 @@ TRADES = [
         "label": "Websites für Werkstätten",
         "title": "Websites für Kfz-Werkstätten und Reifenhändler · Konstantin Bauer",
         "og_title": "Websites für Kfz-Werkstätten und Reifenhändler",
-        "desc": "Kunden buchen Pickerl, Service oder Reifenwechsel selbst online. Beispiel für eine Werkstatt: {once} einmalig, dann {month} im Monat. Von Konstantin Bauer, Wien.",
+        "desc": "Kunden buchen Pickerl, Service oder Reifenwechsel selbst online. Ab {base_once} einmalig und {base_month} im Monat, mit Online-Buchung wie im Beispiel {once} einmalig. Von Konstantin Bauer, Wien.",
         "eyebrow": "Für Kfz-Werkstätten und Reifenhändler",
         "h1": "Pickerl und Reifenwechsel online buchen, statt anzurufen",
         "lead": "Das Telefon läutet, während Sie unter dem Auto liegen, und zum Reifenwechsel im Frühjahr und Herbst rufen alle gleichzeitig an. Auf Ihrer Seite wählen Kunden Pickerl, Service oder Reifenwechsel und buchen einen freien Termin selbst. Wer lieber anruft, erreicht Sie am Handy mit einem Tipp.",
-        "price_intro": "Für eine Werkstatt wie im Beispiel",
+        "ex_with": "mit eigenen Seiten für Pickerl und Reifen und Online-Terminbuchung",
         "year_extra": " mit dem Buchungsprogramm",
         "wa": "f%C3%BCr%20meine%20Werkstatt%3A%20",
         "ex_h2": "Was es für eine Werkstatt kostet",
@@ -69,11 +69,11 @@ TRADES = [
         "label": "Websites fürs Handwerk",
         "title": "Websites für Installateure, Elektriker und Handwerk · Konstantin Bauer",
         "og_title": "Websites für Installateure, Elektriker und Handwerk",
-        "desc": "Notdienst-Nummer ganz oben, Einsatzgebiet, Fotos fertiger Arbeiten. Beispiel für einen Handwerksbetrieb: {once} einmalig, dann {month} im Monat. Von Konstantin Bauer, Wien.",
+        "desc": "Notdienst-Nummer ganz oben, Einsatzgebiet, Fotos fertiger Arbeiten. Ab {base_once} einmalig und {base_month} im Monat, mit Galerie und Foto-Formular wie im Beispiel {once} einmalig. Von Konstantin Bauer, Wien.",
         "eyebrow": "Für Installateure, Elektriker und andere Handwerksbetriebe",
         "h1": "Wer einen Notfall hat, findet Ihre Nummer sofort",
         "lead": "Bei einem Rohrbruch oder Stromausfall sucht man am Handy und will sofort jemanden erreichen. Auf Ihrer Seite steht die Notdienst-Nummer ganz oben, dazu Einsatzgebiet, Leistungen und Fotos fertiger Arbeiten. Kunden schicken Ihnen ein Foto vom Schaden, bevor Sie hinfahren.",
-        "price_intro": "Für einen Betrieb wie im Beispiel",
+        "ex_with": "mit Galerie, Foto-Formular und Google-Eintrag",
         "year_extra": ", ohne weitere laufende Kosten",
         "wa": WA_ANY,
         "ex_h2": "Was es für einen Handwerksbetrieb kostet",
@@ -155,7 +155,7 @@ def page(t, src):
     footer = src["footer"].replace(
         "</div></footer>",
         f'  <p>Andere Branchen: {others} · <a href="/websites/">alle Branchen</a></p>\n</div></footer>')
-    desc = t["desc"].format(once=x["once"], month=x["month"])
+    desc = t["desc"].format(once=x["once"], month=x["month"], base_once=base_once, base_month=base_month)
     return f"""<!doctype html>
 <html lang="de">
 <head>
@@ -188,8 +188,8 @@ def page(t, src):
   <p class="trades-line"><span class="here">{e(t["eyebrow"])}</span> ·&nbsp;<a href="/websites/">andere Branche</a></p>
   <h1 id="h-hero">{e(t["h1"])}</h1>
   <p class="lead">{e(t["lead"])}</p>
-  <p class="price">{e(t["price_intro"])}: <b>{e(x["once"])}</b> einmalig, dann <b>{e(x["month"])}</b> im Monat</p>
-  <p class="small">{nb(f'Im ersten Jahr {e(x["year"])}{e(t["year_extra"])}. Die Grundseite allein kostet {base_once} einmalig und {base_month} im Monat, {src["base_year"]} im ersten Jahr. {src["terms_tail"]}')}</p>
+  <p class="price">Grundseite: <b>{base_once}</b> einmalig, dann <b>{base_month}</b> im Monat</p>
+  <p class="small">{nb(f'Im ersten Jahr {src["base_year"]}. Wie im <a href="#beispiel">Beispiel unten</a>, {e(t["ex_with"])}: {e(x["once"])} einmalig und {e(x["year"])} im ersten Jahr{e(t["year_extra"])}. {src["terms_tail"]}')}</p>
   {src["free"]}
   {wa(src["btns"], t)}
 </section>
