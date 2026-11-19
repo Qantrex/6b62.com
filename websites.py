@@ -21,6 +21,9 @@ SRC = ROOT / "site/websites/index.html"
 SHARED = ["angebot", "ablauf", "wer", "vergleich", "extras", "fair", "ref", "kontakt"]
 WA_ANY = "f%C3%BCr%20meinen%20Betrieb%3A%20"
 
+# extras that fit every trade page
+COMMON = ["Google-Unternehmensprofil", "Terminanfrage per Formular", "Telefonassistent", "Weitere Seite", "Galerie", "Zweite Sprache", "Texte schreibe ich", "Texte selbst ändern", "Alte Website ersetzen", "Einfaches Schriftzug-Logo"]
+
 TRADES = [
     {
         "slug": "friseur",
@@ -34,6 +37,8 @@ TRADES = [
         "ex_with": "mit Online-Terminbuchung und Google-Eintrag",
         "wa": "f%C3%BCr%20meinen%20Salon%3A%20",
         "ex_h2": "Was es für einen Salon kostet",
+        # rows of "Alle Extras mit Preis" shown on this page (start of the item name); prices come from /websites/
+        "extras": [*COMMON, "Online-Terminbuchung", "Gutscheine"],
         "faq_h2": "Gut zu wissen für Salons",
         "faq": [
             ("Ich habe doch Instagram.", "Instagram bleibt, und die Seite zeigt es. Dazu kommt, was auf Instagram schwer zu finden ist: Preise, Öffnungszeiten, Adresse und ein Knopf zum Buchen. Wer Sie auf Google sucht, landet direkt dort."),
@@ -54,6 +59,7 @@ TRADES = [
         "ex_with": "mit eigenen Seiten für Pickerl und Reifen und Online-Terminbuchung",
         "wa": "f%C3%BCr%20meine%20Werkstatt%3A%20",
         "ex_h2": "Was es für eine Werkstatt kostet",
+        "extras": [*COMMON, "Online-Terminbuchung", "Formular mit Foto-Upload"],
         "faq_h2": "Gut zu wissen für Werkstätten",
         "faq": [
             ("Warum eigene Seiten für Pickerl und Reifen?", "Wer in Ihrer Gegend nach Pickerl oder Reifenwechsel sucht, soll eine Seite finden, die genau davon handelt. Eine bestimmte Platzierung bei Google garantiere ich nicht, das kann niemand seriös."),
@@ -74,6 +80,7 @@ TRADES = [
         "ex_with": "mit Galerie, Foto-Formular und Google-Eintrag",
         "wa": WA_ANY,
         "ex_h2": "Was es für einen Handwerksbetrieb kostet",
+        "extras": [*COMMON, "Formular mit Foto-Upload"],
         "faq_h2": "Gut zu wissen für Handwerksbetriebe",
         "faq": [
             ("Unsere Domain ist abgelaufen.", "Ich prüfe gratis, ob sie noch zu haben ist. Die Domain läuft auf Ihren Namen, und die jährliche Verlängerung erledige und zahle ich, damit sie nicht wieder unbemerkt abläuft."),
@@ -141,6 +148,27 @@ def wa(s, t):
     return s.replace(WA_ANY, t["wa"])
 
 
+def extras(sec, t):
+    """The extras section for one trade: only its rows, the full list stays on /websites/."""
+    keep = lambda row: any(re.match(rf"<tr><td>{re.escape(name)}", row) for name in t["extras"])
+    def table(m):
+        rows = [r for r in re.findall(r"<tr>.*?</tr>", m.group(0)) if keep(r)]
+        if not rows:
+            return ""
+        cap = one(r"(<caption>.*?</caption>)", m.group(0), "extras caption")
+        if not any(r.startswith("<tr><td>Speisekarte") or r.startswith("<tr><td>Tischreservierung") for r in rows):
+            cap = cap.replace("Gastronomie und Verkauf", "Verkauf")
+        return "<table>\n          " + cap + "\n          " + "\n          ".join(rows) + "\n        </table>"
+    out = re.sub(r"<table>.*?</table>", table, sec, flags=re.S)
+    out = re.sub(r"\n        \n", "\n", out)
+    for name in t["extras"]:
+        if f"<tr><td>{name}" not in out:
+            sys.exit(f"websites.py: extra '{name}' for {t['slug']} not found in /websites/")
+    out = out.replace(">Alle Extras mit Preis</h2>", ">Passende Extras mit Preis</h2>")
+    out = out.replace("<summary>Alle Preise anzeigen,", "<summary>Preise anzeigen,")
+    return out.replace('<p class="note">', '<p class="note">Alle Extras für jede Branche stehen auf der <a href="/websites/#h-extras">Übersicht</a>. ', 1)
+
+
 def page(t, src):
     e = lambda x: html.escape(x, quote=True)
     x = t["src"]
@@ -148,7 +176,7 @@ def page(t, src):
     others = " · ".join(
         f'<a href="/websites/{o["slug"]}/">{o["eyebrow"].removeprefix("Für ")}</a>' for o in TRADES if o is not t)
     faq = "\n".join(f"    <li><b>{e(q)}</b> {nb(e(a))}</li>" for q, a in t["faq"])
-    shared = "\n\n".join(wa(src["sections"][k], t) for k in SHARED)
+    shared = "\n\n".join(wa(extras(src["sections"][k], t) if k == "extras" else src["sections"][k], t) for k in SHARED)
     footer = src["footer"].replace(
         "</div></footer>",
         f'  <p>Andere Branchen: {others} · <a href="/websites/">alle Branchen</a></p>\n</div></footer>')
