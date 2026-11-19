@@ -146,7 +146,7 @@ for t in trades:
     ihero = re.search(r'<section class="hero".*?</section>', index, re.S).group(0)
     base_price = re.search(r'<p class="price">Grundseite:.*?</p>', ihero).group(0)
     assert base_price in hero, f"{t}: hero base price differs from /websites/"
-    assert f"{row('Einmalig')} einmalig und {row('Im ersten Jahr')} im ersten Jahr" in hero, f"{t}: hero example totals"
+    assert f"{row('Einmalig')} einmalig." in hero, f"{t}: hero example totals"
     for fact in ("Im ersten Jahr 960 €", "Mindestlaufzeit 12 Monate", "höchstens 360 €", "Keine Umsatzsteuer"):
         assert fact in hero, f"{t}: hero lacks '{fact}'"
     for o in trades + [""]:

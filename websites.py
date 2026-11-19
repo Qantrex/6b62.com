@@ -32,7 +32,6 @@ TRADES = [
         "h1": "Ihre Kunden buchen selbst, während Sie schneiden",
         "lead": "Das Telefon läutet mitten im Haarschnitt, und abends beantworten Sie Terminfragen auf Instagram und WhatsApp. Auf Ihrer eigenen Seite sehen Kunden Preise und Öffnungszeiten und buchen einen freien Termin selbst, auch abends und am Sonntag.",
         "ex_with": "mit Online-Terminbuchung und Google-Eintrag",
-        "year_extra": ", je nach Buchungsprogramm",
         "wa": "f%C3%BCr%20meinen%20Salon%3A%20",
         "ex_h2": "Was es für einen Salon kostet",
         "faq_h2": "Gut zu wissen für Salons",
@@ -53,7 +52,6 @@ TRADES = [
         "h1": "Pickerl und Reifenwechsel online buchen, statt anzurufen",
         "lead": "Das Telefon läutet, während Sie unter dem Auto liegen, und zum Reifenwechsel im Frühjahr und Herbst rufen alle gleichzeitig an. Auf Ihrer Seite wählen Kunden Pickerl, Service oder Reifenwechsel und buchen einen freien Termin selbst. Wer lieber anruft, erreicht Sie am Handy mit einem Tipp.",
         "ex_with": "mit eigenen Seiten für Pickerl und Reifen und Online-Terminbuchung",
-        "year_extra": " mit dem Buchungsprogramm",
         "wa": "f%C3%BCr%20meine%20Werkstatt%3A%20",
         "ex_h2": "Was es für eine Werkstatt kostet",
         "faq_h2": "Gut zu wissen für Werkstätten",
@@ -74,7 +72,6 @@ TRADES = [
         "h1": "Wer einen Notfall hat, findet Ihre Nummer sofort",
         "lead": "Bei einem Rohrbruch oder Stromausfall sucht man am Handy und will sofort jemanden erreichen. Auf Ihrer Seite steht die Notdienst-Nummer ganz oben, dazu Einsatzgebiet, Leistungen und Fotos fertiger Arbeiten. Kunden schicken Ihnen ein Foto vom Schaden, bevor Sie hinfahren.",
         "ex_with": "mit Galerie, Foto-Formular und Google-Eintrag",
-        "year_extra": ", ohne weitere laufende Kosten",
         "wa": WA_ANY,
         "ex_h2": "Was es für einen Handwerksbetrieb kostet",
         "faq_h2": "Gut zu wissen für Handwerksbetriebe",
@@ -189,7 +186,7 @@ def page(t, src):
   <h1 id="h-hero">{e(t["h1"])}</h1>
   <p class="lead">{e(t["lead"])}</p>
   <p class="price">Grundseite: <b>{base_once}</b> einmalig, dann <b>{base_month}</b> im Monat</p>
-  <p class="small">{nb(f'Im ersten Jahr {src["base_year"]}. Wie im <a href="#beispiel">Beispiel unten</a>, {e(t["ex_with"])}: {e(x["once"])} einmalig und {e(x["year"])} im ersten Jahr{e(t["year_extra"])}. {src["terms_tail"]}')}</p>
+  <p class="small">{nb(f'Im ersten Jahr {src["base_year"]}. Wie im <a href="#beispiel">Beispiel unten</a>, {e(t["ex_with"])}: {e(x["once"])} einmalig. {src["terms_tail"]}')}</p>
   {src["free"]}
   {wa(src["btns"], t)}
 </section>
